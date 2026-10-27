@@ -1,0 +1,78 @@
+Extracted 19 frames.
+
+--- Frames with bullets ---
+Frame 06: flex_bullets=4, total_bullet_chars=4
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>컴퓨터공학과 주전공 (소프트웨어 
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>정보처리기사 취득 (기본 우대 요
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>TOEIC 865점 (기업 지원 
+Frame 08: flex_bullets=2, total_bullet_chars=2
+   sample: <div style="display: flex; gap: 6px;"><span style="color:#64748b;">•</span><span><strong>소요 기간:</str
+   sample: <div style="display: flex; gap: 6px;"><span style="color:#64748b;">•</span><span><strong>소요 비용:</str
+Frame 11: flex_bullets=6, total_bullet_chars=6
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>전공: 컴퓨터공학 학사</span
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>자격: 정보처리기사 보유 (공공·
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>기본기: Spring Boot R
+Frame 14: flex_bullets=15, total_bullet_chars=15
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>이커머스 주문·결제 마이크로서비스
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>RDBMS(MySQL) 데이터베이
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>단위 테스트 작성 및 지속적 배포
+Frame 15: flex_bullets=3, total_bullet_chars=3
+   sample: <div style="display: flex; gap: 8px; border-bottom: 2px solid #e2e8f0; margin-bottom: 40px;">
+      
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>기업 사전 검증:<
+   sample: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>현재 이용 가능:<
+Frame 16: flex_bullets=0, total_bullet_chars=12
+Frame 17: flex_bullets=0, total_bullet_chars=5
+Frame 18: flex_bullets=0, total_bullet_chars=24
+Frame 19: flex_bullets=0, total_bullet_chars=20
+
+--- Frames with large fixed heights (>= 200px) ---
+Frame 01: [780, 780]
+Frame 02: [380, 380, 340, 340]
+Frame 03: [380, 380, 340, 340]
+Frame 04: [830]
+Frame 05: [830]
+Frame 06: [420, 420]
+Frame 07: [820]
+Frame 08: [820]
+Frame 09: [750]
+Frame 10: [500]
+Frame 11: [750]
+Frame 14: [750]
+
+--- Flex bullet span splits ---
+Frame 06: found 4 flex bullet span splits
+   split text: 컴퓨터공학과 주전공 (소프트웨어 개발 기본 요건 충족)
+   split text: 정보처리기사 취득 (기본 우대 요건 충족)
+   split text: TOEIC 865점 (기업 지원 최소 어학선 충족)
+   split text: 학점 3.6 / 4.5
+Frame 08: found 2 flex bullet span splits
+   split text: <strong>소요 기간:</strong> 약 6개월 (채용 연계형 인턴십)
+   split text: <strong>소요 비용:</strong> 직접 비용 별도 확인 · 참여 중 급여는 공고별 확인
+Frame 11: found 6 flex bullet span splits
+   split text: 전공: 컴퓨터공학 학사
+   split text: 자격: 정보처리기사 보유 (공공·금융 솔루션 투입 요건 충족)
+   split text: 기본기: Spring Boot REST API 백엔드 프로젝트 경험 보유
+   split text: 클라우드(AWS) 기반 배포 및 서비스 인프라 운영 경험
+   split text: JPA 성능 튜닝 및 데이터베이스 쿼리 최적화 경험
+   split text: 대용량 트래픽 대응을 위한 비동기 처리(Redis 등) 활용
+Frame 14: found 15 flex bullet span splits
+   split text: 이커머스 주문·결제 마이크로서비스 백엔드 REST API 설계 및 개발
+   split text: RDBMS(MySQL) 데이터베이스 모델링 및 JPA 쿼리 최적화
+   split text: 단위 테스트 작성 및 지속적 배포 협업
+   split text: 컴퓨터공학 관련 학과 전공자 또는 이에 준하는 기본 지식 보유자
+   split text: Java 또는 Kotlin, Spring Boot 프레임워크를 활용한 프로젝트 경험
+   split text: 관계형 데이터베이스(RDBMS) 및 SQL 기본 이해
+   split text: AWS 클라우드 환경에서 서비스를 배포하고 운영해본 경험
+   split text: 정보처리기사 등 관련 공인 국가기술자격 보유자
+   split text: 대용량 트래픽 처리나 성능 개선을 고민하고 해결해본 경험
+   split text: <strong>컴퓨터공학과 전공:</strong> 필수 학력 요건 확인
+   split text: <strong>Spring Boot REST API 프로젝트:</strong> 필수 기술 요건 확인
+   split text: <strong>정보처리기사 자격증:</strong> 우대 요건 확인
+   split text: <strong>관계형 데이터베이스(RDBMS) 및 SQL 이해:</strong> 필수 요건 — 프로필에 데이
+   split text: <strong>대용량 트래픽 및 성능 개선:</strong> 우대 요건 — 등록된 프로젝트 요약에 성능 개선
+   split text: <strong>AWS 클라우드 배포 경험:</strong> 우대 요건 — 프로필 미등록 상태로 등록 정보에서
+Frame 15: found 3 flex bullet span splits
+   split text: <strong>동의 기반 운영:</strong> 프로필 공개 여부는 사용자가 직접 설정합니다.
+   split text: <strong>기업 사전 검증:</strong> 사업자등록 및 담당자 확인을 거친 공식 기업만 제안을 보낼 
+   split text: <strong>현재 이용 가능:</strong> 지금은 내 조건에 맞는 채용 공고를 직접 탐색하고 요건을 대

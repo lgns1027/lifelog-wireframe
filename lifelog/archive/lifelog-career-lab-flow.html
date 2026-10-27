@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLog Career Lab — 커리어 경로 시뮬레이터 기획 흐름도</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-canvas: #f1f3f5;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f8f9fa;
+      --border-default: #d1d5db;
+      --border-strong: #111827;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-tertiary: #9ca3af;
+      --accent-primary: #1d4ed8;
+      --accent-subtle: #eff6ff;
+      --status-caution: #b45309;
+      --status-caution-bg: #fffbeb;
+      --status-success: #15803d;
+      --status-success-bg: #f0fdf4;
+    }
+    * {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      min-width: 100vw;
+    }
+    .flow-canvas {
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+      padding: 80px 60px 180px;
+      width: max-content;
+    }
+    .screen-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .screen-meta-badge {
+      position: absolute;
+      top: -48px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .screen-id {
+      background-color: var(--border-strong);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 4px 10px;
+      letter-spacing: 0.5px;
+    }
+    .screen-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+    .screen-frame {
+      width: 1920px;
+      height: 1080px;
+      min-width: 1920px;
+      min-height: 1080px;
+      background-color: var(--bg-surface);
+      border: 1.5px solid var(--border-strong);
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .screen-annotation-bar {
+      width: 1920px;
+      background-color: #ffffff;
+      border: 1px solid var(--border-default);
+      border-top: none;
+      padding: 18px 28px;
+      display: grid;
+      grid-template-columns: 240px 1fr 1fr 220px;
+      gap: 24px;
+      font-size: 13px;
+      box-sizing: border-box;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    }
+    .flow-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 1920px;
+      padding: 30px 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .flow-arrow-down {
+      font-size: 32px;
+      color: var(--border-strong);
+      line-height: 1;
+    }
+    .btn-action-primary {
+      background-color: var(--border-strong);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border: 1.5px solid var(--border-strong);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+    .btn-action-primary:hover {
+      background-color: #27272a;
+    }
+    .btn-action-secondary {
+      background-color: #ffffff;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border: 1.5px solid var(--border-default);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .btn-action-secondary:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--border-strong);
+    }
+    .card-selectable {
+      border: 1.5px solid var(--border-default);
+      background-color: #ffffff;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-selectable:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-subtle);
+    }
+    .card-selectable.active {
+      border: 2px solid var(--border-strong);
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .status-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pill-extracted {
+      background-color: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+    .pill-confirmed {
+      background-color: var(--status-success-bg);
+      color: var(--status-success);
+      border: 1px solid #bbf7d0;
+    }
+    .pill-need-evidence {
+      background-color: var(--status-caution-bg);
+      color: var(--status-caution);
+      border: 1px solid #fde68a;
+    }
+    .disclaimer-box {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+    .fixed-nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background-color: #111827;
+      color: #ffffff;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .toc-link {
+      color: #9ca3af;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 10px;
+      transition: color 0.15s ease;
+    }
+    .toc-link:hover, .toc-link.current {
+      color: #ffffff;
+      background-color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fixed-nav-bar">
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-2">
+        <span class="font-black text-base tracking-tight text-white">LifeLog Career Lab</span>
+        <span class="text-xs bg-blue-600 text-white font-bold px-2 py-0.5">기획 흐름도 v2.0</span>
+      </div>
+      <div class="text-xs text-gray-400">“내 경험으로 가능한 경로를 찾고, 다음 선택을 비교한다”</div>
+    </div>
+    <nav class="flex items-center gap-1 overflow-x-auto" aria-label="화면 바로가기">
+      <a href="#Screen_01_Goal_Choice" class="toc-link">01.목표·고민</a>
+      <a href="#Screen_02_Experience_Import" class="toc-link">02.경험 가져오기</a>
+      <a href="#Screen_03_Experience_Extracted" class="toc-link">03.추출 결과 검토</a>
+      <a href="#Screen_04_Zero_Experience" class="toc-link">04.경험 부족 분기</a>
+      <a href="#Screen_05_Path_Overview" class="toc-link">05.초기 경로 개요</a>
+      <a href="#Screen_06_Path_Workspace" class="toc-link font-bold text-blue-400">06.[대표]경로 비교</a>
+      <a href="#Screen_07_Action_Plan" class="toc-link">07.실행 계획</a>
+      <a href="#Screen_08_Progress_Board" class="toc-link">08.기록·결과물</a>
+      <a href="#Screen_09_Recomparison" class="toc-link">09.재비교·업데이트</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-xs text-gray-300 hover:text-white border border-gray-700 px-2.5 py-1">상단으로</button>
+    </div>
+  </header>
+
+  <main class="flow-canvas" style="margin-top: 56px;">
+
+    <!-- ========================================== -->
+    <!-- SCREEN 01: 목표 및 고민 선택 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_01_Goal_Choice">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 01</span>
+        <h2 class="screen-title">목표 중심 온보딩 — 사용자의 현재 고민 선택</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-6">
+            <span class="text-lg font-black text-gray-900 tracking-tight">LifeLog Career Lab</span>
+            <span class="text-xs text-gray-400 font-medium">선택의 조건을 비교하고 실행하는 커리어 시뮬레이터</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-gray-500">예시 먼저 보고 싶으신가요?</span>
+            <button type="button" onclick="loadSampleDemoState()" class="btn-action-secondary text-xs py-1.5 px-3">백엔드 개발자 예시 보기</button>
+          </div>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-12 flex flex-col justify-between">
+          <div>
+            <div class="mb-10 text-center max-w-2xl mx-auto">
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 mb-3 inline-block">시작 질문</span>
+              <h3 class="text-3xl font-extrabold text-gray-900 tracking-tight mt-2">지금 어떤 선택이 가장 고민되시나요?</h3>
+              <p class="text-sm text-gray-600 mt-2">학교나 학점을 적기 전에, 당신이 풀고 싶은 질문을 먼저 알려주세요.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 max-w-3xl mx-auto mb-10">
+              <div class="card-selectable active" onclick="selectGoalCard(this, 'fit_job')">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5">추천 선택 1</span>
+                    <span class="text-xs text-gray-400 font-semibold">1단계 탐색</span>
+                  </div>
+                  <div class="text-lg font-bold text-gray-900 mb-2">내 경험으로 검토할 수 있는 직무를 찾고 싶어요</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    작성해 둔 프로젝트나 이력서를 바탕으로 지금 시점에 지원 가능한 직무와 보완해야 할 직무를 나란히 대조합니다.
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                  <span>소요 시간 약 3분</span>
+                  <span class="font-bold text-gray-900">선택됨 ✓</span>
+                </div>
+              </div>
+
+              <div class="card-selectable" onclick="selectGoalCard(this, 'priority')">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-0.5">선택 2</span>
+                    <span class="text-xs text-gray-400 font-semibold">준비 집중</span>
+                  </div>
+                  <div class="text-lg font-bold text-gray-900 mb-2">원하는 직무가 정해졌고, 준비 우선순위를 알고 싶어요</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    자격증, 어학, 프로젝트, 코딩테스트 중 무엇을 먼저 끝내야 서류 통과 가능성이 높아지는지 순서를 정합니다.
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                  <span>목표 직무 바로 지정</span>
+                  <span class="font-bold text-gray-400">선택하기</span>
+                </div>
+              </div>
+
+              <div class="card-selectable" onclick="selectGoalCard(this, 'apply_vs_prep')">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-0.5">선택 3</span>
+                    <span class="text-xs text-gray-400 font-semibold">조건 비교</span>
+                  </div>
+                  <div class="text-lg font-bold text-gray-900 mb-2">지금 지원할지, 3개월 더 준비할지 비교하고 싶어요</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    지금 즉시 서류를 넣었을 때의 불확실성과, 프로젝트 1개를 보완하고 지원했을 때 달라지는 점을 시뮬레이션합니다.
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                  <span>경로 다면 비교</span>
+                  <span class="font-bold text-gray-400">선택하기</span>
+                </div>
+              </div>
+
+              <div class="card-selectable" onclick="selectGoalCard(this, 'grad_school')">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-0.5">선택 4</span>
+                    <span class="text-xs text-gray-400 font-semibold">진로 분기</span>
+                  </div>
+                  <div class="text-lg font-bold text-gray-900 mb-2">취업과 대학원 진학의 시간·비용을 비교하고 싶어요</div>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    석사 2년 동안 발생하는 등록금 및 소득 기회비용과 2년 실무 경력자의 이직 조건을 객관적으로 대조합니다.
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                  <span>기회비용 시뮬레이션</span>
+                  <span class="font-bold text-gray-400">선택하기</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <span>* 학교, 학점, 병역은 초기 필수 입력이 아니며 필요 시점에만 최소한으로 요청합니다.</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <a href="#Screen_04_Zero_Experience" class="text-xs text-gray-500 hover:text-gray-900 underline font-medium">아직 정리된 경험이나 프로젝트가 전혀 없나요?</a>
+              <a href="#Screen_02_Experience_Import" class="btn-action-primary">다음: 최소 조건 및 경험 입력 ➔</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>평가받는 불안감을 없애고, 사용자가 풀고자 하는 실제 고민을 선택하여 탐색 맥락을 정의함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>학력·학점·병역 강제 입력 배제. ‘예시 먼저 보기’와 ‘경험이 전혀 없는 경우의 탐색 링크’를 첫 화면에 명시.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA 및 전환</strong>
+          <span>[다음: 최소 조건 및 경험 입력 ➔] 클릭 시 SCREEN 02 이동. 경험 없는 사용자는 SCREEN 04로 분기.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">접근성 및 데이터</strong>
+          <span>카드는 키보드 포커스 가능. 서버 전송 없는 클라이언트 상태 프리셋 설정.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>고민 선택 완료 후 최소 조건 및 경험 등록으로 이동</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 02: 최소 조건 입력 및 경험 가져오기 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_02_Experience_Import">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 02</span>
+        <h2 class="screen-title">최소 조건 설정 및 경험 가져오기</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <a href="#Screen_01_Goal_Choice" class="text-xs text-gray-500 hover:text-black font-bold">← 이전 단계</a>
+            <span class="text-gray-300">|</span>
+            <span class="text-sm font-bold text-gray-900">LifeLog Career Lab</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-semibold">
+            <span class="text-gray-400">01 고민 선택</span>
+            <span class="text-gray-300">➔</span>
+            <span class="bg-black text-white px-2.5 py-1">02 경험 입력</span>
+            <span class="text-gray-300">➔</span>
+            <span class="text-gray-400">03 추출 검토</span>
+            <span class="text-gray-300">➔</span>
+            <span class="text-gray-400">04 경로 비교</span>
+          </div>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-10 flex gap-10 items-start">
+          <!-- 좌측: 최소 조건 설정 -->
+          <div class="w-[440px] flex flex-col gap-6">
+            <div class="bg-white border border-gray-300 p-6">
+              <h3 class="text-base font-bold text-gray-900 mb-1">1. 최소 조건 설정</h3>
+              <p class="text-xs text-gray-500 mb-5">일정 산정과 작업량 계산에 필요한 기본 조건입니다.</p>
+
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1.5">현재 상태</label>
+                  <div class="grid grid-cols-3 gap-2">
+                    <button type="button" class="btn-action-secondary text-xs py-2 bg-gray-900 text-white border-gray-900 font-bold">취업준비생</button>
+                    <button type="button" class="btn-action-secondary text-xs py-2">재학생</button>
+                    <button type="button" class="btn-action-secondary text-xs py-2">이직탐색</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1.5">관심 직무 분야</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="target_job_input" value="백엔드 / 서버 개발" class="mock-input flex-1 text-sm bg-white" placeholder="예: 백엔드 개발자" />
+                    <button type="button" onclick="setNotSureJob()" class="btn-action-secondary text-xs whitespace-nowrap">아직 모름</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1.5">목표 취업 시점</label>
+                  <select class="w-full h-11 border border-gray-300 px-3 text-xs bg-white font-medium" id="target_timeline">
+                    <option value="3m">3개월 이내 (집중 지원)</option>
+                    <option value="6m" selected>6개월 이내 (프로젝트 보완 병행)</option>
+                    <option value="1y">1년 이내 (장기 플랜)</option>
+                    <option value="undecided">아직 정하지 않음</option>
+                  </select>
+                </div>
+
+                <div>
+                  <div class="flex justify-between items-center mb-1.5">
+                    <label class="text-xs font-bold text-gray-700">주당 준비 가능 시간</label>
+                    <span class="text-xs font-bold text-blue-600" id="hours_preview_screen2">주 20시간</span>
+                  </div>
+                  <input type="range" min="5" max="50" step="5" value="20" oninput="updateHoursScreen2(this.value)" class="w-full accent-black cursor-pointer" />
+                  <div class="flex justify-between text-[11px] text-gray-400 mt-1">
+                    <span>주 5시간 (학업/직장 병행)</span>
+                    <span>주 50시간 (전업 취준)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="disclaimer-box">
+              <strong>개인정보 취급 원칙 안내</strong><br/>
+              본 프로토타입은 브라우저 로컬 세션에서만 동작하며, 입력하신 텍스트나 이력서 문서는 외부 서버로 전송되거나 저장되지 않습니다.
+            </div>
+          </div>
+
+          <!-- 우측: 경험 데이터 입력/붙여넣기/샘플 -->
+          <div class="flex-1 bg-white border border-gray-300 p-8 flex flex-col justify-between min-h-[740px]">
+            <div>
+              <div class="flex items-center justify-between pb-4 mb-6 border-b border-gray-200">
+                <div>
+                  <h3 class="text-lg font-bold text-gray-900">2. 경험 가져오기</h3>
+                  <p class="text-xs text-gray-500 mt-1">정리된 이력서 내용, GitHub README, 프로젝트 설명을 자유롭게 붙여넣으세요.</p>
+                </div>
+                <button type="button" onclick="loadSampleBackendExperience()" class="btn-action-secondary text-xs py-1.5 bg-blue-50 text-blue-700 border-blue-200 font-bold hover:bg-blue-100">
+                  ⚡ 백엔드 샘플 경험 자동 채우기
+                </button>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <label for="experience_raw_input" class="text-xs font-bold text-gray-700">경험 원문 (프로젝트 내용, 수행 업무, 사용 기술 등)</label>
+                    <span class="text-xs text-gray-400" id="char_count_badge">0자 입력됨</span>
+                  </div>
+                  <textarea id="experience_raw_input" rows="12" class="w-full p-4 border border-gray-300 text-xs leading-relaxed focus:outline-none focus:border-black font-mono" placeholder="예시:
+[프로젝트: 전자상거래 주문 백오피스 개발]
+- 기간: 2024.01 ~ 2024.04 (3개월간 3인 팀)
+- 역할: 주문/결제 모듈 백엔드 API 설계
+- 수행 내용:
+  1. Spring Boot 기반 RESTful API 엔드포인트 12종 설계 및 단위 테스트 작성
+  2. 주문 조회 쿼리 인덱싱 튜닝으로 응답속도 24% 개선 측정
+  3. GitHub PR 기반 코드 리뷰 및 브랜치 전략 적용"></textarea>
+                </div>
+
+                <div class="p-3 bg-gray-50 border border-gray-200 text-xs text-gray-600 flex items-center justify-between">
+                  <span>📄 이력서 PDF 파일이 있으신가요? (데모에서는 텍스트 추출 모의 실행)</span>
+                  <button type="button" onclick="simulateFileUpload()" class="px-3 py-1 border border-gray-300 bg-white font-bold text-gray-800 hover:bg-gray-100">파일에서 텍스트 불러오기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-gray-200 flex justify-between items-center">
+              <span class="text-xs text-gray-500">AI가 문장에서 구체적 기술, 담당 역할, 성과 근거를 분석합니다.</span>
+              <a href="#Screen_03_Experience_Extracted" onclick="processExtraction()" class="btn-action-primary">
+                경험 구조화 및 역량 추출 ➔
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>사용자가 보유한 원문 경험 텍스트를 입력받고 주당 투입 가능 시간을 설정함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>직무 미결정 시 '아직 모름' 허용. 파일 업로드는 클라이언트 파싱 시뮬레이션임을 명확히 표시(서버 전송 없음).</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA</strong>
+          <span>[백엔드 샘플 자동 채우기]로 즉시 테스트 가능. [경험 구조화 및 역량 추출 ➔] 클릭 시 SCREEN 03 이동.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">오류/예외</strong>
+          <span>빈 텍스트 제출 시 인라인 경고 표시 후 SCREEN 04(경험 부족 분기) 제안.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>AI 구조화 파이프라인 수행 후 추출 결과 검토로 이동</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 03: 경험 추출 결과 검토 및 수정 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_03_Experience_Extracted">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 03</span>
+        <h2 class="screen-title">경험 추출 결과 검토 및 사용자 확인</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <a href="#Screen_02_Experience_Import" class="text-xs text-gray-500 hover:text-black font-bold">← 이전 단계</a>
+            <span class="text-gray-300">|</span>
+            <span class="text-sm font-bold text-gray-900">LifeLog Career Lab</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-semibold">
+            <span class="text-gray-400">01 고민 선택</span>
+            <span class="text-gray-300">➔</span>
+            <span class="text-gray-400">02 경험 입력</span>
+            <span class="text-gray-300">➔</span>
+            <span class="bg-black text-white px-2.5 py-1">03 추출 검토</span>
+            <span class="text-gray-300">➔</span>
+            <span class="text-gray-400">04 경로 비교</span>
+          </div>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-8 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 inline-block mb-1">구조화 완료</span>
+                <h3 class="text-2xl font-black text-gray-900">입력하신 내용에서 4개의 역량 근거를 추출했습니다</h3>
+                <p class="text-xs text-gray-500 mt-1">AI의 추출은 인증이나 자격 검증이 아닙니다. 사실과 다른 내용은 직접 수정하거나 삭제하세요.</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="btn-action-secondary text-xs">+ 수동 항목 추가</button>
+              </div>
+            </div>
+
+            <!-- 추출된 항목 테이블/카드 리스트 -->
+            <div class="space-y-3 mb-6">
+              <div class="p-4 border border-gray-300 bg-white flex items-start justify-between">
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center font-bold text-xs text-gray-700">01</div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-sm font-bold text-gray-900">RESTful API 설계 및 엔드포인트 구현</span>
+                      <span class="status-pill pill-confirmed">사용자 확인 완료</span>
+                      <span class="text-[11px] text-gray-400">Spring Boot / Java</span>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-2">원문 근거: "Spring Boot 기반 RESTful API 엔드포인트 12종 설계 및 단위 테스트 작성"</p>
+                    <div class="flex items-center gap-3 text-[11px] text-gray-500">
+                      <span>• 담당 범위: 주도적 설계 및 구현</span>
+                      <span>• 검증 증빙: GitHub 리포지토리 링크 확인 필요</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" class="text-xs text-gray-500 hover:text-black border border-gray-200 px-2 py-1">수정</button>
+                  <button type="button" class="text-xs text-red-500 hover:text-red-700 border border-gray-200 px-2 py-1">삭제</button>
+                </div>
+              </div>
+
+              <div class="p-4 border border-gray-300 bg-white flex items-start justify-between">
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center font-bold text-xs text-gray-700">02</div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-sm font-bold text-gray-900">데이터베이스 쿼리 인덱싱 및 성능 개선</span>
+                      <span class="status-pill pill-need-evidence">추가 근거 필요</span>
+                      <span class="text-[11px] text-gray-400">MySQL / 인덱스 튜닝</span>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-2">원문 근거: "주문 조회 쿼리 인덱싱 튜닝으로 응답속도 24% 개선 측정"</p>
+                    <div class="p-2.5 bg-amber-50 border border-amber-200 text-[11px] text-amber-800">
+                      ⚠️ <strong>확인 질문:</strong> 24% 개선을 측정한 기준(부하 도구, 실행 계획 EXPLAIN 전후 수치)이 이력서에 드러나면 면접에서 큰 강점이 됩니다.
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" class="text-xs text-gray-500 hover:text-black border border-gray-200 px-2 py-1">수정</button>
+                  <button type="button" class="text-xs text-red-500 hover:text-red-700 border border-gray-200 px-2 py-1">삭제</button>
+                </div>
+              </div>
+
+              <div class="p-4 border border-gray-300 bg-white flex items-start justify-between">
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center font-bold text-xs text-gray-700">03</div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-sm font-bold text-gray-900">Git / GitHub 기반 협업 및 코드 리뷰</span>
+                      <span class="status-pill pill-confirmed">사용자 확인 완료</span>
+                      <span class="text-[11px] text-gray-400">협업 워크플로우</span>
+                    </div>
+                    <p class="text-xs text-gray-600">원문 근거: "GitHub PR 기반 코드 리뷰 및 브랜치 전략 적용"</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" class="text-xs text-gray-500 hover:text-black border border-gray-200 px-2 py-1">수정</button>
+                  <button type="button" class="text-xs text-red-500 hover:text-red-700 border border-gray-200 px-2 py-1">삭제</button>
+                </div>
+              </div>
+
+              <div class="p-4 border border-gray-300 bg-white flex items-start justify-between">
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center font-bold text-xs text-gray-700">04</div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-sm font-bold text-gray-900">국가기술자격: 정보처리기사</span>
+                      <span class="status-pill pill-extracted">문서 추출</span>
+                      <span class="text-[11px] text-gray-400">2024.06 취득</span>
+                    </div>
+                    <p class="text-xs text-gray-600">컴퓨터공학 표준 전공 이론 기초 요건 충족</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" class="text-xs text-gray-500 hover:text-black border border-gray-200 px-2 py-1">수정</button>
+                  <button type="button" class="text-xs text-red-500 hover:text-red-700 border border-gray-200 px-2 py-1">삭제</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 상태 안내 -->
+            <div class="disclaimer-box flex items-center justify-between">
+              <span><strong>상태 구분 안내:</strong> [사용자 확인 완료]는 제3자 검증이 아니며 본인이 작성한 사실을 확인했음을 뜻합니다.</span>
+              <span class="text-xs text-gray-700 font-bold">확인된 역량 3건 · 근거 보완 필요 1건</span>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6 flex justify-between items-center">
+            <button type="button" onclick="window.location.hash='#Screen_02_Experience_Import'" class="btn-action-secondary">← 원문 수정하기</button>
+            <a href="#Screen_05_Path_Overview" class="btn-action-primary">
+              이 경험을 바탕으로 가능한 경로 도출 ➔
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>AI가 자의적으로 숙련도를 단정하지 않고, 추출된 경험의 사실 여부와 근거 필요 항목을 사용자가 검토·수정함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>'사용자 확인 완료'는 제3자 인증이 아님을 명시. 'SQL 상급자' 같은 추상적 레벨링 금지, 구체적 수행 증빙에 집중.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA</strong>
+          <span>수정/삭제 인라인 조작 후 [이 경험을 바탕으로 가능한 경로 도출 ➔] 클릭 시 SCREEN 05(초기 경로 개요)로 이동.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">데이터 신뢰성</strong>
+          <span>성과의 산출 근거(24% 개선 등)에 대해 면접 질문 대비 관점의 인라인 피드백 제공.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>(분기 안내) 등록할 경험이 없거나 부족한 사용자를 위한 시작 분기</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 04: 경험 부족 분기 (Zero-Experience) -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_04_Zero_Experience">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 04 (분기)</span>
+        <h2 class="screen-title">경험이 없거나 정보가 부족한 경우의 탐색 시작 분기</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <a href="#Screen_01_Goal_Choice" class="text-xs text-gray-500 hover:text-black font-bold">← 온보딩으로 돌아가기</a>
+            <span class="text-gray-300">|</span>
+            <span class="text-sm font-bold text-gray-900">LifeLog Career Lab</span>
+          </div>
+          <span class="text-xs text-gray-500">기초 탐색 모드</span>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-12 flex flex-col justify-between">
+          <div>
+            <div class="max-w-2xl mb-8">
+              <span class="text-xs font-bold text-gray-500 uppercase tracking-wider bg-gray-100 px-2.5 py-1 inline-block mb-2">ZERO-BARRIER ONBOARDING</span>
+              <h3 class="text-2xl font-black text-gray-900">아직 정리된 이력서가 없어도 괜찮습니다</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                정보가 없다는 것이 역량이 부족함을 뜻하지 않습니다. 관심 있는 기초 관심사 1개만 고르면, 신입 취업 시장에서 가장 많이 요구되는 최소 프로젝트 요건과 준비 일정을 먼저 보여드립니다.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 mb-8">
+              <div class="card-selectable p-6 border-2 border-black bg-white">
+                <span class="text-xs font-bold text-blue-600 block mb-2">옵션 A · 관심 분야 둘러보기</span>
+                <div class="text-base font-bold text-gray-900 mb-2">백엔드 웹 개발이 무엇을 하는지 먼저 알아보기</div>
+                <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                  실제 신입 채용 공고 100건에서 공통으로 요구하는 최소 필수 스택(Java/Spring, DB 쿼리, Git)의 형태를 확인합니다.
+                </p>
+                <button type="button" onclick="loadSampleDemoState(); window.location.hash='#Screen_06_Path_Workspace';" class="btn-action-primary text-xs w-full py-2.5">
+                  신입 요구 스펙 먼저 보기 ➔
+                </button>
+              </div>
+
+              <div class="card-selectable p-6">
+                <span class="text-xs font-bold text-gray-400 block mb-2">옵션 B · 4주 스타트 프로젝트</span>
+                <div class="text-base font-bold text-gray-900 mb-2">첫 결과물(Toy Project) 가이드 받기</div>
+                <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                  복잡한 프레임워크 대신 1개 도메인(예: 도서 대출 API)을 직접 만들고 GitHub에 올려 경험 1건을 만드는 계획을 세웁니다.
+                </p>
+                <button type="button" class="btn-action-secondary text-xs w-full py-2.5">스타트 프로젝트 플랜 보기</button>
+              </div>
+
+              <div class="card-selectable p-6">
+                <span class="text-xs font-bold text-gray-400 block mb-2">옵션 C · 국비/부트캠프 비교</span>
+                <div class="text-base font-bold text-gray-900 mb-2">부트캠프/국비 지원 교육 과정 검토</div>
+                <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                  독학 경로와 6개월 전일제 부트캠프 경로의 투입 시간 및 비용 대비 기대 산출물을 나란히 비교합니다.
+                </p>
+                <button type="button" class="btn-action-secondary text-xs w-full py-2.5">교육 경로 비교하기</button>
+              </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 border border-gray-200 text-xs text-gray-700 leading-relaxed">
+              💡 <strong>안내:</strong> 한 번 탐색을 시작한 후 프로젝트를 하나씩 완성할 때마다 이 작업 공간에 기록을 남기면, 실시간으로 지원 가능한 직무 경로가 열립니다.
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6 flex justify-between items-center">
+            <span class="text-xs text-gray-400">준비된 경험이 생기면 언제든 [경험 가져오기]로 돌아갈 수 있습니다.</span>
+            <a href="#Screen_02_Experience_Import" class="btn-action-secondary">← 경험 직접 입력하러 가기</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>경험이 전무한 1~2학년 또는 비전공 입문자에게 '부족하다'는 낙인 대신 탐색 출발점을 제공함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>경험이 없어도 시장 공통 요구사항 샘플을 열람할 수 있으며, 점수나 등급을 강요하지 않음.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA</strong>
+          <span>[신입 요구 스펙 먼저 보기] 클릭 시 샘플 데이터 기반 SCREEN 06(경로 비교 작업 공간)으로 진입.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">분기 위치</strong>
+          <span>필수 정규 단계가 아니며 SCREEN 01 또는 02에서 사용자의 선택에 의해 진입하는 서브 루프.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>경험 확인 후 초기 추천 경로 3개 도출</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 05: 초기 경로 개요와 판단 근거 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_05_Path_Overview">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 05</span>
+        <h2 class="screen-title">초기 경로 개요 및 데이터 판단 근거</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <a href="#Screen_03_Experience_Extracted" class="text-xs text-gray-500 hover:text-black font-bold">← 추출 검토</a>
+            <span class="text-gray-300">|</span>
+            <span class="text-sm font-bold text-gray-900">LifeLog Career Lab</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-semibold">
+            <span class="text-gray-400">01 고민 선택</span>
+            <span class="text-gray-300">➔</span>
+            <span class="text-gray-400">02 경험 입력</span>
+            <span class="text-gray-300">➔</span>
+            <span class="bg-black text-white px-2.5 py-1">03 경로 개요</span>
+            <span class="text-gray-300">➔</span>
+            <span class="text-gray-400">04 상세 비교</span>
+          </div>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-10 flex flex-col justify-between">
+          <div>
+            <div class="mb-8">
+              <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 inline-block mb-1">검토 가능한 3가지 선택</span>
+              <h3 class="text-2xl font-black text-gray-900">당신의 경험을 분석한 결과, 아래 3개 경로를 비교할 수 있습니다</h3>
+              <p class="text-xs text-gray-500 mt-1">하나의 정답을 강요하지 않습니다. 각 경로가 요구하는 시간과 불확실성을 보고 나에게 맞는 길을 결정하세요.</p>
+            </div>
+
+            <!-- 3대 경로 카드 개요 -->
+            <div class="grid grid-cols-3 gap-6 mb-8">
+              <div class="border-2 border-black bg-white p-6 flex flex-col justify-between h-96">
+                <div>
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs font-black bg-black text-white px-2 py-0.5">경로 01</span>
+                    <span class="text-xs font-bold text-gray-600">소요: 즉시 ~ 4주</span>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">지금 서류 지원 시작</h4>
+                  <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                    현재 확인된 Spring Boot REST API 설계 및 정보처리기사 스펙으로 중소·스타트업 신입 수시 채용에 바로 지원합니다.
+                  </p>
+                  <div class="space-y-1.5 text-xs">
+                    <div class="flex justify-between text-gray-500">
+                      <span>• 장점:</span>
+                      <span class="font-bold text-gray-800">빠른 시장 피드백 확인</span>
+                    </div>
+                    <div class="flex justify-between text-gray-500">
+                      <span>• 불확실성:</span>
+                      <span class="font-bold text-amber-700">대규모 트래픽 증빙 부재</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-gray-100">
+                  <div class="text-[11px] text-gray-400 mb-2">필요 작업: 이력서 포맷팅 + 10곳 지원</div>
+                  <div class="text-xs font-bold text-gray-900">검토 적합도: 지원 실전 감각 필요 시</div>
+                </div>
+              </div>
+
+              <div class="border-2 border-blue-600 bg-blue-50/30 p-6 flex flex-col justify-between h-96">
+                <div>
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs font-black bg-blue-600 text-white px-2 py-0.5">경로 02 (추천)</span>
+                    <span class="text-xs font-bold text-blue-700">소요: 8주 (주 20시간)</span>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">실전 프로젝트 보완 후 지원</h4>
+                  <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                    기존 프로젝트의 단점(부하 테스트 및 배포 자동화 부재)을 8주간 보완하여 중견·유망 IT 플랫폼 서류 통과율을 높입니다.
+                  </p>
+                  <div class="space-y-1.5 text-xs">
+                    <div class="flex justify-between text-gray-500">
+                      <span>• 장점:</span>
+                      <span class="font-bold text-blue-700">면접관 설득 근거 확보</span>
+                    </div>
+                    <div class="flex justify-between text-gray-500">
+                      <span>• 불확실성:</span>
+                      <span class="font-bold text-gray-700">2개월간 구직 기간 연장</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-blue-200">
+                  <div class="text-[11px] text-blue-600 mb-2">필요 작업: 성능 부하 테스트 + AWS 배포</div>
+                  <div class="text-xs font-bold text-blue-900">검토 적합도: 합격률과 질적 개선 추구 시</div>
+                </div>
+              </div>
+
+              <div class="border border-gray-300 bg-white p-6 flex flex-col justify-between h-96">
+                <div>
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs font-black bg-gray-200 text-gray-700 px-2 py-0.5">경로 03</span>
+                    <span class="text-xs font-bold text-gray-500">소요: 2년 (학위)</span>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">컴퓨터공학 석사 진학 탐색</h4>
+                  <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                    분산 시스템 및 인공지능 연구실에 진학하여 연구 개발(R&D) 트랙 및 석사 특화 공채 포지션을 목표로 합니다.
+                  </p>
+                  <div class="space-y-1.5 text-xs">
+                    <div class="flex justify-between text-gray-500">
+                      <span>• 장점:</span>
+                      <span class="font-bold text-gray-800">전문 연구직 지원 자격</span>
+                    </div>
+                    <div class="flex justify-between text-gray-500">
+                      <span>• 불확실성:</span>
+                      <span class="font-bold text-amber-700">2년 소득 공백 및 등록금</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-gray-100">
+                  <div class="text-[11px] text-gray-400 mb-2">필요 작업: 지도교수 컨택 + 학업계획서</div>
+                  <div class="text-xs font-bold text-gray-700">검토 적합도: 깊이 있는 R&D 연구 지향 시</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 판단 근거 요약 -->
+            <div class="p-4 bg-gray-50 border border-gray-200 text-xs text-gray-700 leading-relaxed">
+              <strong>판단 근거 기준:</strong> 현재 등록된 경험(Spring Boot API, 쿼리 튜닝)은 실무 진입이 가능한 수준이나, 배포/인프라 및 부하 측정 증빙이 보완될 때 합격 확률과 선택의 폭이 실질적으로 개선되는 데이터 패턴을 보입니다.
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6 flex justify-between items-center">
+            <span class="text-xs text-gray-500">3개 경로를 한 화면에서 다면적으로 대조하고 일정을 시뮬레이션할 수 있습니다.</span>
+            <a href="#Screen_06_Path_Workspace" class="btn-action-primary py-3 px-8 text-sm">
+              경로 다면 비교 작업 공간 열기 ➔
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>단일 정답 강요를 탈피하여 사용자 조건에 부합하는 대표 3개 경로를 개요 수준에서 제시함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>미래 연봉이나 합격 확률을 근거 없이 단정하지 않고, 각 경로가 수반하는 구체적 작업량과 불확실성을 병기.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA</strong>
+          <span>[경로 다면 비교 작업 공간 열기 ➔] 클릭 시 제품의 핵심인 SCREEN 06(경로 비교 작업 공간)으로 진입.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">설계 가치</strong>
+          <span>'지금 지원'과 '프로젝트 보완'의 기회비용을 투명하게 공개하여 주체적 결정을 유도.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>제품의 핵심 대표 화면: 경로 비교 및 실시간 조건 시뮬레이션</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 06: [대표 화면] 경로 비교 작업 공간 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_06_Path_Workspace">
+      <div class="screen-meta-badge">
+        <span class="screen-id bg-blue-700 text-white">SCREEN 06 (핵심 대표 화면)</span>
+        <h2 class="screen-title">경로 비교 작업 공간 (LifeLog Career Lab Simulator)</h2>
+      </div>
+
+      <div class="screen-frame">
+        <!-- 상단 헤더: 목표 요약 및 조건 컨트롤러 -->
+        <header class="h-20 bg-white border-b-2 border-black px-8 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-6">
+            <span class="text-lg font-black text-gray-900">LifeLog Career Lab</span>
+            <div class="h-8 w-[1px] bg-gray-300"></div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-gray-400 font-bold uppercase tracking-wider">TARGET GOAL</span>
+                <span class="text-sm font-black text-gray-900">백엔드 / 서버 개발자 신입 취업</span>
+              </div>
+              <div class="text-xs text-gray-500 mt-0.5">판단 요약: 핵심 API 구현 경험 보유 · 배포 및 부하 측정 근거 보완 권장</div>
+            </div>
+          </div>
+
+          <!-- 실시간 조건 조절 슬라이더 (핵심 인터랙션) -->
+          <div class="flex items-center gap-8 bg-gray-50 px-6 py-2 border border-gray-300">
+            <div>
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-gray-700">주당 준비 가능 시간</span>
+                <span class="font-black text-blue-700 text-sm" id="current_hours_label">주 20시간</span>
+              </div>
+              <input type="range" id="hours_slider" min="5" max="40" step="5" value="20" oninput="updateSimulationHours(this.value)" class="w-48 accent-black cursor-pointer" />
+            </div>
+            <div class="h-8 w-[1px] bg-gray-200"></div>
+            <div>
+              <span class="block text-[11px] text-gray-400 font-bold">목표 시점 기준</span>
+              <span class="text-xs font-bold text-gray-900" id="current_timeline_label">6개월 이내 (유연 모드)</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- 3열 분할 메인 작업 공간 -->
+        <div class="flex-1 flex overflow-hidden">
+          
+          <!-- 좌측 열 (340px): 내 경험과 근거 상태 -->
+          <aside class="w-[340px] bg-gray-50 border-r border-gray-300 p-6 flex flex-col justify-between overflow-y-auto">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500">내 경험 & 근거 상태</h4>
+                <a href="#Screen_03_Experience_Extracted" class="text-xs text-blue-600 hover:underline">수정</a>
+              </div>
+
+              <div class="space-y-3">
+                <div class="p-3.5 bg-white border border-gray-200 text-xs">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-gray-900">RESTful API 설계</span>
+                    <span class="status-pill pill-confirmed">확인됨</span>
+                  </div>
+                  <p class="text-gray-500 text-[11px]">Spring Boot 기반 12종 API 단위 테스트 완료</p>
+                </div>
+
+                <div class="p-3.5 bg-white border border-gray-200 text-xs">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-gray-900">쿼리 튜닝 (24% 개선)</span>
+                    <span class="status-pill pill-need-evidence">근거 보완</span>
+                  </div>
+                  <p class="text-gray-500 text-[11px]">인덱스 부하 측정 지표 상세화 필요</p>
+                </div>
+
+                <div class="p-3.5 bg-white border border-gray-200 text-xs">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-gray-900">정보처리기사</span>
+                    <span class="status-pill pill-confirmed">보유</span>
+                  </div>
+                  <p class="text-gray-500 text-[11px]">국가기술자격 공공데이터 확인</p>
+                </div>
+
+                <div class="p-3.5 bg-white border border-gray-200 text-xs">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-gray-900">비즈니스 영어</span>
+                    <span class="status-pill pill-confirmed">토익 865</span>
+                  </div>
+                  <p class="text-gray-500 text-[11px]">대졸자 상위 22% 구간</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-gray-200">
+              <div class="text-[11px] text-gray-500 leading-normal">
+                <strong>경험 상태 가이드:</strong><br/>
+                오른쪽 경로에서 작업을 완료할 때마다 이 목록에 새로운 결과물이 자동으로 추가됩니다.
+              </div>
+            </div>
+          </aside>
+
+          <!-- 중앙 열 (1120px): 경로 3개 나란히 다면 비교 (핵심) -->
+          <main class="flex-1 bg-white p-6 overflow-y-auto flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">3개 경로 조건 다면 대조표</span>
+                <span class="text-xs text-gray-500">주당 <strong id="hours_in_table">20시간</strong> 투입 시 예상 일정 자동 연동</span>
+              </div>
+
+              <!-- 3단 비교 카드 그리드 -->
+              <div class="grid grid-cols-3 gap-5">
+                
+                <!-- 경로 1: 즉시 지원 -->
+                <div class="border border-gray-300 p-5 flex flex-col justify-between bg-white hover:border-black transition-all">
+                  <div>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-xs font-black bg-gray-100 text-gray-800 px-2 py-0.5">경로 01</span>
+                      <span class="text-xs font-bold text-gray-500" id="p1_time">즉시 ~ 3주</span>
+                    </div>
+                    <h5 class="text-base font-bold text-gray-900 mb-2">지금 서류 지원 시작</h5>
+                    <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                      현재 갖춘 REST API 설계 및 기사 자격증으로 신입 공채 및 수시 채용에 즉각 이력서를 제출합니다.
+                    </p>
+
+                    <div class="space-y-3 text-xs border-t border-gray-100 pt-3">
+                      <div>
+                        <span class="text-[11px] font-bold text-gray-400 block mb-0.5">추천 이유</span>
+                        <span class="text-gray-800">서류 탈락/합격의 시장 피드백을 빠르게 체감</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-gray-400 block mb-0.5">필요 작업량</span>
+                        <span class="font-bold text-gray-900" id="p1_work">약 25시간 (이력서 튜닝 + 지원 15곳)</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-gray-400 block mb-0.5">기대할 수 있는 변화</span>
+                        <span class="text-gray-800">면접 기회 조기 획득 가능성</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-amber-700 block mb-0.5">주요 불확실성</span>
+                        <span class="text-amber-800">트래픽 증빙 부재로 기술 면접 탈락 위험</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-4 border-t border-gray-100 mt-4">
+                    <button type="button" onclick="selectPathAndGo('path1')" class="btn-action-secondary w-full text-xs font-bold py-2.5">
+                      경로 01 선택하기
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 경로 2: 프로젝트 보완 (가장 추천) -->
+                <div class="border-2 border-black p-5 flex flex-col justify-between bg-blue-50/20 shadow-sm relative">
+                  <div class="absolute -top-3 right-4 bg-black text-white text-[11px] font-bold px-2.5 py-0.5">추천 경로</div>
+                  <div>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-xs font-black bg-blue-600 text-white px-2 py-0.5">경로 02</span>
+                      <span class="text-xs font-bold text-blue-700" id="p2_time">8주 소요 (주 20h)</span>
+                    </div>
+                    <h5 class="text-base font-bold text-gray-900 mb-2">실전 프로젝트 보완 후 지원</h5>
+                    <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                      핵심 결손 요인인 '부하 테스트 지표'와 'AWS CI/CD 배포'를 8주간 완성하여 서류 통과율을 높입니다.
+                    </p>
+
+                    <div class="space-y-3 text-xs border-t border-gray-200 pt-3">
+                      <div>
+                        <span class="text-[11px] font-bold text-blue-800 block mb-0.5">추천 이유</span>
+                        <span class="text-gray-900 font-semibold">채용 시장 상위 30% 수준의 실무 증빙 확보</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-blue-800 block mb-0.5">필요 작업량</span>
+                        <span class="font-bold text-blue-900" id="p2_work">총 160시간 (모듈 2개 추가 개발)</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-blue-800 block mb-0.5">기대할 수 있는 변화</span>
+                        <span class="text-gray-900">플랫폼 기업 서류 통과 확률 유의미한 상승</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-gray-500 block mb-0.5">주요 불확실성</span>
+                        <span class="text-gray-700">구직 시작 시점이 2개월 지연됨</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-4 border-t border-gray-200 mt-4">
+                    <button type="button" onclick="selectPathAndGo('path2')" class="btn-action-primary w-full text-xs font-bold py-2.5 bg-blue-700 border-blue-700 hover:bg-blue-800">
+                      이 경로로 준비 시작하기 ➔
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 경로 3: 대학원 진학 탐색 -->
+                <div class="border border-gray-300 p-5 flex flex-col justify-between bg-white hover:border-black transition-all">
+                  <div>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-xs font-black bg-gray-100 text-gray-800 px-2 py-0.5">경로 03</span>
+                      <span class="text-xs font-bold text-gray-500">2년 소요</span>
+                    </div>
+                    <h5 class="text-base font-bold text-gray-900 mb-2">컴퓨터공학 석사 진학 탐색</h5>
+                    <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                      분산 데이터베이스 및 AI 시스템 연구실에 진학하여 석사 학위 취득 후 연구직 포지션을 공략합니다.
+                    </p>
+
+                    <div class="space-y-3 text-xs border-t border-gray-100 pt-3">
+                      <div>
+                        <span class="text-[11px] font-bold text-gray-400 block mb-0.5">추천 이유</span>
+                        <span class="text-gray-800">대기업 R&D 및 연구원 직군 지원 자격 부여</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-gray-400 block mb-0.5">필요 작업량</span>
+                        <span class="font-bold text-gray-900">학업 2년 + 등록금 약 2,000만 원</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-gray-400 block mb-0.5">기대할 수 있는 변화</span>
+                        <span class="text-gray-800">석사 초봉 밴드(평균 4,600만 원 선) 진입</span>
+                      </div>
+                      <div>
+                        <span class="text-[11px] font-bold text-amber-700 block mb-0.5">주요 불확실성</span>
+                        <span class="text-amber-800">학사 2년 실무 경력자 대비 소득 기회비용 발생</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-4 border-t border-gray-100 mt-4">
+                    <button type="button" onclick="selectPathAndGo('path3')" class="btn-action-secondary w-full text-xs font-bold py-2.5">
+                      경로 03 선택하기
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 하단 접이식: 데이터 출처 및 한계 투명 공개 -->
+            <div class="mt-4 pt-3 border-t border-gray-200">
+              <div class="flex items-center justify-between text-xs text-gray-500">
+                <span>데이터 기준: 고용노동부 청년패널 대졸자 통계 표본 기반 · 개인별 실제 결과는 기업 및 채용 시장 상황에 따라 달라집니다.</span>
+                <button type="button" onclick="toggleDataLimitationDrawer()" class="text-blue-600 font-bold hover:underline">통계 한계 및 산정 기준 보기 ▾</button>
+              </div>
+              <div id="data_limitation_drawer" class="hidden mt-3 p-3 bg-gray-50 border border-gray-200 text-[11px] text-gray-600 space-y-1">
+                <div>• 연봉 및 일정 수치는 검증된 인과 관계가 아니며 표본 관측치의 중앙값에 기반한 추정치입니다.</div>
+                <div>• 합격 확률을 자의적으로 단정하지 않으며, 서류 요건 충족 여부만을 대조합니다.</div>
+              </div>
+            </div>
+          </main>
+
+          <!-- 우측 열 (460px): 선택된 경로의 다음 행동과 실행 계획 미리보기 -->
+          <aside class="w-[460px] bg-white border-l border-gray-300 p-6 flex flex-col justify-between overflow-y-auto">
+            <div>
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-gray-200">
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-500">선택 경로 실행 로드맵</span>
+                <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-0.5">경로 02 기준</span>
+              </div>
+
+              <div class="mb-4">
+                <h5 class="text-sm font-bold text-gray-900 mb-1">이번 주에 완료할 첫 번째 결과물</h5>
+                <p class="text-xs text-gray-500">추상적인 조언 대신 실제 등록 가능한 작업 단위로 제안합니다.</p>
+              </div>
+
+              <!-- 이번 주 작업 카드 -->
+              <div class="p-4 bg-gray-50 border-2 border-black mb-4 space-y-2.5">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-0.5">TASK 01 · 이번 주 완료</span>
+                  <span class="text-xs text-gray-500">예상 소요: 6시간</span>
+                </div>
+                <div class="text-sm font-bold text-gray-900">JMeter / k6 기반 쿼리 성능 측정 보고서 작성</div>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                  "24% 개선"이라는 모호한 문장을 "100 TPS 동시 요청 시 평균 응답속도 420ms ➔ 319ms 단축"처럼 구체적 측정 데이터로 증빙합니다.
+                </p>
+                <div class="pt-2 border-t border-gray-200 flex justify-between items-center text-[11px] text-gray-500">
+                  <span>완료 기준: 측정 전후 그래프 캡처 등록</span>
+                  <span class="text-black font-bold">결과물 등록 대기</span>
+                </div>
+              </div>
+
+              <!-- 후속 작업 리스트 -->
+              <div class="space-y-2 text-xs">
+                <div class="p-3 border border-gray-200 flex justify-between items-center text-gray-600">
+                  <span>TASK 02 · Dockerfile 작성 및 AWS EC2 수동 배포</span>
+                  <span class="text-gray-400">2주 차</span>
+                </div>
+                <div class="p-3 border border-gray-200 flex justify-between items-center text-gray-600">
+                  <span>TASK 03 · GitHub Actions 기반 CI/CD 자동화 구축</span>
+                  <span class="text-gray-400">4주 차</span>
+                </div>
+                <div class="p-3 border border-gray-200 flex justify-between items-center text-gray-600">
+                  <span>TASK 04 · 개선된 기술 블로그 링크 이력서 반영</span>
+                  <span class="text-gray-400">6주 차</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200">
+              <a href="#Screen_07_Action_Plan" class="btn-action-primary w-full text-center py-3 text-sm">
+                실행 계획 수립하고 작업 시작하기 ➔
+              </a>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적 (대표 화면)</strong>
+          <span>3개 경로를 병렬 비교하고 주당 투입 시간 슬라이더를 조작하여 실시간 소요 기간과 작업량을 시뮬레이션함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정보 구조</strong>
+          <span>상단(목표/조건) | 좌측(내 경험 근거) | 중앙(경로 다면 비교 대조표) | 우측(선택 경로 실행 로드맵).</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 인터랙션</strong>
+          <span>시간 슬라이더 이동 시 3개 카드의 소요 주수와 작업 시간이 즉시 연산 갱신됨. [실행 계획 수립 ➔]로 전환.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">신뢰성 원칙</strong>
+          <span>합격률 단정 금지. 하단 접이식 서랍으로 표본 출처 및 산정 가정을 투명하게 공개.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>선택한 경로의 결과물 기반 실행 로드맵 수립</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 07: 선택 경로의 실행 계획 수립 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_07_Action_Plan">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 07</span>
+        <h2 class="screen-title">선택 경로 실행 계획 — 결과물 기반 8주 마일스톤</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <a href="#Screen_06_Path_Workspace" class="text-xs text-gray-500 hover:text-black font-bold">← 경로 비교로 돌아가기</a>
+            <span class="text-gray-300">|</span>
+            <span class="text-sm font-bold text-gray-900">LifeLog Career Lab</span>
+          </div>
+          <div class="text-xs font-semibold bg-blue-50 text-blue-700 px-3 py-1 border border-blue-200">
+            선택된 경로: [경로 02] 실전 프로젝트 보완 후 지원 (8주 플랜)
+          </div>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-10 flex gap-8 items-start">
+          <div class="w-[780px] bg-white border border-gray-300 p-8 flex flex-col justify-between min-h-[780px]">
+            <div>
+              <div class="pb-4 mb-6 border-b border-gray-200">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">ACTIONABLE ROADMAP</span>
+                <h3 class="text-xl font-bold text-gray-900">8주간 등록할 4개의 구체적 결과물</h3>
+                <p class="text-xs text-gray-500 mt-1">추상적인 공부 대신, 이력서에 증빙 링크로 삽입될 작업 단위입니다.</p>
+              </div>
+
+              <div class="space-y-4">
+                <!-- 작업 1 -->
+                <div class="p-4 border-2 border-black bg-gray-50 space-y-2">
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-black bg-white border border-black px-2 py-0.5">MILESTONE 1 (1~2주 차)</span>
+                    <span class="text-xs font-bold text-blue-600">진행 중</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-gray-900">k6 부하 테스트 스크립트 작성 및 쿼리 전후 성능 보고서</h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    동시 접속자 100명 조건에서 기존 쿼리와 인덱스 적용 후 쿼리의 실행 계획(EXPLAIN) 및 응답속도 비교 문서를 작성합니다.
+                  </p>
+                  <div class="p-2.5 bg-white border border-gray-200 text-[11px] text-gray-500 flex justify-between items-center">
+                    <span>완료 기준: GitHub Wiki 또는 기술 블로그 포스팅 링크 등록</span>
+                    <button type="button" onclick="window.location.hash='#Screen_08_Progress_Board'" class="text-xs font-bold text-black underline">결과물 등록하기 ➔</button>
+                  </div>
+                </div>
+
+                <!-- 작업 2 -->
+                <div class="p-4 border border-gray-300 bg-white space-y-2">
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5">MILESTONE 2 (3~4주 차)</span>
+                    <span class="text-xs text-gray-400">대기 중</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-gray-800">Docker 컨테이너라이징 및 AWS EC2 단일 인스턴스 배포</h4>
+                  <p class="text-xs text-gray-500 leading-relaxed">
+                    로컬 실행 환경을 벗어나 실제 퍼블릭 IP에서 접속 가능한 서버 환경을 구축하고 헬스체크 엔드포인트를 구현합니다.
+                  </p>
+                  <div class="text-[11px] text-gray-400">완료 기준: 실제 접속 가능한 Swagger API 주소 확보</div>
+                </div>
+
+                <!-- 작업 3 -->
+                <div class="p-4 border border-gray-300 bg-white space-y-2">
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5">MILESTONE 3 (5~6주 차)</span>
+                    <span class="text-xs text-gray-400">대기 중</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-gray-800">GitHub Actions 기반 자동 빌드 및 배포(CI/CD) 파이프라인</h4>
+                  <p class="text-xs text-gray-500 leading-relaxed">
+                    main 브랜치 PR 머지 시 단위 테스트가 자동으로 돌고 EC2에 무중단 배포되는 파이프라인을 구축합니다.
+                  </p>
+                </div>
+
+                <!-- 작업 4 -->
+                <div class="p-4 border border-gray-300 bg-white space-y-2">
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5">MILESTONE 4 (7~8주 차)</span>
+                    <span class="text-xs text-gray-400">대기 중</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-gray-800">신규 증빙을 반영한 이력서 3개 버전 작성 및 20곳 지원 개시</h4>
+                  <p class="text-xs text-gray-500 leading-relaxed">
+                    완성된 GitHub 링크 및 성능 수치를 서류 첫 문단에 배치하여 플랫폼 스타트업 20곳에 서류를 제출합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200 flex justify-between items-center text-xs text-gray-500">
+              <span>작업을 완료할 때마다 임의 점수가 아닌 '확인된 증빙' 상태가 업데이트됩니다.</span>
+              <a href="#Screen_08_Progress_Board" class="btn-action-primary text-xs py-2 px-5">진행 기록 보드로 이동 ➔</a>
+            </div>
+          </div>
+
+          <aside class="w-[388px] flex flex-col gap-5">
+            <div class="bg-white border border-gray-300 p-6">
+              <h4 class="text-sm font-bold text-gray-900 mb-2">실행 조건 요약</h4>
+              <table class="w-full text-xs">
+                <tr class="border-b border-gray-100"><td class="py-2 text-gray-500">목표 직무</td><td class="py-2 text-right font-bold">백엔드 서버 개발</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2 text-gray-500">주당 투입 시간</td><td class="py-2 text-right font-bold text-blue-700">주 20시간</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2 text-gray-500">총 소요 예상</td><td class="py-2 text-right font-bold">8주 (160시간)</td></tr>
+                <tr><td class="py-2 text-gray-500">핵심 산출물</td><td class="py-2 text-right font-bold">배포 및 부하 증빙 4건</td></tr>
+              </table>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 p-5 text-xs text-blue-900 leading-relaxed">
+              <strong>💡 팁:</strong> 이번 주 과제인 '부하 테스트 보고서'를 완료하여 등록하면, SCREEN 06의 불확실성 항목이 즉시 '해소됨'으로 전환됩니다.
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>선택한 경로를 결과물 단위의 8주 마일스톤으로 세분화하여 실제 준비 실행에 돌입하게 함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>스펙 점수를 올리는 속임수 배제. '결과물 등록 링크'를 통해 실제 증빙이 채워지는 구조로 설계.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA</strong>
+          <span>[진행 기록 보드로 이동 ➔] 클릭 시 SCREEN 08 진입. 작업별 '결과물 등록하기' 링크 제공.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">결과물 연계</strong>
+          <span>산출물 단위: k6 보고서 링크, Swagger 주소, GitHub Actions yml, 이력서 개정본.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>과제 수행 후 결과물 등록 및 상태 변화 기록</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 08: 실행 기록 및 결과물 등록 보드 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_08_Progress_Board">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 08</span>
+        <h2 class="screen-title">실행 기록 및 결과물 증빙 등록 공간</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <span class="text-sm font-bold text-gray-900">LifeLog Career Lab · 작업 공간</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5">경로 02 진행 중 (2주 차)</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="simulateTaskComplete()" class="btn-action-secondary text-xs py-1.5 bg-green-50 text-green-700 border-green-300 font-bold hover:bg-green-100">
+              ✓ 이번 주 작업 완료 시뮬레이션
+            </button>
+            <a href="#Screen_09_Recomparison" class="btn-action-primary text-xs py-1.5 px-3">경로 재비교로 이동 ➔</a>
+          </div>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-8 flex gap-8 items-start">
+          <div class="flex-1 bg-white border border-gray-300 p-8 flex flex-col justify-between min-h-[780px]">
+            <div>
+              <div class="flex items-center justify-between pb-4 mb-6 border-b border-gray-200">
+                <div>
+                  <h3 class="text-lg font-bold text-gray-900">결과물 등록 및 근거 상태 업데이트</h3>
+                  <p class="text-xs text-gray-500 mt-1">완료한 과제의 링크나 증빙 내용을 등록하면 내 경험 프로필에 반영됩니다.</p>
+                </div>
+                <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1" id="task_status_badge">1건 진행 중 / 3건 대기</span>
+              </div>
+
+              <!-- 등록 폼 영역 -->
+              <div class="p-6 bg-gray-50 border border-gray-300 mb-6 space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-bold text-gray-700">과제: k6 부하 테스트 스크립트 작성 및 쿼리 전후 성능 보고서</span>
+                  <span class="status-pill pill-need-evidence" id="evidence_pill">증빙 등록 대기</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">결과물 URL (GitHub PR 링크, 기술 블로그, 노션 문서 등)</label>
+                  <input type="text" id="evidence_url_input" value="https://github.com/my-id/commerce-backend/pull/14" class="mock-input w-full text-xs bg-white font-mono" placeholder="https://" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-700 mb-1">측정된 성과 요약 (이력서 삽입 문장)</label>
+                  <textarea id="evidence_summary_input" rows="3" class="w-full p-2.5 border border-gray-300 text-xs leading-relaxed bg-white font-sans" placeholder="예: k6 부하 테스트로 100 VU 동시 요청 시 평균 지연 시간 420ms -> 319ms로 24% 단축 증빙 확보"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2">
+                  <button type="button" onclick="submitEvidence()" class="btn-action-primary text-xs py-2 px-5 bg-black border-black">
+                    결과물 등록 완료 및 경험 갱신
+                  </button>
+                </div>
+              </div>
+
+              <!-- 등록된 결과물 피드 -->
+              <div>
+                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">등록 완료된 결과물 아카이브 (1건)</h4>
+                <div class="p-4 border border-gray-200 bg-white flex items-center justify-between text-xs">
+                  <div>
+                    <span class="font-bold text-gray-900 block mb-0.5">RESTful API 단위 테스트 커버리지 리포트</span>
+                    <a href="javascript:void(0)" class="text-blue-600 hover:underline text-[11px] font-mono">https://github.com/my-id/commerce-backend/tree/test</a>
+                  </div>
+                  <span class="status-pill pill-confirmed">확인됨</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200 flex justify-between items-center text-xs text-gray-500">
+              <span>결과물이 누적될수록 이전 경로와의 비교 조건이 갱신됩니다.</span>
+              <a href="#Screen_09_Recomparison" class="text-xs text-gray-900 font-bold hover:underline">달라진 판단 근거 확인하러 가기 ➔</a>
+            </div>
+          </div>
+
+          <aside class="w-[368px] flex flex-col gap-5">
+            <div class="border border-gray-300 bg-white p-6">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">진행 상황 요약</h4>
+              <div class="space-y-3 text-xs">
+                <div class="flex justify-between">
+                  <span class="text-gray-500">누적 투입 시간</span>
+                  <span class="font-bold text-gray-900" id="spent_hours_text">18시간 (1주 차 완료)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-500">해소된 불확실성</span>
+                  <span class="font-bold text-green-700">부하 측정 근거 확보</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-500">다음 예정 과제</span>
+                  <span class="font-bold text-gray-700">Docker 컨테이너화</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-gray-300 bg-white p-5 text-xs text-gray-600 leading-relaxed">
+              <strong>재방문 가치:</strong><br/>
+              단순히 서류를 내고 끝나는 것이 아니라, 이번 주에 완료한 코드를 결과물로 남겨두면 다음 번 구직이나 이직 시점에 즉시 업데이트된 비교표를 열람할 수 있습니다.
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>사용자가 실제로 수행한 작업의 증빙 URL과 성과 요약을 제출하고 프로필을 실질적으로 갱신함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>일방적 점수 부여 대신 '등록된 증빙 링크'와 '구체적 수치 문장'으로 상태를 전환함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA</strong>
+          <span>[결과물 등록 완료 및 경험 갱신] 클릭 시 SCREEN 09(경험 업데이트 후 재비교)로 데이터가 연계됨.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">지속적 사용성</strong>
+          <span>결과가 입력의 종착점이 아닌, 주간 단위 작업 관리 및 포트폴리오 아카이브 역할을 수행.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-connector">
+      <span>새로운 결과물 등록 후 경로 재비교 및 판단 조건 갱신</span>
+      <div class="flow-arrow-down">↓</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 09: 경험 업데이트 후 재비교 -->
+    <!-- ========================================== -->
+    <div class="screen-wrapper" id="Screen_09_Recomparison">
+      <div class="screen-meta-badge">
+        <span class="screen-id">SCREEN 09</span>
+        <h2 class="screen-title">경험 업데이트 후 재비교 및 경로 피벗 (Continuous Loop)</h2>
+      </div>
+
+      <div class="screen-frame">
+        <header class="h-16 bg-white border-b border-gray-200 px-10 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <span class="text-sm font-bold text-gray-900">LifeLog Career Lab · 재비교</span>
+            <span class="text-xs bg-green-50 text-green-800 font-bold px-2 py-0.5 border border-green-200">신규 경험 1건 누적 반영됨</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <a href="#Screen_06_Path_Workspace" class="btn-action-secondary text-xs py-1.5">← 전체 경로 시뮬레이터</a>
+            <a href="#Screen_01_Goal_Choice" class="btn-action-primary text-xs py-1.5 px-3">새로운 고민 시작하기</a>
+          </div>
+        </header>
+
+        <div class="flex-1 w-[1200px] mx-auto py-10 flex flex-col justify-between">
+          <div>
+            <div class="mb-6">
+              <span class="text-xs font-bold text-green-700 bg-green-50 px-2.5 py-0.5 inline-block mb-1">BEFORE vs AFTER 비교</span>
+              <h3 class="text-2xl font-black text-gray-900">새로운 결과물 등록으로 '지금 지원'의 승률 조건이 달라졌습니다</h3>
+              <p class="text-xs text-gray-500 mt-1">부하 테스트 증빙이 확보됨에 따라, 더 이상 8주를 전부 기다리지 않고도 3주 차 시점에 빠른 지원을 병행할 수 있습니다.</p>
+            </div>
+
+            <!-- 전/후 비교 카드 -->
+            <div class="grid grid-cols-2 gap-8 mb-8">
+              <div class="border border-gray-300 p-6 bg-gray-50 opacity-80">
+                <span class="text-xs font-bold text-gray-500 uppercase block mb-2">2주 전 (초기 진입 시점)</span>
+                <h4 class="text-base font-bold text-gray-800 mb-3">초기 판단 조건</h4>
+                <ul class="space-y-2 text-xs text-gray-600 mb-6">
+                  <li class="flex items-center gap-2">• REST API 구현 경험만 있어 대규모 트래픽 증빙 부족</li>
+                  <li class="flex items-center gap-2">• 쿼리 튜닝 24% 개선의 구체적 측정치 부재</li>
+                  <li class="flex items-center gap-2">• 권장 경로: 프로젝트 8주 전면 보완 필수</li>
+                </ul>
+                <div class="p-3 bg-white border border-gray-200 text-xs text-gray-500">
+                  불확실성: 상위 플랫폼 지원 시 서류 탈락 위험 큼
+                </div>
+              </div>
+
+              <div class="border-2 border-black p-6 bg-white shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-bold text-green-700 bg-green-50 px-2 py-0.5 border border-green-200">현재 (결과물 등록 후)</span>
+                  <span class="text-xs font-bold text-blue-700">병행 전략 활성화</span>
+                </div>
+                <h4 class="text-base font-bold text-gray-900 mb-3">갱신된 판단 조건</h4>
+                <ul class="space-y-2 text-xs text-gray-800 mb-6">
+                  <li class="flex items-center gap-2 font-medium">• k6 부하 테스트 100 VU 조건의 319ms 단축 증빙 확보 완료 ✓</li>
+                  <li class="flex items-center gap-2 font-medium">• 기술 블로그 포스팅 링크가 이력서 첫 항목에 추가됨 ✓</li>
+                  <li class="flex items-center gap-2 font-bold text-blue-700">• 새로운 선택지: "남은 과제(배포)를 진행하며 지금 즉시 5곳 지원 병행"</li>
+                </ul>
+                <div class="p-3 bg-blue-50 border border-blue-200 text-xs text-blue-900 font-semibold">
+                  달라진 점: 8주를 다 채우지 않고도 중견 플랫폼 서류 합격 가능 구간 진입
+                </div>
+              </div>
+            </div>
+
+            <!-- 다음 행동 선택지 -->
+            <div class="p-6 bg-gray-50 border border-gray-300 flex items-center justify-between">
+              <div>
+                <span class="text-sm font-bold text-gray-900 block">이제 어떤 선택을 내리시겠습니까?</span>
+                <span class="text-xs text-gray-500">조건이 달라졌으므로 계획을 유연하게 수정할 수 있습니다.</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <button type="button" onclick="window.location.hash='#Screen_08_Progress_Board'" class="btn-action-secondary text-xs py-2 px-4">
+                  원래 계획대로 배포 과제 계속 진행
+                </button>
+                <button type="button" onclick="window.location.hash='#Screen_06_Path_Workspace'" class="btn-action-primary text-xs py-2 px-5">
+                  '지원 병행'으로 경로 조건 재조정 ➔
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6 flex justify-between items-center text-xs text-gray-500">
+            <span>LifeLog Career Lab은 일회성 진단서가 아닌, 경력 개발의 지속적인 의사결정 파트너입니다.</span>
+            <span class="text-gray-400">마지막 데이터 갱신: 오늘</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-annotation-bar">
+        <div>
+          <strong class="text-gray-900 block mb-1">화면 목적</strong>
+          <span>결과물이 추가됨에 따라 변화된 판단 근거를 전/후로 대조하여 재방문 및 지속적 활용의 가치를 입증함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">핵심 정책</strong>
+          <span>한 번 정한 진로를 정답으로 고정하지 않고, 사용자의 실행 결과에 따라 유연하게 경로를 재조정(피벗)할 수 있게 함.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">주요 CTA</strong>
+          <span>[지원 병행으로 경로 조건 재조정 ➔] 클릭 시 갱신된 조건으로 SCREEN 06의 대조표를 재계산.</span>
+        </div>
+        <div>
+          <strong class="text-gray-900 block mb-1">순환 구조</strong>
+          <span>실행 ➔ 기록 ➔ 재비교 ➔ 새 목표 선택으로 이어지는 영속적 커리어 시뮬레이션 루프 완성.</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function selectGoalCard(elem, goalType) {
+      document.querySelectorAll('#Screen_01_Goal_Choice .card-selectable').forEach(el => el.classList.remove('active'));
+      elem.classList.add('active');
+    }
+
+    function setNotSureJob() {
+      const input = document.getElementById('target_job_input');
+      input.value = '아직 정하지 않음 (공통 역량 탐색)';
+    }
+
+    function updateHoursScreen2(val) {
+      document.getElementById('hours_preview_screen2').innerText = '주 ' + val + '시간';
+    }
+
+    function loadSampleBackendExperience() {
+      const sampleText = `[프로젝트: 이커머스 주문 처리 백오피스 API 개발]
+- 기간: 2024.01 ~ 2024.04 (3개월, 3인 협업)
+- 담당 역할: 백엔드 RESTful API 설계 및 데이터베이스 최적화
+- 세부 수행 내용:
+  1. Java 17 및 Spring Boot 기반 주문/결제 RESTful 엔드포인트 12종 설계 및 JUnit 단위 테스트 작성
+  2. 주문 조회 쿼리 인덱싱 튜닝으로 응답속도 24% 개선 측정
+  3. GitHub PR 기반 코드 리뷰 및 브랜치 전략(Git-flow) 준수
+- 보유 자격: 2024년 6월 정보처리기사 취득 (한국산업인력공단)
+- 어학: TOEIC 865점 (정기 응시)`;
+
+      const textarea = document.getElementById('experience_raw_input');
+      textarea.value = sampleText;
+      document.getElementById('char_count_badge').innerText = sampleText.length + '자 입력됨';
+    }
+
+    function simulateFileUpload() {
+      loadSampleBackendExperience();
+      alert('데모 안내: 로컬 텍스트 샘플이 성공적으로 추출되었습니다. (외부 서버 전송 없음)');
+    }
+
+    function processExtraction() {
+      const text = document.getElementById('experience_raw_input').value.trim();
+      if (!text) {
+        loadSampleBackendExperience();
+      }
+    }
+
+    function loadSampleDemoState() {
+      loadSampleBackendExperience();
+      window.location.hash = '#Screen_06_Path_Workspace';
+    }
+
+    function updateSimulationHours(hours) {
+      document.getElementById('current_hours_label').innerText = '주 ' + hours + '시간';
+      document.getElementById('hours_in_table').innerText = hours + '시간';
+
+      const p1Time = document.getElementById('p1_time');
+      const p1Work = document.getElementById('p1_work');
+      const p2Time = document.getElementById('p2_time');
+      const p2Work = document.getElementById('p2_work');
+
+      const weeksP2 = Math.max(3, Math.round(160 / hours));
+      p2Time.innerText = weeksP2 + '주 소요 (주 ' + hours + 'h)';
+      p2Work.innerText = '총 160시간 (' + weeksP2 + '주간 분할 집중)';
+
+      const weeksP1 = Math.max(1, Math.round(25 / hours));
+      p1Time.innerText = weeksP1 + '주 이내 완료';
+      p1Work.innerText = '약 25시간 (주 ' + hours + 'h 기준)';
+    }
+
+    function toggleDataLimitationDrawer() {
+      const drawer = document.getElementById('data_limitation_drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function selectPathAndGo(pathId) {
+      window.location.hash = '#Screen_07_Action_Plan';
+    }
+
+    function submitEvidence() {
+      const pill = document.getElementById('evidence_pill');
+      pill.className = 'status-pill pill-confirmed';
+      pill.innerText = '결과물 등록 완료 ✓';
+      document.getElementById('task_status_badge').innerText = '2건 등록 완료 / 2건 대기';
+      alert('k6 성능 측정 보고서 결과물이 등록되었습니다. 신규 역량 근거가 프로필에 반영되었습니다.');
+    }
+
+    function simulateTaskComplete() {
+      submitEvidence();
+      window.location.hash = '#Screen_09_Recomparison';
+    }
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash;
+      document.querySelectorAll('.toc-link').forEach(link => {
+        if (link.getAttribute('href') === hash) {
+          link.classList.add('current');
+        } else {
+          link.classList.remove('current');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

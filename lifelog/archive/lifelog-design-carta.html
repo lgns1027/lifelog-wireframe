@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLog — Carta Total Compensation 마스터크래프트 디자인 (1920×1080)</title>
+  
+  <!-- Fonts: Pretendard, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   CSS Reset & Base (Carta Mastercraft Standards)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Pretendard', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #090d16;
+  color: #0f172a;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding: 80px 100px;
+  word-break: keep-all;
+  font-feature-settings: "tnum" 1, "cv02" 1, "cv03" 1, "cv04" 1;
+}
+
+/* 상단 캔버스 마스터 브리핑 헤더 */
+.canvas-header {
+  margin-bottom: 70px;
+  padding: 32px 48px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  color: #f8fafc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.canvas-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+.canvas-subtitle {
+  font-size: 13.5px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+.canvas-badges {
+  display: flex;
+  gap: 10px;
+}
+.badge-pill {
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #1e293b;
+  color: #38bdf8;
+  border: 1px solid #334155;
+}
+
+/* ==========================================================================
+   Canvas Flow Track (Figma 대지 평면 전개 레이아웃)
+   ========================================================================== */
+.flow-row {
+  margin-bottom: 240px;
+}
+.row-header {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.row-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.4px;
+}
+.row-desc {
+  font-size: 13.5px;
+  color: #94a3b8;
+}
+
+.frames-track {
+  display: flex;
+  gap: 240px;
+  align-items: flex-start;
+}
+
+/* 플로우 설명 가이드 카드 */
+.guide-wrapper {
+  flex: 0 0 340px;
+  width: 340px;
+  margin-top: 36px;
+}
+.guide-card {
+  width: 340px;
+  height: 1080px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 48px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #0f172a;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+.guide-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: #f1f5f9;
+  color: #0f172a;
+  font-size: 11.5px;
+  font-weight: 800;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+.guide-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.guide-desc {
+  font-size: 13.5px;
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.guide-specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  color: #334155;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 18px;
+}
+.guide-specs li strong {
+  color: #0f172a;
+}
+.guide-color-chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.color-chip {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* 1920x1080 화면 래퍼 */
+.frame-wrapper {
+  flex: 0 0 1920px;
+  width: 1920px;
+}
+.frame-meta-bar {
+  width: 1920px;
+  padding: 8px 6px 12px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 13px;
+}
+.frame-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.frame-tag {
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
+}
+.frame-meta-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* 1920x1080 고정 PC 화면 캔버스 (Ambient Mesh Glow Background) */
+.pc-screen {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  background: 
+    radial-gradient(circle at 12% 15%, rgba(37, 99, 235, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 88% 85%, rgba(14, 165, 233, 0.04) 0%, transparent 45%),
+    #f8fafc;
+}
+
+/* ==========================================================================
+   CARTA MASTERCRAFT COMPONENT SYSTEM (0% Feature Addition, 100% Visual Craft)
+   ========================================================================== */
+
+/* Carta Precision GNB */
+.carta-gnb {
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.carta-logo {
+  font-size: 19px;
+  font-weight: 900;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -0.5px;
+}
+.carta-logo-mark {
+  width: 22px;
+  height: 22px;
+  background: #0f172a;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+}
+.carta-menu {
+  display: flex;
+  gap: 36px;
+}
+.carta-menu-item {
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #64748b;
+  padding: 20px 0;
+  position: relative;
+  transition: color 150ms ease;
+}
+.carta-menu-item.active {
+  color: #0f172a;
+  font-weight: 800;
+}
+.carta-menu-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: #2563eb;
+  border-radius: 2px;
+}
+
+/* 1440px Proportional Container */
+.carta-container {
+  width: 1440px;
+  margin: 0 auto;
+  padding: 34px 0;
+  height: calc(1080px - 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Page Header */
+.carta-page-header {
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.carta-page-title {
+  font-size: 26px;
+  font-weight: 850;
+  color: #0f172a;
+  letter-spacing: -0.6px;
+  margin-bottom: 6px;
+}
+.carta-page-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.carta-page-subtitle strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+.status-indicator-dot {
+  width: 7px;
+  height: 7px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* Carta Dual-Border Shadow Card (우와 소리 나오는 입체감) */
+.carta-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 12px;
+  padding: 26px;
+  box-shadow: 
+    inset 0 1px 0 #ffffff,
+    0 1px 2px rgba(15, 23, 42, 0.02),
+    0 4px 16px -2px rgba(15, 23, 42, 0.04),
+    0 16px 32px -4px rgba(15, 23, 42, 0.03);
+}
+.carta-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+.carta-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.3px;
+}
+.carta-card-subtitle {
+  font-size: 12.5px;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+/* Mastercraft Condition Field Box */
+.carta-field-box {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  position: relative;
+  transition: all 150ms ease;
+}
+.carta-field-box.active {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-left: 3.5px solid #2563eb;
+  box-shadow: 0 2px 8px -1px rgba(37, 99, 235, 0.08);
+}
+.carta-field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.carta-field-label {
+  font-size: 13.5px;
+  font-weight: 750;
+  color: #0f172a;
+}
+.carta-field-current {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+.carta-select-trigger {
+  height: 42px;
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0 14px;
+  font-size: 13.5px;
+  color: #0f172a;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+.carta-select-trigger.placeholder {
+  color: #64748b;
+}
+
+/* Mastercraft Buttons */
+.carta-btn-primary {
+  height: 44px;
+  padding: 0 20px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid #0f172a;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 4px 12px rgba(15, 23, 42, 0.15);
+  letter-spacing: -0.2px;
+}
+.carta-btn-secondary {
+  height: 44px;
+  padding: 0 18px;
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+/* Mastercraft Top-Layer Option Overlay (Figma Safe DOM Last-Child) */
+.carta-overlay {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 10px;
+  box-shadow: 
+    0 20px 40px -4px rgba(15, 23, 42, 0.14),
+    0 8px 16px -2px rgba(15, 23, 42, 0.08);
+  z-index: 1000;
+  overflow: hidden;
+}
+.carta-overlay-item {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+.carta-overlay-item:last-child {
+  border-bottom: none;
+}
+.carta-overlay-item.selected {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 800;
+}
+.carta-overlay-item:hover:not(.selected) {
+  background: #f8fafc;
+}
+
+/* Tabular Numbers */
+.number-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+</style>
+</head>
+<body>
+
+  <!-- MASTER BRIEFING -->
+  <header class="canvas-header">
+    <div>
+      <h1 class="canvas-title">LifeLog — Carta Total Compensation 마스터크래프트 에디션</h1>
+      <p class="canvas-subtitle">
+        Refero 1위 연봉·보상 SaaS 디자인 언어 100% 이식 | <strong>기존 와이어프레임 기능 및 텍스트 1:1 보존 (기능 추가 0%)</strong>
+      </p>
+    </div>
+    <div class="canvas-badges">
+      <span class="badge-pill">Dual-Border Glass</span>
+      <span class="badge-pill">3-Layer Ambient Shadow</span>
+      <span class="badge-pill">Optical Kerning</span>
+      <span class="badge-pill">IQR Gradient Chart</span>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       CARTA MASTER ROW: FRAME 07-1 & FRAME 07-2 (기존 기능 100% 동일)
+       ======================================================================== -->
+  <section class="flow-row" id="row-carta-master">
+    <div class="row-header">
+      <h2 class="row-title">FLOW 3 — 가상 조건 변경 및 연봉 밴드 시뮬레이터 (Carta Mastercraft Style)</h2>
+      <span class="row-desc">기존 와이어프레임 구조에 이중 보더 반사광, 다층 섀도우, 34px 볼드 수치 텐션, 파인아트급 인터쿼타일 밴드 차트 적용</span>
+    </div>
+
+    <div class="frames-track">
+      
+      <!-- Guide Card -->
+      <div class="guide-wrapper">
+        <div class="guide-card">
+          <div>
+            <div class="guide-badge">REFERO BENCHMARK: CARTA</div>
+            <h3 class="guide-title">Carta Mastercraft<br>디자인 시스템</h3>
+            <p class="guide-desc">
+              기존 와이어프레임의 기능은 단 1개도 건드리지 않고, 실리콘밸리 Carta 보상 툴의 고급스러운 재질감과 타이포그래피 텐션만 극한으로 끌어올렸습니다.
+            </p>
+            <ul class="guide-specs">
+              <li><strong>기능 무결성:</strong> 기존 와이어프레임 100% 보존</li>
+              <li><strong>서피스:</strong> 이중 보더 반사광 & 3단계 섀도우</li>
+              <li><strong>타이포:</strong> Pretendard + JetBrains Mono</li>
+              <li><strong>차트 그래픽:</strong> IQR 에어리어 그라데이션 필</li>
+              <li><strong>피그마 호환:</strong> DOM 최하단 승격 오버레이</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size: 11.5px; color: #64748b; margin-bottom: 6px; font-weight: 700;">CARTA COLOR TOKENS</div>
+            <div class="guide-color-chips">
+              <div class="color-chip" style="background: #f8fafc;" title="Canvas Glow"></div>
+              <div class="color-chip" style="background: #ffffff;" title="Dual-Border Card"></div>
+              <div class="color-chip" style="background: #2563eb;" title="Carta Accent Blue"></div>
+              <div class="color-chip" style="background: #0f172a;" title="Ink 900"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           FRAME 07-1: Carta Mastercraft (조건 1 인턴십 드롭다운 오픈 상태)
+           ==================================================================== -->
+      <div class="frame-wrapper" id="frame-07-1-master">
+        <div class="frame-meta-bar">
+          <div class="frame-meta-left">
+            <span class="frame-tag">FRAME 07-1</span>
+            <span class="frame-meta-title">시뮬레이션 초기 상태 — 조건 1 인턴십 드롭다운 오픈 (Carta Mastercraft)</span>
+          </div>
+          <div>1920 × 1080 px | 1440px Proportional Container</div>
+        </div>
+
+        <div class="pc-screen">
+          <!-- GNB -->
+          <header class="carta-gnb">
+            <div style="display: flex; align-items: center; gap: 40px;">
+              <div class="carta-logo">
+                <div class="carta-logo-mark">L</div>
+                LifeLog
+              </div>
+              <nav class="carta-menu">
+                <a href="#" class="carta-menu-item">내 스펙 진단</a>
+                <a href="#" class="carta-menu-item active">연봉·커리어 분석</a>
+                <a href="#" class="carta-menu-item">성장 경로 추천</a>
+              </nav>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <div style="font-size: 13.5px; color: #475569; background: #f1f5f9; padding: 6px 14px; border-radius: 9999px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                <span class="status-indicator-dot"></span>
+                컴퓨터공학 학사 (3.6) · 정처기 · TOEIC 865점
+              </div>
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: #0f172a; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800;">
+                지
+              </div>
+            </div>
+          </header>
+
+          <!-- Main Container (1440px) -->
+          <main class="carta-container">
+            
+            <!-- Page Header -->
+            <div class="carta-page-header">
+              <div>
+                <h1 class="carta-page-title">조건 변경 시뮬레이션</h1>
+                <p class="carta-page-subtitle">
+                  현재 조건: <strong>컴퓨터공학 학사 (3.6) | 정보처리기사 | TOEIC 865점</strong> | 희망 직무: <strong>백엔드 개발자</strong>
+                </p>
+              </div>
+            </div>
+
+            <!-- Main 2-Column Grid (440px : 960px = 1440px, Height: 820px) -->
+            <div style="display: grid; grid-template-columns: 440px 960px; gap: 40px; height: 820px;">
+              
+              <!-- Left: Condition Selector Panel (기존 와이어프레임 구조 100% 동일) -->
+              <div class="carta-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+                <div>
+                  <div class="carta-card-header">
+                    <div>
+                      <div class="carta-card-title">변경해볼 조건 선택</div>
+                      <div class="carta-card-subtitle">추가하고 싶은 준비 조건을 선택해 보세요</div>
+                    </div>
+                  </div>
+
+                  <!-- 조건 1: 실무 인턴십 경험 (드롭다운 열림 상태) -->
+                  <div class="carta-field-box active">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">1. 실무 인턴십 경험</span>
+                      <span class="carta-field-current">현재: 없음</span>
+                    </div>
+                    <div class="carta-select-trigger placeholder" style="border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb;">
+                      <span style="font-weight: 600; color: #0f172a;">+ 실무 인턴십 기간 선택</span>
+                      <!-- Custom SVG Arrow -->
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 조건 2: 공인 자격증 추가 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">2. 공인 자격증 추가</span>
+                      <span class="carta-field-current">현재: 정보처리기사</span>
+                    </div>
+                    <div class="carta-select-trigger placeholder">
+                      <span>+ 추가 자격증 검색 및 선택</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 조건 3: 공인 어학 성적 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">3. 공인 어학 성적</span>
+                      <span class="carta-field-current">현재: TOEIC 865점</span>
+                    </div>
+                    <div class="carta-select-trigger placeholder">
+                      <span>공인 어학 목표 레벨 설정</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 조건 4: 대학원 진학 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">4. 대학원 진학 (학위 취득)</span>
+                    </div>
+                    <div class="carta-select-trigger">
+                      <span style="font-weight: 600;">대학원 미진학</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 지원 기업 분류 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">희망 기업 분류 설정</span>
+                    </div>
+                    <div class="carta-select-trigger">
+                      <span style="font-weight: 600;">중견·성장기 IT 서비스 기업</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom Button (기존 와이어프레임 100% 동일) -->
+                <div style="border-top: 1px solid #f1f5f9; padding-top: 16px;">
+                  <button class="carta-btn-secondary" style="width: 100%;">
+                    다른 선택지와 한눈에 비교하기 →
+                  </button>
+                </div>
+
+                <!-- [Figma Safe DOM Top-Layer Promoted Overlay] Mastercraft Popover -->
+                <div class="carta-overlay" style="top: 156px; left: 24px; width: 390px;">
+                  <div class="carta-overlay-item selected">
+                    <span style="font-weight: 800;">실무 인턴십 경험 없음 (0개월)</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="carta-overlay-item">
+                    <span>3개월 실무 인턴십</span>
+                  </div>
+                  <div class="carta-overlay-item">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-weight: 750;">6개월 실무 인턴십</span>
+                      <span style="font-size: 11px; font-weight: 800; background: #e0f2fe; color: #0284c7; padding: 2px 7px; border-radius: 4px; border: 1px solid #bae6fd;">추천</span>
+                    </div>
+                  </div>
+                  <div class="carta-overlay-item">
+                    <span>1년 이상 실무 인턴십</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Right: Initial Baseline Chart Panel (기존 와이어프레임 구조 100% 동일) -->
+              <div class="carta-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="carta-card-header">
+                    <div>
+                      <div class="carta-card-title">현재 기준선</div>
+                      <div class="carta-card-subtitle">아직 변경된 조건이 없습니다 | 세전 기본급 기준 (성과급 제외)</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; background: #f8fafc; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                      <span style="display: inline-block; width: 14px; height: 2.5px; background: #0f172a;"></span>
+                      <span style="color: #0f172a; font-weight: 700;">현재 조건 기준선 (3,600만)</span>
+                    </div>
+                  </div>
+
+                  <!-- 2 Summary Cards (기존 와이어프레임 수치 100% 동일, Typography Tension 극대화) -->
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                      <div style="font-size: 12px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">현재 조건 예상 초봉</div>
+                      <div style="font-size: 32px; font-weight: 850; color: #0f172a; margin: 4px 0 2px 0;" class="number-mono">
+                        3,400만 ~ 3,800만<span style="font-size: 18px; font-weight: 700; color: #475569; margin-left: 2px;">원</span>
+                      </div>
+                      <div style="font-size: 12.5px; color: #64748b;">예상 연봉 3,600만 원 선</div>
+                    </div>
+
+                    <div style="background: #fafbfc; border: 1.5px dashed #cbd5e1; border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; justify-content: center; text-align: center;">
+                      <div style="font-size: 13.5px; color: #64748b; line-height: 1.6;">
+                        ← 왼쪽에서 조건을 선택하면<br><strong style="color: #0f172a;">예상 변화</strong>가 이곳에 표시됩니다.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Carta Fine-Art Benchmark SVG Chart (SVG 텍스트 충돌 제로) -->
+                  <div style="border: 1px solid #e2e8f0; border-radius: 10px; padding: 24px; background: #ffffff; box-shadow: inset 0 1px 2px rgba(0,0,0,0.01);">
+                    <svg width="100%" height="280" viewBox="0 0 860 280" style="display: block; overflow: visible;">
+                      <!-- Grid Lines -->
+                      <line x1="60" y1="40" x2="820" y2="40" stroke="#f1f5f9" stroke-dasharray="4"/>
+                      <line x1="60" y1="95" x2="820" y2="95" stroke="#f1f5f9" stroke-dasharray="4"/>
+                      <line x1="60" y1="150" x2="820" y2="150" stroke="#f1f5f9" stroke-dasharray="4"/>
+                      <line x1="60" y1="205" x2="820" y2="205" stroke="#e2e8f0" stroke-width="1.5"/>
+
+                      <!-- Y-Axis Labels (Tabular JetBrains Mono) -->
+                      <text x="50" y="44" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">6,000만</text>
+                      <text x="50" y="99" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">4,800만</text>
+                      <text x="50" y="154" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">3,600만</text>
+                      <text x="50" y="209" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">2,400만</text>
+
+                      <!-- Baseline Curve (Deep Ink Slate) -->
+                      <path d="M 100 170 Q 280 150, 460 130 T 800 75" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+                      
+                      <!-- 3-Layer Donut Markers -->
+                      <circle cx="100" cy="170" r="8" fill="rgba(15, 23, 42, 0.1)"/>
+                      <circle cx="100" cy="170" r="4.5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+                      
+                      <circle cx="460" cy="130" r="8" fill="rgba(15, 23, 42, 0.1)"/>
+                      <circle cx="460" cy="130" r="4.5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+
+                      <circle cx="800" cy="75" r="8" fill="rgba(15, 23, 42, 0.1)"/>
+                      <circle cx="800" cy="75" r="4.5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+
+                      <!-- Fine-Art Callout Tooltip (3,600만 원) -->
+                      <g transform="translate(60, 115)">
+                        <rect width="130" height="30" rx="6" fill="#0f172a" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.15))"/>
+                        <text x="65" y="19" font-size="12" fill="#ffffff" font-weight="800" text-anchor="middle" class="number-mono">3,600만 원</text>
+                      </g>
+
+                      <!-- X-Axis Labels -->
+                      <text x="100" y="235" font-size="12" fill="#0f172a" font-weight="800" text-anchor="middle">신입 (초봉)</text>
+                      <text x="280" y="235" font-size="12" fill="#64748b" text-anchor="middle">1년차</text>
+                      <text x="460" y="235" font-size="12" fill="#0f172a" font-weight="800" text-anchor="middle">3년차 (대리)</text>
+                      <text x="640" y="235" font-size="12" fill="#64748b" text-anchor="middle">5년차 (과장)</text>
+                      <text x="800" y="235" font-size="12" fill="#64748b" text-anchor="middle">7년차+ (차장)</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Bottom Accreditation Note (기존 와이어프레임 문구 100% 동일) -->
+                <div style="font-size: 12px; color: #94a3b8; display: flex; justify-content: space-between; border-top: 1px solid #f1f5f9; padding-top: 14px;">
+                  <span>출처: 고용노동부 한국고용정보원 대졸자 직업이동경로조사(GOMS) 52만 건 데이터 기준</span>
+                  <span>단위: 세전 기본급 기준 (성과급 제외)</span>
+                </div>
+              </div>
+
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           FRAME 07-2: Carta Mastercraft (조건 1 인턴십 선택 반영 +450만 상승 상태)
+           ==================================================================== -->
+      <div class="frame-wrapper" id="frame-07-2-master">
+        <div class="frame-meta-bar">
+          <div class="frame-meta-left">
+            <span class="frame-tag">FRAME 07-2</span>
+            <span class="frame-meta-title">시뮬레이션 비교 상태 — 6개월 인턴십 선택 반영 (+450만 원 밴드 상승)</span>
+          </div>
+          <div>1920 × 1080 px | Benchmark Delta Render</div>
+        </div>
+
+        <div class="pc-screen">
+          <!-- GNB -->
+          <header class="carta-gnb">
+            <div style="display: flex; align-items: center; gap: 40px;">
+              <div class="carta-logo">
+                <div class="carta-logo-mark">L</div>
+                LifeLog
+              </div>
+              <nav class="carta-menu">
+                <a href="#" class="carta-menu-item">내 스펙 진단</a>
+                <a href="#" class="carta-menu-item active">연봉·커리어 분석</a>
+                <a href="#" class="carta-menu-item">성장 경로 추천</a>
+              </nav>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <div style="font-size: 13.5px; color: #475569; background: #f1f5f9; padding: 6px 14px; border-radius: 9999px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                <span class="status-indicator-dot"></span>
+                컴퓨터공학 학사 (3.6) · 정처기 · TOEIC 865점
+              </div>
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: #0f172a; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800;">
+                지
+              </div>
+            </div>
+          </header>
+
+          <!-- Main Container (1440px) -->
+          <main class="carta-container">
+            <!-- Page Header -->
+            <div class="carta-page-header">
+              <div>
+                <h1 class="carta-page-title">조건 변경 시뮬레이션</h1>
+                <p class="carta-page-subtitle">
+                  현재 조건: <strong>컴퓨터공학 학사 (3.6) | 정보처리기사 | TOEIC 865점</strong> | 희망 직무: <strong>백엔드 개발자</strong>
+                </p>
+              </div>
+              <div>
+                <span style="font-size: 12.5px; color: #059669; font-weight: 800; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 5px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px;">
+                  <span style="width: 6px; height: 6px; background: #059669; border-radius: 50%;"></span>
+                  조건 1건 적용 중
+                </span>
+              </div>
+            </div>
+
+            <!-- Main 2-Column Grid -->
+            <div style="display: grid; grid-template-columns: 440px 960px; gap: 40px; height: 820px;">
+              
+              <!-- Left: Condition Applied Panel -->
+              <div class="carta-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="carta-card-header">
+                    <div>
+                      <div class="carta-card-title">변경해볼 조건 선택</div>
+                      <div class="carta-card-subtitle">추가하고 싶은 준비 조건을 선택해 보세요</div>
+                    </div>
+                  </div>
+
+                  <!-- 조건 1: 실무 인턴십 경험 (6개월 선택 적용됨) -->
+                  <div class="carta-field-box active" style="border: 1px solid #0f172a; border-left: 4px solid #2563eb;">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">1. 실무 인턴십 경험</span>
+                      <span style="font-size: 12px; font-weight: 800; color: #2563eb; background: #eff6ff; padding: 1px 6px; border-radius: 4px;">적용됨 (+450만)</span>
+                    </div>
+                    <div class="carta-select-trigger" style="font-weight: 800; color: #0f172a; border-color: #0f172a;">
+                      <span>6개월 실무 인턴십 (추천)</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 조건 2: 공인 자격증 추가 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">2. 공인 자격증 추가</span>
+                      <span class="carta-field-current">현재: 정보처리기사</span>
+                    </div>
+                    <div class="carta-select-trigger placeholder">
+                      <span>+ 추가 자격증 검색 및 선택</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 조건 3: 공인 어학 성적 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">3. 공인 어학 성적</span>
+                      <span class="carta-field-current">현재: TOEIC 865점</span>
+                    </div>
+                    <div class="carta-select-trigger placeholder">
+                      <span>공인 어학 목표 레벨 설정</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 조건 4: 대학원 진학 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">4. 대학원 진학 (학위 취득)</span>
+                    </div>
+                    <div class="carta-select-trigger">
+                      <span style="font-weight: 600;">대학원 미진학</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- 지원 기업 분류 -->
+                  <div class="carta-field-box">
+                    <div class="carta-field-header">
+                      <span class="carta-field-label">희망 기업 분류 설정</span>
+                    </div>
+                    <div class="carta-select-trigger">
+                      <span style="font-weight: 600;">중견·성장기 IT 서비스 기업</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom Button -->
+                <div style="border-top: 1px solid #f1f5f9; padding-top: 16px; display: flex; gap: 10px;">
+                  <button class="carta-btn-secondary" style="width: 35%;">조건 초기화</button>
+                  <button class="carta-btn-primary" style="width: 65%;">다른 선택지와 한눈에 비교하기 →</button>
+                </div>
+              </div>
+
+              <!-- Right: Comparative Simulation Result -->
+              <div class="carta-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="carta-card-header">
+                    <div>
+                      <div class="carta-card-title">시뮬레이션 비교 결과</div>
+                      <div class="carta-card-subtitle">점선(현재 기준선) 대비 실선(변경 후 예상선) 비교</div>
+                    </div>
+                    <div style="display: flex; gap: 16px; font-size: 12.5px;">
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="display: inline-block; width: 14px; height: 2px; background: #94a3b8; border-top: 2px dashed #94a3b8;"></span>
+                        <span style="color: #64748b;">현재 기준선 (3,600만)</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="display: inline-block; width: 14px; height: 3px; background: #2563eb; border-radius: 2px;"></span>
+                        <span style="color: #2563eb; font-weight: 800;">시뮬레이션 (4,050만)</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 2 Numerical KPI Cards (Typography Tension Extreme) -->
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                      <div style="font-size: 12px; color: #64748b; font-weight: 700; text-transform: uppercase;">현재 조건 예상 초봉</div>
+                      <div style="font-size: 32px; font-weight: 850; color: #475569; margin: 4px 0 2px 0;" class="number-mono">
+                        3,600만<span style="font-size: 18px; font-weight: 700; color: #64748b; margin-left: 2px;">원</span>
+                      </div>
+                      <div style="font-size: 12.5px; color: #64748b;">3,400만 ~ 3,800만 밴드</div>
+                    </div>
+
+                    <div style="background: #ffffff; border: 1.5px solid #2563eb; border-radius: 10px; padding: 20px 24px; box-shadow: 0 4px 16px -2px rgba(37,99,235,0.12);">
+                      <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12px; color: #2563eb; font-weight: 800; text-transform: uppercase;">변경 조건 예상 초봉</span>
+                        <span style="font-size: 12px; font-weight: 850; color: #059669; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 2px 8px; border-radius: 4px;">+450만 원 ↑</span>
+                      </div>
+                      <div style="font-size: 34px; font-weight: 900; color: #0f172a; margin: 4px 0 2px 0;" class="number-mono">
+                        4,050만<span style="font-size: 18px; font-weight: 800; color: #0f172a; margin-left: 2px;">원</span>
+                      </div>
+                      <div style="font-size: 12.5px; color: #059669; font-weight: 700;">6개월 실무 인턴십 가산점 반영 완료</div>
+                    </div>
+                  </div>
+
+                  <!-- Carta Fine-Art Benchmark SVG Curve (현재 vs 변경 후 밴드 비교) -->
+                  <div style="border: 1px solid #e2e8f0; border-radius: 10px; padding: 24px; background: #ffffff;">
+                    <svg width="100%" height="280" viewBox="0 0 860 280" style="display: block; overflow: visible;">
+                      <defs>
+                        <!-- Shaded IQR Band Gradient -->
+                        <linearGradient id="iqrBandGlow" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#2563eb" stop-opacity="0.12"/>
+                          <stop offset="100%" stop-color="#2563eb" stop-opacity="0.01"/>
+                        </linearGradient>
+                      </defs>
+
+                      <!-- Grid Lines -->
+                      <line x1="60" y1="40" x2="820" y2="40" stroke="#f1f5f9" stroke-dasharray="4"/>
+                      <line x1="60" y1="95" x2="820" y2="95" stroke="#f1f5f9" stroke-dasharray="4"/>
+                      <line x1="60" y1="150" x2="820" y2="150" stroke="#f1f5f9" stroke-dasharray="4"/>
+                      <line x1="60" y1="205" x2="820" y2="205" stroke="#e2e8f0" stroke-width="1.5"/>
+
+                      <!-- Y Labels -->
+                      <text x="50" y="44" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">6,000만</text>
+                      <text x="50" y="99" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">4,800만</text>
+                      <text x="50" y="154" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">3,600만</text>
+                      <text x="50" y="209" font-size="11" fill="#94a3b8" text-anchor="end" class="number-mono">2,400만</text>
+
+                      <!-- Shaded Area between Baseline and Simulated Curve -->
+                      <path d="M 100 145 Q 280 120, 460 95 T 800 45 L 800 80 Q 640 125, 460 130 T 100 170 Z" fill="url(#iqrBandGlow)"/>
+
+                      <!-- Current Baseline Curve (Dashed Slate) -->
+                      <path d="M 100 170 Q 280 150, 460 130 T 800 80" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="5 5"/>
+
+                      <!-- Simulated Curve (Solid Carta Cobalt Blue) -->
+                      <path d="M 100 145 Q 280 120, 460 95 T 800 45" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round"/>
+
+                      <!-- Delta Connector Indicator Line between 3,600 and 4,050 -->
+                      <line x1="100" y1="145" x2="100" y2="170" stroke="#2563eb" stroke-width="2"/>
+                      <circle cx="100" cy="170" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5"/>
+                      <circle cx="100" cy="145" r="9" fill="rgba(37,99,235,0.18)"/>
+                      <circle cx="100" cy="145" r="5" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+
+                      <!-- Tooltip Box for 4,050만 원 (+450만) -->
+                      <g transform="translate(118, 126)">
+                        <rect width="148" height="32" rx="6" fill="#0f172a" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.2))"/>
+                        <text x="74" y="20" font-size="12" fill="#ffffff" font-weight="800" text-anchor="middle" class="number-mono">
+                          4,050만 원 (+450만)
+                        </text>
+                      </g>
+
+                      <!-- 3 Year Target Point -->
+                      <circle cx="460" cy="130" r="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5"/>
+                      <circle cx="460" cy="95" r="5" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+
+                      <!-- X Labels -->
+                      <text x="100" y="235" font-size="12" fill="#0f172a" font-weight="850" text-anchor="middle">신입 (초봉)</text>
+                      <text x="280" y="235" font-size="12" fill="#64748b" text-anchor="middle">1년차</text>
+                      <text x="460" y="235" font-size="12" fill="#0f172a" font-weight="850" text-anchor="middle">3년차 (대리)</text>
+                      <text x="640" y="235" font-size="12" fill="#64748b" text-anchor="middle">5년차 (과장)</text>
+                      <text x="800" y="235" font-size="12" fill="#64748b" text-anchor="middle">7년차+ (차장)</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Bottom Accreditation Note -->
+                <div style="font-size: 12px; color: #94a3b8; display: flex; justify-content: space-between; border-top: 1px solid #f1f5f9; padding-top: 14px;">
+                  <span>출처: 고용노동부 한국고용정보원 대졸자 직업이동경로조사(GOMS) 52만 건 데이터 기준</span>
+                  <span>단위: 세전 기본급 기준 (성과급 제외)</span>
+                </div>
+              </div>
+
+            </div>
+          </main>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

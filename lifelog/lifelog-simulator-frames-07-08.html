@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLog · 연봉 시뮬레이터 Frame 07, 07-P & 08 (1920×1080 Figma Export)</title>
+
+  <!-- Pretendard Unified Font (Full Subset) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+/* ==========================================================================
+   CSS Reset & Base (Figma HTML-to-Design 100% Vector Lossless Ready)
+   Direction: Direction 2 - Soft Pastel Sunrise & Tactile
+   Typography: 100% Pure Pretendard Unified System (No Monospace Mix)
+   0% JavaScript · 100% Pure CSS & SVG
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, svg text, input, button, select {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "tnum" 1, "cv02" 1, "cv03" 1, "cv04" 1;
+}
+
+body {
+  background-color: #ffffff;
+  color: #232128;
+  line-height: 1.5;
+  padding: 120px 0 240px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 240px;
+  word-break: keep-all;
+}
+
+/* Pretendard Native Tabular Figures */
+.tabular-num {
+  font-family: 'Pretendard', sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   1920x1080 Figma Root Artboard (Strict 1080px Mathematical Fit)
+   ========================================================================== */
+.figma-artboard {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  background-color: #fbf9f5;
+  background-image: 
+    radial-gradient(ellipse 65% 55% at 10% 12%, rgba(254, 215, 170, 0.42) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 50% at 88% 10%, rgba(254, 240, 138, 0.32) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 75% 85%, rgba(186, 230, 253, 0.28) 0%, transparent 65%),
+    linear-gradient(180deg, #fdfbf7 0%, #f7f4ee 100%);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  box-shadow: 0 25px 60px -15px rgba(28, 25, 23, 0.2);
+  margin-bottom: 240px;
+  color: #232128;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   Top GNB (64px)
+   -------------------------------------------------------------------------- */
+.gnb-bar {
+  height: 64px;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(35, 33, 40, 0.06);
+}
+.gnb-left {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.gnb-logo {
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: -0.5px;
+  color: #232128;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.gnb-logo span {
+  color: #ea580c;
+}
+.gnb-menu {
+  display: flex;
+  gap: 36px;
+  height: 64px;
+}
+.gnb-item {
+  display: flex;
+  align-items: center;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #6a6875;
+  text-decoration: none;
+  position: relative;
+  transition: color 150ms ease;
+}
+.gnb-item.active {
+  color: #ea580c;
+  font-weight: 800;
+}
+.gnb-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #f59e0b, #ea580c);
+  border-radius: 2px 2px 0 0;
+}
+.gnb-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  font-weight: 750;
+  color: #232128;
+}
+.user-avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  border: 1px solid rgba(234, 88, 12, 0.25);
+  color: #c2410c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   Main Workspace Container (1560px Width, Math-aligned 888px Height)
+   -------------------------------------------------------------------------- */
+.page-container {
+  width: 1560px;
+  margin: 0 auto;
+  padding: 24px 0 44px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Page Header (Height ~42px, Margin-bottom 18px) */
+.page-header-row {
+  height: 42px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.page-title-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.page-main-title {
+  font-size: 25px;
+  font-weight: 850;
+  letter-spacing: -0.4px;
+  color: #232128;
+  line-height: 1;
+}
+.page-policy-badge {
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: #ffedd5;
+  color: #c2410c;
+  border: 1px solid rgba(234, 88, 12, 0.22);
+  line-height: 1;
+}
+
+/* Header Reset Button (Exact wireframe copy in Frame 08) */
+.btn-reset-header {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 1px solid #edebe4;
+  background: #ffffff;
+  color: #4b4955;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: all 140ms ease;
+}
+.btn-reset-header:hover {
+  background: #faf9f6;
+  border-color: #cbd5e1;
+  color: #232128;
+}
+
+/* --------------------------------------------------------------------------
+   Workspace 2-Column Grid (480px + 1040px, Gap 40px, Fixed Height: 888px)
+   -------------------------------------------------------------------------- */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 480px 1040px;
+  gap: 40px;
+  height: 888px;
+  align-items: stretch;
+}
+
+/* --------------------------------------------------------------------------
+   Left Console Plate (480px, Height: 888px Tactile Container)
+   -------------------------------------------------------------------------- */
+.left-card-plate {
+  height: 888px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 22px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(234, 88, 12, 0.04), 0 12px 36px -4px rgba(28, 25, 23, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Top Baseline Spec Dock (Integrated seamlessly, 0px disconnect) */
+.baseline-spec-dock-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+.baseline-spec-dock {
+  background: #faf8f3;
+  border: 1px solid #ede8de;
+  border-radius: 12px;
+  padding: 13px 15px;
+  margin-bottom: 16px;
+}
+.baseline-spec-dock-wrapper .baseline-spec-dock {
+  margin-bottom: 0;
+}
+.dock-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+}
+.dock-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #232128;
+  letter-spacing: -0.2px;
+}
+.dock-job-text {
+  font-size: 12px;
+  color: #6a6875;
+}
+.dock-job-text strong {
+  color: #232128;
+  font-weight: 750;
+}
+.dock-specs-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.dock-chips-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dock-more-line {
+  display: flex;
+  align-items: center;
+}
+.spec-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #ede8de;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 750;
+  color: #232128;
+  height: 26px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+.dock-sep {
+  color: #cbd5e1;
+  font-weight: 400;
+}
+.spec-more-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #f1ede4;
+  color: #4a4754;
+  border: 1px solid #dfd9ce;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 750;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.4;
+  height: 26px;
+  box-sizing: border-box;
+  margin: 0;
+  transition: all 120ms ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+.spec-more-btn:hover,
+.spec-more-btn.active {
+  background: #e5ded2;
+  color: #232128;
+  border-color: #cac2b3;
+}
+
+/* Floating Popover Panel for Baseline Spec Dock (Frame 07-P) */
+.spec-popover-panel {
+  position: absolute;
+  top: 298px;
+  left: 202px;
+  width: 436px;
+  background: #ffffff;
+  border: 1px solid #e2ddd4;
+  border-radius: 12px;
+  box-shadow: 0 20px 48px -6px rgba(35, 33, 40, 0.22), 0 6px 18px rgba(35, 33, 40, 0.08);
+  padding: 16px 18px;
+  z-index: 9999;
+}
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #f0ede6;
+  margin-bottom: 12px;
+}
+.popover-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.popover-main-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #232128;
+}
+.popover-count-chip {
+  font-size: 11px;
+  font-weight: 750;
+  color: #ea580c;
+  background: #ffedd5;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.popover-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  color: #8b8896;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.popover-close-btn:hover {
+  color: #232128;
+  background: #f4f2ee;
+}
+.popover-spec-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.popover-spec-row {
+  display: flex;
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.popover-category-label {
+  width: 90px;
+  font-weight: 750;
+  color: #6a6875;
+  flex-shrink: 0;
+}
+.popover-category-value {
+  color: #232128;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  align-items: center;
+}
+.popover-val-chip {
+  background: #faf8f5;
+  border: 1px solid #ede8de;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 11.5px;
+}
+.popover-footer-strip {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #f0ede6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #8b8896;
+}
+.popover-footer-link {
+  color: #ea580c;
+  font-weight: 750;
+  text-decoration: none;
+}
+.popover-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* Condition Selection Action Header (Clean wireframe text) */
+.condition-action-header {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.action-title {
+  font-size: 17px;
+  font-weight: 850;
+  color: #232128;
+  letter-spacing: -0.3px;
+}
+.action-sub {
+  font-size: 12px;
+  color: #6a6875;
+  margin-top: 2px;
+}
+
+/* 5 Condition Rows (Clean Korean SaaS Proportions) */
+.condition-step-box {
+  padding: 10px 12px;
+  background: #faf9f6;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #edebe4;
+  transition: all 160ms ease;
+}
+.condition-step-box.selected-state {
+  background: #fffcf8;
+  border: 1.5px solid #ea580c;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.08);
+}
+.step-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.step-name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #232128;
+}
+.step-current-text {
+  font-size: 11.5px;
+  color: #6a6875;
+  font-weight: 600;
+}
+.step-active-tag {
+  font-size: 11px;
+  font-weight: 750;
+  color: #ffffff;
+  background: #ea580c;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.step-select-field {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 13px;
+  background: #ffffff;
+  border-radius: 7px;
+  font-size: 12.5px;
+  color: #232128;
+  border: 1px solid #e5e7eb;
+}
+.step-select-field.highlight {
+  color: #ea580c;
+  font-weight: 750;
+  border-color: rgba(234, 88, 12, 0.35);
+  background: #fffbf7;
+}
+.step-select-field.bold-selected {
+  color: #c2410c;
+  font-weight: 800;
+  border-color: #ea580c;
+  background: linear-gradient(135deg, #fffaf4 0%, #ffedd5 100%);
+}
+.step-select-field.placeholder {
+  color: #6a6875;
+}
+
+
+/* Step Number Capsule Badges (Direction 2 Soft Pastel Sunrise) */
+.step-label-box {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.step-capsule-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+.badge-coral { background: #ffedd5; color: #c2410c; border: 1px solid rgba(234, 88, 12, 0.22); }
+.badge-sage { background: #dcfce7; color: #15803d; border: 1px solid rgba(21, 128, 61, 0.22); }
+.badge-sky { background: #e0f2fe; color: #0369a1; border: 1px solid rgba(3, 105, 161, 0.22); }
+.badge-lilac { background: #ede9fe; color: #6d28d9; border: 1px solid rgba(109, 40, 217, 0.22); }
+.badge-butter { background: #fef9c3; color: #a16207; border: 1px solid rgba(161, 98, 7, 0.22); }
+
+/* KPI Badge & Lift Pill */
+.kpi-badge {
+  font-size: 11px;
+  font-weight: 750;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.kpi-badge.positive-lift {
+  background: linear-gradient(135deg, #ffedd5 0%, #fee2e2 100%);
+  color: #c2410c;
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  font-weight: 850;
+  box-shadow: 0 1px 3px rgba(234, 88, 12, 0.1);
+}
+
+/* Distinct Reflected Result Text (Clean Text ONLY - NO enclosing box) */
+.reflected-result-text {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #059669;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1.4;
+}
+
+/* Left Bottom Action Bar */
+.left-bottom-bar {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+.btn-primary-gradient {
+  height: 44px;
+  width: 100%;
+  border-radius: 9px;
+  border: none;
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.22);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.btn-primary-gradient:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.3);
+}
+.left-note-strip {
+  font-size: 11px;
+  color: #94939c;
+  line-height: 1.5;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Right Simulator Workspace (1040px, Height: 888px Tactile Container)
+   -------------------------------------------------------------------------- */
+.right-card-plate {
+  height: 888px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 26px 28px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(234, 88, 12, 0.04), 0 12px 36px -4px rgba(28, 25, 23, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Right Header & Legend */
+.right-header-row {
+  padding-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #f3f4f6;
+}
+.right-header-title {
+  font-size: 18.5px;
+  font-weight: 850;
+  color: #232128;
+  letter-spacing: -0.3px;
+}
+.right-legend-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #6a6875;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-dash {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* Dual Metric Cards Row */
+.kpi-dual-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 16px 0;
+}
+.kpi-stat-box {
+  background: #faf9f6;
+  border-radius: 12px;
+  padding: 18px 22px;
+  border: 1px solid #edebe4;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+.kpi-stat-box.active-result {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  border: 1.5px solid #ea580c;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.06);
+}
+.kpi-top-label {
+  font-size: 12px;
+  color: #6a6875;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.kpi-hero-numbers {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  color: #232128;
+  margin-top: 5px;
+  line-height: 1.2;
+}
+.kpi-hero-numbers.active-amber {
+  color: #ea580c;
+}
+.kpi-bottom-sub {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #6a6875;
+}
+.kpi-bottom-sub strong {
+  color: #ea580c;
+  font-weight: 750;
+}
+
+/* Empty Guide Box in Frame 07 (Warm Amber Dashed State) */
+.kpi-guide-box {
+  background: rgba(254, 243, 199, 0.28);
+  border: 1.5px dashed rgba(245, 158, 11, 0.45);
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #78716c;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.kpi-guide-box strong {
+  color: #c2410c;
+}
+
+/* Large SVG Trajectory Chart Stage (380px Height - Pure Clean Vector) */
+.chart-stage-wrapper {
+  background: #faf9f6;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid #edebe4;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+/* Bottom Information Grid (Wireframe Exact Text) */
+.info-section-grid {
+  margin-bottom: 16px;
+}
+.info-single-box {
+  background: #faf9f6;
+  border: 1px solid #edebe4;
+  border-radius: 9px;
+  padding: 13px 16px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.info-single-title {
+  font-weight: 750;
+  color: #232128;
+}
+.info-single-body {
+  color: #4b4955;
+}
+
+/* Frame 08 Two-Column Breakdown Grid */
+.breakdown-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.breakdown-col-box {
+  background: #faf9f6;
+  border: 1px solid #edebe4;
+  border-radius: 9px;
+  padding: 13px 16px;
+  font-size: 12px;
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.breakdown-col-title {
+  font-weight: 750;
+  color: #232128;
+}
+.breakdown-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #4b4955;
+}
+
+/* Bottom Action Row */
+.right-action-row {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.action-left-notice {
+  font-size: 12px;
+  color: #94939c;
+}
+.btn-disabled-primary {
+  height: 44px;
+  padding: 0 24px;
+  background: #edebe4;
+  color: #94939c;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-save-primary {
+  height: 46px;
+  padding: 0 32px;
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.btn-save-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.32);
+}
+</style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       FIGMA FRAME 07: 연봉 시뮬레이터 — 초기 상태 (기본)
+       1920×1080 Full HD Native Root Frame (Direction 2: Warm Sunrise)
+       ======================================================================== -->
+  <main class="figma-artboard" id="frame-07">
+    
+    <!-- Top GNB (64px) -->
+    <header class="gnb-bar">
+      <div class="gnb-left">
+        <div class="gnb-logo">LifeLog<span>.</span></div>
+        <nav class="gnb-menu">
+          <a href="#" class="gnb-item">대시보드</a>
+          <a href="#" class="gnb-item">내 스펙·진단</a>
+          <a href="#" class="gnb-item active">연봉 시뮬레이터</a>
+          <a href="#" class="gnb-item">커리어 경로</a>
+          <a href="#" class="gnb-item">채용 기회</a>
+        </nav>
+      </div>
+      <div class="gnb-right">
+        <div class="user-avatar-circle">지</div>
+        <span>지훈</span>
+      </div>
+    </header>
+
+    <!-- Page Container (1560px Width, Math-aligned 888px Workspace) -->
+    <div class="page-container">
+      
+      <!-- Page Header: Title + Policy Badge Only (NO arbitrary frame badge!) -->
+      <div class="page-header-row">
+        <div class="page-title-box">
+          <h1 class="page-main-title">연봉 시뮬레이터 — 조건 변경 및 비교</h1>
+          <span class="page-policy-badge">비교한 조건은 내 스펙에 저장되지 않습니다.</span>
+        </div>
+      </div>
+
+      <!-- Main Workspace 2-Column Grid (480px + 1040px, Height: 888px) -->
+      <div class="workspace-grid">
+        
+        <!-- Left Console Plate (480px, Height: 888px) -->
+        <div class="left-card-plate">
+          
+          <div>
+            <!-- 1. Top Baseline Spec Dock (Integrated seamlessly, 0px disconnect) -->
+            <div class="baseline-spec-dock">
+              <div class="dock-header-row">
+                <span class="dock-title">내 현재 조건 기준선</span>
+                <span class="dock-job-text">희망 직무: <strong>백엔드 개발자</strong></span>
+              </div>
+              <div class="dock-specs-rows">
+                <div class="dock-chips-line">
+                  <span class="spec-tag-chip">컴퓨터공학 학사 (3.6)</span>
+                  <span class="dock-sep">·</span>
+                  <span class="spec-tag-chip">정보처리기사</span>
+                  <span class="dock-sep">·</span>
+                  <span class="spec-tag-chip">TOEIC 865점</span>
+                </div>
+                <div class="dock-more-line">
+                  <button class="spec-more-btn">+3개 더보기 ▾</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Condition Action Header -->
+            <div class="condition-action-header">
+              <div class="action-title">변경해볼 조건 선택</div>
+              <div class="action-sub">추가하고 싶은 준비 조건을 선택해 보세요</div>
+            </div>
+
+            <!-- Condition 1: 실무 인턴십 경험 (Clean Typography, No duplicate 01 pill) -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-coral">01 인턴십</span>
+                  <span class="step-name">실무 인턴십 경험</span>
+                </div>
+                <span class="step-current-text">현재: 없음</span>
+              </div>
+              <div class="step-select-field highlight">
+                <span>+ 실무 인턴십 기간 선택</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 2: 공인 자격증 추가 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-sage">02 자격증</span>
+                  <span class="step-name">공인 자격증 추가</span>
+                </div>
+                <span class="step-current-text">현재: 정보처리기사</span>
+              </div>
+              <div class="step-select-field placeholder">
+                <span>+ 추가 자격증 검색 및 선택</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 3: 공인 어학 성적 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-sky">03 어학성적</span>
+                  <span class="step-name">공인 어학 성적</span>
+                </div>
+                <span class="step-current-text">현재: TOEIC 865점</span>
+              </div>
+              <div class="step-select-field placeholder">
+                <span>공인 어학 목표 레벨 설정</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 4: 대학원 진학 (학위 취득) -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-lilac">04 학위진학</span>
+                  <span class="step-name">대학원 진학 (학위 취득)</span>
+                </div>
+              </div>
+              <div class="step-select-field">
+                <span>대학원 미진학</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 5: 희망 기업 분류 설정 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-butter">05 기업분류</span>
+                  <span class="step-name">희망 기업 분류 설정</span>
+                </div>
+              </div>
+              <div class="step-select-field">
+                <span>중견·성장기 IT 서비스 기업</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left Bottom Action Button -->
+          <div class="left-bottom-bar">
+            <button class="btn-primary-gradient">
+              <span>다른 선택지와 한눈에 비교하기 →</span>
+            </button>
+            <div class="left-note-strip">
+              * 선택된 조건은 우측 차트에 가상선으로 즉시 시뮬레이션됩니다.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Simulator Workspace (1040px, Height: 888px) -->
+        <div class="right-card-plate">
+          
+          <div>
+            <!-- Header Row -->
+            <div class="right-header-row">
+              <h2 class="right-header-title">연차별 예상 성장 곡선 시뮬레이션</h2>
+              <div class="right-legend-group">
+                <span style="font-size: 12px; color: #6a6875;">현재 조건 기준선 (선택 시 비교 가상선 표시)</span>
+              </div>
+            </div>
+
+            <!-- KPI Dual Stat Row -->
+            <div class="kpi-dual-container">
+              <!-- Left Metric Card -->
+              <div class="kpi-stat-box">
+                <div class="kpi-top-label">
+                  <span>현재 조건 예상 초봉</span>
+                  <span class="kpi-badge" style="background: #f1f5f9; color: #64748b;">내 현재 스펙</span>
+                </div>
+                <div class="kpi-hero-numbers tabular-num">
+                  3,400만 ~ 3,800만 원
+                </div>
+                <div class="kpi-bottom-sub">
+                  예상 연봉 3,600만 원 선
+                </div>
+              </div>
+
+              <!-- Right Guide Box (Frame 07 State - Warm Amber Dashed) -->
+              <div class="kpi-guide-box">
+                <div>
+                  ← 왼쪽에서 조건을 선택하면<br>
+                  <strong>예상 변화</strong>가 이곳에 표시됩니다.
+                </div>
+              </div>
+            </div>
+
+            <!-- Large SVG Trajectory Chart Stage (380px) -->
+            <div class="chart-stage-wrapper">
+              <svg width="100%" height="380" viewBox="0 0 984 380" fill="none" style="display: block; overflow: visible; font-family: 'Pretendard', sans-serif;">
+                <defs>
+                  <linearGradient id="f7AreaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#ea580c" stop-opacity="0.02"/>
+                  </linearGradient>
+                  <linearGradient id="f7StrokeGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#ea580c"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Grid Lines -->
+                <line x1="70" y1="45" x2="940" y2="45" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="115" x2="940" y2="115" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="185" x2="940" y2="185" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="255" x2="940" y2="255" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="315" x2="940" y2="315" stroke="#e5e7eb" stroke-width="1.5"/>
+
+                <!-- Y-Axis Labels (Pretendard Tabular) -->
+                <text x="58" y="50" font-size="11.5" fill="#94939c" text-anchor="end">6,000만</text>
+                <text x="58" y="120" font-size="11.5" fill="#94939c" text-anchor="end">5,000만</text>
+                <text x="58" y="190" font-size="11.5" fill="#94939c" text-anchor="end">4,000만</text>
+                <text x="58" y="260" font-size="11.5" fill="#94939c" text-anchor="end">3,000만</text>
+
+                <!-- Shaded Confidence Area Band (3,400~3,800만 expanding) -->
+                <path d="M 180 200 C 380 160, 620 115, 860 45 L 860 95 C 620 165, 380 210, 180 250 Z" fill="url(#f7AreaGrad)"/>
+
+                <!-- Baseline Trajectory Curve (Warm Sunrise Gradient) -->
+                <path d="M 180 225 C 380 180, 620 135, 860 70" stroke="url(#f7StrokeGrad)" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+
+                <!-- Data Nodes -->
+                <!-- Node 1: 첫 취업 초봉 (현재 3,600만) -->
+                <circle cx="180" cy="225" r="10" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.5"/>
+                <circle cx="180" cy="225" r="6" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+                <circle cx="180" cy="225" r="2.5" fill="#ea580c"/>
+
+                <!-- Node 2: 취업 3년 차 (현재 4,450만) -->
+                <circle cx="520" cy="158" r="10" fill="none" stroke="#ea580c" stroke-width="1.5" opacity="0.5"/>
+                <circle cx="520" cy="158" r="6" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+                <circle cx="520" cy="158" r="2.5" fill="#f59e0b"/>
+
+                <!-- Node 3: 취업 5년 차 (현재 5,450만) -->
+                <circle cx="860" cy="70" r="10" fill="none" stroke="#ea580c" stroke-width="1.5" opacity="0.5"/>
+                <circle cx="860" cy="70" r="6" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+                <circle cx="860" cy="70" r="2.5" fill="#ea580c"/>
+
+                <!-- Data Callout Badges -->
+                <!-- Node 1 Badge -->
+                <g transform="translate(120, 160)">
+                  <rect width="120" height="28" rx="6" fill="#232128" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+                  <text x="60" y="19" font-size="12" fill="#ffffff" font-weight="750" text-anchor="middle">현재 3,600만</text>
+                </g>
+                <line x1="180" y1="188" x2="180" y2="215" stroke="#232128" stroke-width="1.5"/>
+
+                <!-- Node 2 Callout Text -->
+                <text x="520" y="132" font-size="12.5" fill="#ea580c" font-weight="800" text-anchor="middle">현재 4,450만</text>
+
+                <!-- Node 3 Callout Text -->
+                <text x="860" y="44" font-size="12.5" fill="#ea580c" font-weight="800" text-anchor="middle">현재 5,450만</text>
+
+                <!-- X-Axis Labels (Pretendard) -->
+                <text x="180" y="348" font-size="13" fill="#232128" font-weight="750" text-anchor="middle">첫 취업 초봉</text>
+                <text x="520" y="348" font-size="13" fill="#6a6875" text-anchor="middle">취업 3년 차</text>
+                <text x="860" y="348" font-size="13" fill="#6a6875" text-anchor="middle">취업 5년 차</text>
+              </svg>
+            </div>
+
+            <!-- Bottom Information Box (Exact wireframe copy) -->
+            <div class="info-section-grid">
+              <div class="info-single-box">
+                <span class="info-single-title">조건 변경 참고</span>
+                <span class="info-single-body">백엔드 개발 직무의 경우 자격증 취득 대비 실무 인턴십 경험을 추가했을 때 이 조건 비교에서 예상 연봉 차이가 크게 나타납니다.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row -->
+          <div class="right-action-row">
+            <div class="action-left-notice">
+              ※ 왼쪽에서 조건을 선택하시면 연차별 예상 성장 곡선과 변화폭이 즉시 시뮬레이션됩니다.
+            </div>
+            <div>
+              <div class="btn-disabled-primary">
+                조건을 선택해 주세요
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+<!-- ========================================================================
+       FIGMA FRAME 07: 연봉 시뮬레이터 — 초기 상태 (기본)
+       1920×1080 Full HD Native Root Frame (Direction 2: Warm Sunrise)
+       ======================================================================== -->
+  <main class="figma-artboard" id="frame-07-p">
+    
+    <!-- Top GNB (64px) -->
+    <header class="gnb-bar">
+      <div class="gnb-left">
+        <div class="gnb-logo">LifeLog<span>.</span></div>
+        <nav class="gnb-menu">
+          <a href="#" class="gnb-item">대시보드</a>
+          <a href="#" class="gnb-item">내 스펙·진단</a>
+          <a href="#" class="gnb-item active">연봉 시뮬레이터</a>
+          <a href="#" class="gnb-item">커리어 경로</a>
+          <a href="#" class="gnb-item">채용 기회</a>
+        </nav>
+      </div>
+      <div class="gnb-right">
+        <div class="user-avatar-circle">지</div>
+        <span>지훈</span>
+      </div>
+    </header>
+
+    <!-- Page Container (1560px Width, Math-aligned 888px Workspace) -->
+    <div class="page-container">
+      
+      <!-- Page Header: Title + Policy Badge Only (NO arbitrary frame badge!) -->
+      <div class="page-header-row">
+        <div class="page-title-box">
+          <h1 class="page-main-title">연봉 시뮬레이터 — 조건 변경 및 비교</h1>
+          <span class="page-policy-badge">비교한 조건은 내 스펙에 저장되지 않습니다.</span>
+        </div>
+      </div>
+
+      <!-- Main Workspace 2-Column Grid (480px + 1040px, Height: 888px) -->
+      <div class="workspace-grid">
+        
+        <!-- Left Console Plate (480px, Height: 888px) -->
+        <div class="left-card-plate">
+          
+          <div>
+            <!-- 1. Top Baseline Spec Dock (Integrated seamlessly, 0px disconnect) -->
+            <div class="baseline-spec-dock">
+              <div class="dock-header-row">
+                <span class="dock-title">내 현재 조건 기준선</span>
+                <span class="dock-job-text">희망 직무: <strong>백엔드 개발자</strong></span>
+              </div>
+              <div class="dock-specs-rows">
+                <div class="dock-chips-line">
+                  <span class="spec-tag-chip">컴퓨터공학 학사 (3.6)</span>
+                  <span class="dock-sep">·</span>
+                  <span class="spec-tag-chip">정보처리기사</span>
+                  <span class="dock-sep">·</span>
+                  <span class="spec-tag-chip">TOEIC 865점</span>
+                </div>
+                <div class="dock-more-line">
+                  <button class="spec-more-btn active">+3개 닫기 ▴</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Condition Action Header -->
+            <div class="condition-action-header">
+              <div class="action-title">변경해볼 조건 선택</div>
+              <div class="action-sub">추가하고 싶은 준비 조건을 선택해 보세요</div>
+            </div>
+
+            <!-- Condition 1: 실무 인턴십 경험 (Clean Typography, No duplicate 01 pill) -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-coral">01 인턴십</span>
+                  <span class="step-name">실무 인턴십 경험</span>
+                </div>
+                <span class="step-current-text">현재: 없음</span>
+              </div>
+              <div class="step-select-field highlight">
+                <span>+ 실무 인턴십 기간 선택</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 2: 공인 자격증 추가 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-sage">02 자격증</span>
+                  <span class="step-name">공인 자격증 추가</span>
+                </div>
+                <span class="step-current-text">현재: 정보처리기사</span>
+              </div>
+              <div class="step-select-field placeholder">
+                <span>+ 추가 자격증 검색 및 선택</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 3: 공인 어학 성적 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-sky">03 어학성적</span>
+                  <span class="step-name">공인 어학 성적</span>
+                </div>
+                <span class="step-current-text">현재: TOEIC 865점</span>
+              </div>
+              <div class="step-select-field placeholder">
+                <span>공인 어학 목표 레벨 설정</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 4: 대학원 진학 (학위 취득) -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-lilac">04 학위진학</span>
+                  <span class="step-name">대학원 진학 (학위 취득)</span>
+                </div>
+              </div>
+              <div class="step-select-field">
+                <span>대학원 미진학</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 5: 희망 기업 분류 설정 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-butter">05 기업분류</span>
+                  <span class="step-name">희망 기업 분류 설정</span>
+                </div>
+              </div>
+              <div class="step-select-field">
+                <span>중견·성장기 IT 서비스 기업</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left Bottom Action Button -->
+          <div class="left-bottom-bar">
+            <button class="btn-primary-gradient">
+              <span>다른 선택지와 한눈에 비교하기 →</span>
+            </button>
+            <div class="left-note-strip">
+              * 선택된 조건은 우측 차트에 가상선으로 즉시 시뮬레이션됩니다.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Simulator Workspace (1040px, Height: 888px) -->
+        <div class="right-card-plate">
+          
+          <div>
+            <!-- Header Row -->
+            <div class="right-header-row">
+              <h2 class="right-header-title">연차별 예상 성장 곡선 시뮬레이션</h2>
+              <div class="right-legend-group">
+                <span style="font-size: 12px; color: #6a6875;">현재 조건 기준선 (선택 시 비교 가상선 표시)</span>
+              </div>
+            </div>
+
+            <!-- KPI Dual Stat Row -->
+            <div class="kpi-dual-container">
+              <!-- Left Metric Card -->
+              <div class="kpi-stat-box">
+                <div class="kpi-top-label">
+                  <span>현재 조건 예상 초봉</span>
+                  <span class="kpi-badge" style="background: #f1f5f9; color: #64748b;">내 현재 스펙</span>
+                </div>
+                <div class="kpi-hero-numbers tabular-num">
+                  3,400만 ~ 3,800만 원
+                </div>
+                <div class="kpi-bottom-sub">
+                  예상 연봉 3,600만 원 선
+                </div>
+              </div>
+
+              <!-- Right Guide Box (Frame 07 State - Warm Amber Dashed) -->
+              <div class="kpi-guide-box">
+                <div>
+                  ← 왼쪽에서 조건을 선택하면<br>
+                  <strong>예상 변화</strong>가 이곳에 표시됩니다.
+                </div>
+              </div>
+            </div>
+
+            <!-- Large SVG Trajectory Chart Stage (380px) -->
+            <div class="chart-stage-wrapper">
+              <svg width="100%" height="380" viewBox="0 0 984 380" fill="none" style="display: block; overflow: visible; font-family: 'Pretendard', sans-serif;">
+                <defs>
+                  <linearGradient id="f7AreaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#ea580c" stop-opacity="0.02"/>
+                  </linearGradient>
+                  <linearGradient id="f7StrokeGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#ea580c"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Grid Lines -->
+                <line x1="70" y1="45" x2="940" y2="45" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="115" x2="940" y2="115" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="185" x2="940" y2="185" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="255" x2="940" y2="255" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="315" x2="940" y2="315" stroke="#e5e7eb" stroke-width="1.5"/>
+
+                <!-- Y-Axis Labels (Pretendard Tabular) -->
+                <text x="58" y="50" font-size="11.5" fill="#94939c" text-anchor="end">6,000만</text>
+                <text x="58" y="120" font-size="11.5" fill="#94939c" text-anchor="end">5,000만</text>
+                <text x="58" y="190" font-size="11.5" fill="#94939c" text-anchor="end">4,000만</text>
+                <text x="58" y="260" font-size="11.5" fill="#94939c" text-anchor="end">3,000만</text>
+
+                <!-- Shaded Confidence Area Band (3,400~3,800만 expanding) -->
+                <path d="M 180 200 C 380 160, 620 115, 860 45 L 860 95 C 620 165, 380 210, 180 250 Z" fill="url(#f7AreaGrad)"/>
+
+                <!-- Baseline Trajectory Curve (Warm Sunrise Gradient) -->
+                <path d="M 180 225 C 380 180, 620 135, 860 70" stroke="url(#f7StrokeGrad)" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+
+                <!-- Data Nodes -->
+                <!-- Node 1: 첫 취업 초봉 (현재 3,600만) -->
+                <circle cx="180" cy="225" r="10" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.5"/>
+                <circle cx="180" cy="225" r="6" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+                <circle cx="180" cy="225" r="2.5" fill="#ea580c"/>
+
+                <!-- Node 2: 취업 3년 차 (현재 4,450만) -->
+                <circle cx="520" cy="158" r="10" fill="none" stroke="#ea580c" stroke-width="1.5" opacity="0.5"/>
+                <circle cx="520" cy="158" r="6" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+                <circle cx="520" cy="158" r="2.5" fill="#f59e0b"/>
+
+                <!-- Node 3: 취업 5년 차 (현재 5,450만) -->
+                <circle cx="860" cy="70" r="10" fill="none" stroke="#ea580c" stroke-width="1.5" opacity="0.5"/>
+                <circle cx="860" cy="70" r="6" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+                <circle cx="860" cy="70" r="2.5" fill="#ea580c"/>
+
+                <!-- Data Callout Badges -->
+                <!-- Node 1 Badge -->
+                <g transform="translate(120, 160)">
+                  <rect width="120" height="28" rx="6" fill="#232128" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+                  <text x="60" y="19" font-size="12" fill="#ffffff" font-weight="750" text-anchor="middle">현재 3,600만</text>
+                </g>
+                <line x1="180" y1="188" x2="180" y2="215" stroke="#232128" stroke-width="1.5"/>
+
+                <!-- Node 2 Callout Text -->
+                <text x="520" y="132" font-size="12.5" fill="#ea580c" font-weight="800" text-anchor="middle">현재 4,450만</text>
+
+                <!-- Node 3 Callout Text -->
+                <text x="860" y="44" font-size="12.5" fill="#ea580c" font-weight="800" text-anchor="middle">현재 5,450만</text>
+
+                <!-- X-Axis Labels (Pretendard) -->
+                <text x="180" y="348" font-size="13" fill="#232128" font-weight="750" text-anchor="middle">첫 취업 초봉</text>
+                <text x="520" y="348" font-size="13" fill="#6a6875" text-anchor="middle">취업 3년 차</text>
+                <text x="860" y="348" font-size="13" fill="#6a6875" text-anchor="middle">취업 5년 차</text>
+              </svg>
+            </div>
+
+            <!-- Bottom Information Box (Exact wireframe copy) -->
+            <div class="info-section-grid">
+              <div class="info-single-box">
+                <span class="info-single-title">조건 변경 참고</span>
+                <span class="info-single-body">백엔드 개발 직무의 경우 자격증 취득 대비 실무 인턴십 경험을 추가했을 때 이 조건 비교에서 예상 연봉 차이가 크게 나타납니다.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row -->
+          <div class="right-action-row">
+            <div class="action-left-notice">
+              ※ 왼쪽에서 조건을 선택하시면 연차별 예상 성장 곡선과 변화폭이 즉시 시뮬레이션됩니다.
+            </div>
+            <div>
+              <div class="btn-disabled-primary">
+                조건을 선택해 주세요
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+      <!-- ====================================================================
+         FRAME 07-P FLOATING OVERLAY: 내 등록 스펙 전체보기 (플로팅 팝오버)
+         Placed as the FINAL direct child of Frame 07-P artboard
+         Guarantees Top-Most Layer in Figma Layer Tree (Bring to Front)!
+         ==================================================================== -->
+    <div class="spec-popover-panel">
+      <div class="popover-header">
+        <div class="popover-title-row">
+          <span class="popover-main-title">내 등록 스펙 전체</span>
+          <span class="popover-count-chip">총 6개</span>
+        </div>
+        <button class="popover-close-btn" aria-label="닫기">✕</button>
+      </div>
+      <div class="popover-spec-groups">
+        <div class="popover-spec-row">
+          <div class="popover-category-label">학력 / 전공</div>
+          <div class="popover-category-value">
+            <span class="popover-val-chip">컴퓨터공학 학사 (학점 3.6 / 4.5)</span>
+          </div>
+        </div>
+        <div class="popover-spec-row">
+          <div class="popover-category-label">공인 자격증</div>
+          <div class="popover-category-value">
+            <span class="popover-val-chip">정보처리기사 (2025.06 취득)</span>
+          </div>
+        </div>
+        <div class="popover-spec-row">
+          <div class="popover-category-label">어학 성적</div>
+          <div class="popover-category-value">
+            <span class="popover-val-chip">TOEIC 865점</span>
+            <span class="popover-val-chip">OPIc IH</span>
+          </div>
+        </div>
+        <div class="popover-spec-row">
+          <div class="popover-category-label">활동 / 경력</div>
+          <div class="popover-category-value">
+            <span class="popover-val-chip">알고리즘 학회 활동 1년</span>
+            <span class="popover-val-chip">백엔드 오픈소스 기여 1건</span>
+          </div>
+        </div>
+      </div>
+      <div class="popover-footer-strip">
+        <span>※ 조건 비교 기준선에 자동 반영된 스펙입니다.</span>
+        <a href="#" class="popover-footer-link">내 스펙 관리에서 수정하기 →</a>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- ========================================================================
+       FIGMA FRAME 08: 연봉 시뮬레이터 — 조건 변경
+       1920×1080 Full HD Native Root Frame (Direction 2: Warm Sunrise)
+       ======================================================================== -->
+  <main class="figma-artboard" id="frame-08">
+    
+    <!-- Top GNB (64px) -->
+    <header class="gnb-bar">
+      <div class="gnb-left">
+        <div class="gnb-logo">LifeLog<span>.</span></div>
+        <nav class="gnb-menu">
+          <a href="#" class="gnb-item">대시보드</a>
+          <a href="#" class="gnb-item">내 스펙·진단</a>
+          <a href="#" class="gnb-item active">연봉 시뮬레이터</a>
+          <a href="#" class="gnb-item">커리어 경로</a>
+          <a href="#" class="gnb-item">채용 기회</a>
+        </nav>
+      </div>
+      <div class="gnb-right">
+        <div class="user-avatar-circle">지</div>
+        <span>지훈</span>
+      </div>
+    </header>
+
+    <!-- Page Container (1560px Width, Math-aligned 888px Workspace) -->
+    <div class="page-container">
+      
+      <!-- Page Header: Title + Policy Badge + Right Reset Button (Exact wireframe copy!) -->
+      <div class="page-header-row">
+        <div class="page-title-box">
+          <h1 class="page-main-title">연봉 시뮬레이터 — 조건 변경 및 비교</h1>
+          <span class="page-policy-badge">비교한 조건은 내 스펙에 저장되지 않습니다.</span>
+        </div>
+        <div>
+          <button class="btn-reset-header">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            <span>현재 조건으로 초기화</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Workspace 2-Column Grid (480px + 1040px, Height: 888px) -->
+      <div class="workspace-grid">
+        
+        <!-- Left Console Plate (480px, Height: 888px) -->
+        <div class="left-card-plate">
+          
+          <div>
+            <!-- 1. Top Baseline Spec Dock (Integrated seamlessly, 0px disconnect) -->
+            <div class="baseline-spec-dock">
+              <div class="dock-header-row">
+                <span class="dock-title">내 현재 조건 기준선</span>
+                <span class="dock-job-text">희망 직무: <strong>백엔드 개발자</strong></span>
+              </div>
+              <div class="dock-specs-rows">
+                <div class="dock-chips-line">
+                  <span class="spec-tag-chip">컴퓨터공학 학사 (3.6)</span>
+                  <span class="dock-sep">·</span>
+                  <span class="spec-tag-chip">정보처리기사</span>
+                  <span class="dock-sep">·</span>
+                  <span class="spec-tag-chip">TOEIC 865점</span>
+                </div>
+                <div class="dock-more-line">
+                  <button class="spec-more-btn">+3개 더보기 ▾</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Condition Action Header -->
+            <div class="condition-action-header">
+              <div class="action-title">변경해볼 조건 선택</div>
+              <div class="action-sub">추가하고 싶은 준비 조건을 선택하세요</div>
+            </div>
+
+            <!-- Condition 1: 실무 인턴십 경험 (선택 중 상태) -->
+            <div class="condition-step-box selected-state">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-coral">01 인턴십</span>
+                  <span class="step-name">실무 인턴십 경험</span>
+                </div>
+                <span class="step-active-tag">선택 중</span>
+              </div>
+              <div style="font-size: 11.5px; color: #232128; margin: 1px 0;">
+                현재: <strong>없음</strong> ➔ 변경 선택:
+              </div>
+              <div class="step-select-field bold-selected">
+                <span>스타트업 백엔드 인턴 6개월</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+              <!-- Clean Distinct Text ONLY (NO enclosing box, NO border, NO background) -->
+              <div class="reflected-result-text">
+                ✓ 인턴 경험 6개월이 반영된 결과입니다.
+              </div>
+            </div>
+
+            <!-- Condition 2: 공인 자격증 추가 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-sage">02 자격증</span>
+                  <span class="step-name">공인 자격증 추가</span>
+                </div>
+              </div>
+              <div style="font-size: 11.5px; color: #6a6875; margin: 1px 0;">
+                현재 보유: 정보처리기사
+              </div>
+              <div class="step-select-field placeholder">
+                <span>+ 추가 자격증 검색 및 선택</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 3: 공인 어학 성적 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-sky">03 어학성적</span>
+                  <span class="step-name">공인 어학 성적</span>
+                </div>
+              </div>
+              <div style="font-size: 11.5px; color: #6a6875; margin: 1px 0;">
+                현재 보유: TOEIC 865점
+              </div>
+              <div class="step-select-field placeholder">
+                <span>공인 어학 목표 레벨 설정</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 4: 대학원 진학 (학위 취득) -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-lilac">04 학위진학</span>
+                  <span class="step-name">대학원 진학 (학위 취득)</span>
+                </div>
+              </div>
+              <div class="step-select-field">
+                <span>대학원 미진학</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Condition 5: 희망 기업 분류 설정 -->
+            <div class="condition-step-box">
+              <div class="step-meta-row">
+                <div class="step-label-box">
+                  <span class="step-capsule-badge badge-butter">05 기업분류</span>
+                  <span class="step-name">희망 기업 분류 설정</span>
+                </div>
+              </div>
+              <div class="step-select-field">
+                <span>중견·성장기 IT 서비스 기업</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6a6875" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left Bottom Action Button -->
+          <div class="left-bottom-bar">
+            <button class="btn-primary-gradient">
+              <span>다른 선택지와 한눈에 비교하기 →</span>
+            </button>
+            <div class="left-note-strip">
+              * 선택된 조건은 우측 차트에 가상선으로 즉시 시뮬레이션됩니다.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Simulator Workspace (1040px, Height: 888px) -->
+        <div class="right-card-plate">
+          
+          <div>
+            <!-- Header Row -->
+            <div class="right-header-row">
+              <h2 class="right-header-title">연차별 예상 성장 곡선 시뮬레이션</h2>
+              <div class="right-legend-group">
+                <div class="legend-item">
+                  <span class="legend-dash" style="background: #94939c;"></span>
+                  <span>현재 조건 기준선</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dash" style="background: linear-gradient(90deg, #f59e0b, #ea580c); height: 4px;"></span>
+                  <span style="color: #ea580c; font-weight: 800;">조건 변경 가상선</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- KPI Dual Stat Row -->
+            <div class="kpi-dual-container">
+              <!-- Left: Baseline Metric -->
+              <div class="kpi-stat-box">
+                <div class="kpi-top-label">
+                  <span>현재 조건 예상 초봉</span>
+                  <span class="kpi-badge" style="background: #f1f5f9; color: #64748b;">내 현재 스펙</span>
+                </div>
+                <div class="kpi-hero-numbers tabular-num" style="color: #6a6875;">
+                  3,400만 ~ 3,800만 원
+                </div>
+                <div class="kpi-bottom-sub">
+                  예상 연봉 3,600만 원 선
+                </div>
+              </div>
+
+              <!-- Right: Changed Simulation Result -->
+              <div class="kpi-stat-box active-result">
+                <div class="kpi-top-label">
+                  <span style="color: #c2410c; font-weight: 800;">인턴 6개월 추가 시 예상 초봉</span>
+                  <span class="kpi-badge positive-lift">▲ +500만 원 상승 (+13.9%)</span>
+                </div>
+                <div class="kpi-hero-numbers tabular-num active-amber">
+                  3,900만 ~ 4,300만 원
+                </div>
+                <div class="kpi-bottom-sub">
+                  예상 연봉 <strong>4,100만 원 선 (+500만 원)</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large SVG Trajectory Chart Stage (380px, Dual Curve Comparison) -->
+            <div class="chart-stage-wrapper">
+              <svg width="100%" height="380" viewBox="0 0 984 380" fill="none" style="display: block; overflow: visible; font-family: 'Pretendard', sans-serif;">
+                <defs>
+                  <linearGradient id="f8AreaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#ea580c" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.03"/>
+                  </linearGradient>
+                  <linearGradient id="f8StrokeGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#ea580c"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Grid Lines -->
+                <line x1="70" y1="45" x2="940" y2="45" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="115" x2="940" y2="115" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="185" x2="940" y2="185" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="255" x2="940" y2="255" stroke="#edebe4" stroke-dasharray="4"/>
+                <line x1="70" y1="315" x2="940" y2="315" stroke="#e5e7eb" stroke-width="1.5"/>
+
+                <!-- Y-Axis Labels (Pretendard Tabular) -->
+                <text x="58" y="50" font-size="11.5" fill="#94939c" text-anchor="end">6,000만</text>
+                <text x="58" y="120" font-size="11.5" fill="#94939c" text-anchor="end">5,000만</text>
+                <text x="58" y="190" font-size="11.5" fill="#94939c" text-anchor="end">4,000만</text>
+                <text x="58" y="260" font-size="11.5" fill="#94939c" text-anchor="end">3,000만</text>
+
+                <!-- 1. Baseline Curve (Subdued Grey Dashed Line) -->
+                <path d="M 180 225 C 380 180, 620 135, 860 70" stroke="#94939c" stroke-width="2.2" stroke-dasharray="4" stroke-linecap="round" fill="none"/>
+                <circle cx="180" cy="225" r="4.5" fill="#ffffff" stroke="#94939c" stroke-width="2"/>
+                <circle cx="520" cy="158" r="4.5" fill="#ffffff" stroke="#94939c" stroke-width="2"/>
+                <circle cx="860" cy="70" r="4.5" fill="#ffffff" stroke="#94939c" stroke-width="2"/>
+                <text x="180" y="246" font-size="11.5" fill="#94939c" font-weight="600" text-anchor="middle">현재 3,600만</text>
+                <text x="520" y="179" font-size="11.5" fill="#94939c" font-weight="600" text-anchor="middle">현재 4,450만</text>
+                <text x="860" y="91" font-size="11.5" fill="#94939c" font-weight="600" text-anchor="middle">현재 5,450만</text>
+
+                <!-- 2. Simulated Changed Curve (+500만 원 차이) -->
+                <path d="M 180 170 C 380 125, 620 80, 860 30" stroke="url(#f8StrokeGrad)" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+
+                <!-- Vertical Gap Indicator Line & Badge -->
+                <line x1="180" y1="170" x2="180" y2="225" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="2"/>
+                <g transform="translate(195, 185)">
+                  <rect width="105" height="26" rx="5" fill="#ea580c"/>
+                  <text x="52.5" y="17" font-size="11.5" fill="#ffffff" font-weight="800" text-anchor="middle">+500만 원 차이</text>
+                </g>
+
+                <!-- Changed Nodes -->
+                <circle cx="180" cy="170" r="10" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="180" cy="170" r="6" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+                <circle cx="180" cy="170" r="2.5" fill="#ea580c"/>
+
+                <circle cx="520" cy="103" r="10" fill="none" stroke="#ea580c" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="520" cy="103" r="6" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+                <circle cx="520" cy="103" r="2.5" fill="#f59e0b"/>
+
+                <circle cx="860" cy="30" r="10" fill="none" stroke="#ea580c" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="860" cy="30" r="6" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+                <circle cx="860" cy="30" r="2.5" fill="#ea580c"/>
+
+                <!-- Changed Callouts with Leader Line -->
+                <!-- Point 1 Callout -->
+                <g transform="translate(120, 115)">
+                  <rect width="120" height="28" rx="6" fill="#232128" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+                  <text x="60" y="19" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">변경 후 4,100만</text>
+                </g>
+                <line x1="180" y1="143" x2="180" y2="160" stroke="#232128" stroke-width="1.2"/>
+
+                <!-- Point 2 Callout -->
+                <text x="520" y="85" font-size="12.5" font-weight="800" fill="#ea580c" text-anchor="middle">변경 후 4,900만</text>
+
+                <!-- Point 3 Callout -->
+                <text x="860" y="16" font-size="12.5" font-weight="800" fill="#ea580c" text-anchor="middle">변경 후 5,900만</text>
+
+                <!-- X-Axis Labels (Pretendard) -->
+                <text x="180" y="348" font-size="13" fill="#232128" font-weight="750" text-anchor="middle">첫 취업 초봉</text>
+                <text x="520" y="348" font-size="13" fill="#6a6875" text-anchor="middle">취업 3년 차</text>
+                <text x="860" y="348" font-size="13" fill="#6a6875" text-anchor="middle">취업 5년 차</text>
+              </svg>
+            </div>
+
+            <!-- Two-Column Breakdown Grid (Exact wireframe copy!) -->
+            <div class="info-section-grid">
+              <div class="breakdown-two-col">
+                <div class="breakdown-col-box">
+                  <div class="breakdown-col-title">준비 소요 기간</div>
+                  <div class="breakdown-bullets">
+                    <div>• 약 6개월 (채용 연계형 인턴십 기준)</div>
+                  </div>
+                </div>
+                <div class="breakdown-col-box">
+                  <div class="breakdown-col-title">분석 참고 안내</div>
+                  <div style="color: #6a6875;">
+                    조건을 바꿔 비교한 결과이며, 실제 연봉 상승을 보장하지 않아요.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row (Exact wireframe copy!) -->
+          <div class="right-action-row">
+            <div class="action-left-notice">
+              ※ 목표를 저장하면 대시보드에서 체크리스트로 관리하실 수 있습니다.
+            </div>
+            <div>
+              <button class="btn-save-primary">
+                이 목표를 대시보드에 저장 →
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

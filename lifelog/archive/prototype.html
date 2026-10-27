@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeLog 차세대 UI 프로토타입</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background-color: #0d1117;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+*:not(.rounded-full) {
+  border-radius: 0 !important;
+}
+.frame-wrapper {
+  width: 1920px;
+  height: 1080px;
+  background-color: #ffffff;
+  border: 1px solid #2d3748;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.mock-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  user-select: none;
+}
+.spec-block {
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+.spec-block-active {
+  border: 2px solid #111111;
+  background-color: #f8fafc;
+}
+</style>
+</head>
+<body>
+
+<div class="frame-wrapper" id="proto-step1">
+  <div class="w-full bg-[#111111] text-white text-xs px-12 py-2 flex justify-between items-center font-mono">
+    <span>PROTOTYPE 01: 몰입형 싱글 포커스 진단 씬 (Single Focus Onboarding)</span>
+    <span>기존 서식 나열 방식을 탈피하고 질문 하나에 100% 집중하는 토스형 비주얼</span>
+  </div>
+
+  <header class="w-full h-24 px-20 flex items-center justify-between flex-shrink-0">
+    <div class="flex items-center gap-4">
+      <span class="text-3xl font-black tracking-tighter text-black">LifeLog</span>
+      <span class="text-xs font-semibold text-gray-400 pl-4 border-l border-gray-200">데이터 기반 커리어 나침반</span>
+    </div>
+    <div class="flex items-center gap-8">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-bold text-gray-900">01 학력 설정</span>
+        <div class="w-32 h-1.5 bg-gray-100 overflow-hidden">
+          <div class="w-1/4 h-full bg-black"></div>
+        </div>
+        <span class="text-xs font-medium text-gray-400">1 / 4 단계</span>
+      </div>
+      <div class="mock-btn text-xs text-gray-500 hover:text-black">다음에 하기</div>
+    </div>
+  </header>
+
+  <main class="w-full flex-1 flex flex-col justify-center items-center px-20 pb-16">
+    <div class="max-w-[840px] w-full flex flex-col items-center text-center">
+      
+      <span class="text-xs font-black tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 uppercase mb-4 border border-emerald-200">Starting Point</span>
+      <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
+        어느 학력에서 첫 커리어를 시작하시나요?
+      </h1>
+      <p class="text-base text-gray-500 mt-3 max-w-lg">
+        고용노동부 청년패널 통계를 바탕으로 내 출발점의 평균 시작 연봉 기준선을 설정합니다.
+      </p>
+
+      <div class="grid grid-cols-3 gap-6 w-full mt-12 text-left">
+        
+        <div class="spec-block spec-block-active p-7 flex flex-col justify-between h-72 relative">
+          <div class="absolute top-4 right-4">
+            <span class="w-6 h-6 bg-black text-white text-xs font-bold flex items-center justify-center">✓</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-gray-400 tracking-wider block mb-1">STANDARD</span>
+            <h2 class="text-2xl font-black text-gray-900">4년제 대학교</h2>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">학사 학위 취득 또는 졸업 예정인 상태</p>
+          </div>
+          <div class="pt-4 border-t border-gray-200">
+            <span class="text-xs text-gray-400 block mb-0.5">컴퓨터공학 평균 시작 연봉</span>
+            <span class="text-xl font-extrabold text-black">3,600<span class="text-sm font-normal text-gray-600 ml-1">만 원</span></span>
+          </div>
+        </div>
+
+        <div class="spec-block p-7 flex flex-col justify-between h-72 opacity-70 hover:opacity-100">
+          <div>
+            <span class="text-xs font-bold text-gray-400 tracking-wider block mb-1">ASSOCIATE</span>
+            <h2 class="text-2xl font-black text-gray-900">전문대학</h2>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">2~3년제 전문학사 취득 또는 졸업 예정</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100">
+            <span class="text-xs text-gray-400 block mb-0.5">평균 시작 연봉 기준선</span>
+            <span class="text-xl font-extrabold text-gray-700">3,150<span class="text-sm font-normal text-gray-500 ml-1">만 원</span></span>
+          </div>
+        </div>
+
+        <div class="spec-block p-7 flex flex-col justify-between h-72 opacity-70 hover:opacity-100">
+          <div>
+            <span class="text-xs font-bold text-gray-400 tracking-wider block mb-1">ADVANCED</span>
+            <h2 class="text-2xl font-black text-gray-900">대학원 (석·박사)</h2>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">특화 연구 역량 및 석사 학위 보유</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100">
+            <span class="text-xs text-gray-400 block mb-0.5">연구직 평균 시작 연봉</span>
+            <span class="text-xl font-extrabold text-gray-700">4,100<span class="text-sm font-normal text-gray-500 ml-1">만 원</span></span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="w-full mt-10 flex justify-between items-center bg-gray-50 p-4 border border-gray-200">
+        <div class="flex items-center gap-3 text-xs text-gray-600">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>동일 전공 청년 구직자 <strong>78.4%</strong>가 4년제 대학교 기준선을 대조군으로 선택했습니다.</span>
+        </div>
+        <div class="mock-btn h-12 px-8 bg-black text-white text-xs font-bold tracking-wide">
+          <span>다음: 학교 및 전공 입력 ➔</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="frame-wrapper" id="proto-step2">
+  <div class="w-full bg-[#111111] text-white text-xs px-12 py-2 flex justify-between items-center font-mono">
+    <span>PROTOTYPE 02: 차세대 인터랙티브 스펙 모듈 대시보드 (Career Configurator)</span>
+    <span>스펙 블록을 꽂으면 연봉 궤적과 도달 순위가 즉각 반응하는 B2C/Fintech 스타일</span>
+  </div>
+
+  <header class="w-full h-20 bg-white border-b border-gray-100 px-16 flex items-center justify-between flex-shrink-0">
+    <div class="flex items-center gap-10">
+      <span class="text-2xl font-black tracking-tight text-black">LifeLog</span>
+      <nav class="flex items-center gap-8 text-sm font-semibold text-gray-400">
+        <span class="text-black border-b-2 border-black pb-6 pt-6">커리어 컨피규레이터</span>
+        <span>선배들의 이직 지도</span>
+        <span>기업 안심 제안함 (2)</span>
+      </nav>
+    </div>
+    <div class="flex items-center gap-3 text-xs">
+      <span class="font-bold text-gray-800">박민우 님</span>
+      <span class="text-gray-300">|</span>
+      <span class="text-gray-500">컴퓨터공학 학사 (3.85)</span>
+      <div class="mock-btn border border-gray-300 px-2.5 py-1 text-gray-700 bg-white ml-2">스펙 변경</div>
+    </div>
+  </header>
+
+  <main class="w-full flex-1 overflow-hidden bg-[#fafafa]">
+    <div class="max-w-[1400px] w-full h-full mx-auto py-10 grid grid-cols-12 gap-8 items-start">
+      
+      <div class="col-span-5 flex flex-col gap-5">
+        <div>
+          <span class="text-xs font-bold text-gray-400 tracking-wider uppercase block mb-1">Spec Modules</span>
+          <h2 class="text-xl font-black text-gray-900">장착된 나의 스펙 블록</h2>
+          <p class="text-xs text-gray-500 mt-1">블록을 클릭하여 추가하거나 제외할 때마다 우측 연봉 수치가 즉각 재연산됩니다.</p>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          
+          <div class="bg-white p-5 border-2 border-black shadow-sm flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-9 h-9 bg-black text-white flex items-center justify-center font-bold text-xs">SQL</div>
+              <div>
+                <span class="text-xs text-gray-400 font-semibold block">국가공인 데이터 자격</span>
+                <span class="text-sm font-extrabold text-gray-900">SQL 개발자 (SQLD)</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-black text-emerald-600 bg-emerald-50 px-2.5 py-1 border border-emerald-200 block">+280만 원</span>
+              <span class="text-[10px] text-gray-400 mt-1 block">장착 완료 (효율 1위)</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-5 border-2 border-black shadow-sm flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-9 h-9 bg-black text-white flex items-center justify-center font-bold text-xs">AWS</div>
+              <div>
+                <span class="text-xs text-gray-400 font-semibold block">클라우드 인프라 설계</span>
+                <span class="text-sm font-extrabold text-gray-900">AWS 공인 솔루션스 아키텍트</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-black text-emerald-600 bg-emerald-50 px-2.5 py-1 border border-emerald-200 block">+270만 원</span>
+              <span class="text-[10px] text-gray-400 mt-1 block">장착 완료 (시너지 반영)</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-5 border border-gray-200 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-9 h-9 bg-gray-100 text-gray-700 flex items-center justify-center font-bold text-xs">EXP</div>
+              <div>
+                <span class="text-xs text-gray-400 font-semibold block">실무 인턴십 경험</span>
+                <span class="text-sm font-bold text-gray-900">스타트업 개발 인턴 6개월</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-bold text-emerald-600">+180만 원</span>
+              <span class="text-[10px] text-gray-400 mt-1 block">보유 중</span>
+            </div>
+          </div>
+
+          <div class="p-4 border border-dashed border-gray-300 bg-white/50 flex justify-between items-center text-xs text-gray-500">
+            <span class="font-medium">+ 추가 가능한 스펙: 정보보안기사 (+210만 원)</span>
+            <div class="mock-btn text-[11px] font-bold bg-white border border-gray-300 px-3 py-1 text-black">장착해보기</div>
+          </div>
+
+        </div>
+
+        <div class="p-4 bg-gray-100 border border-gray-200 text-xs text-gray-600 flex justify-between items-center">
+          <span>어학 과투자 방지 알림</span>
+          <span class="text-[11px] text-gray-500 font-medium">토익 865점 (충족 상태)</span>
+        </div>
+      </div>
+
+      <div class="col-span-7 flex flex-col gap-6">
+        
+        <div class="bg-white p-8 border border-gray-200 shadow-sm flex flex-col gap-6">
+          <div class="flex justify-between items-start border-b border-gray-100 pb-5">
+            <div>
+              <span class="text-xs font-bold text-gray-400 tracking-wider uppercase block">Projected Compensation</span>
+              <h3 class="text-sm font-extrabold text-gray-900 mt-0.5">3년 차 예상 연봉 인덱스</h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold bg-black text-white px-2.5 py-1">상위 8.2% 도달</span>
+              <span class="text-xs text-emerald-600 font-bold bg-emerald-50 px-2.5 py-1 border border-emerald-200">초봉 대비 +1,350만 원 점프</span>
+            </div>
+          </div>
+
+          <div class="flex items-baseline gap-3 my-2">
+            <span class="text-7xl font-black text-gray-900 tracking-tighter">4,950</span>
+            <span class="text-2xl font-bold text-gray-500">만 원</span>
+            <span class="text-sm line-through text-gray-400 ml-4">기본 시작점 3,600만 원</span>
+          </div>
+
+          <div class="h-44 w-full flex flex-col justify-end pt-4 pb-2 border-b border-gray-100 relative">
+            <svg class="w-full h-full overflow-visible" viewBox="0 0 600 120" preserveAspectRatio="none">
+              <polyline fill="none" stroke="#e5e7eb" stroke-width="2" points="30,100 150,85 270,75 390,60 510,40" />
+              <polyline fill="none" stroke="#111111" stroke-width="4" points="30,80 150,65 270,45 390,15 510,5" />
+              <circle cx="30" cy="80" r="4" fill="#111111" />
+              <circle cx="150" cy="65" r="4" fill="#111111" />
+              <circle cx="270" cy="45" r="4" fill="#111111" />
+              <circle cx="390" cy="15" r="6" fill="#111111" stroke="#ffffff" stroke-width="2" />
+              <text x="390" y="0" text-anchor="middle" font-size="12" font-weight="900" fill="#111111">4,950만 (3년 차)</text>
+            </svg>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 pt-2 text-xs">
+            <div class="p-3 bg-gray-50 border border-gray-100">
+              <span class="text-gray-400 block mb-0.5">동일 학과 평균</span>
+              <span class="font-bold text-gray-900">3,920만 원 (+1,030만 원 우위)</span>
+            </div>
+            <div class="p-3 bg-gray-50 border border-gray-100">
+              <span class="text-gray-400 block mb-0.5">이직 집중 시기</span>
+              <span class="font-bold text-gray-900">2.4년 차 (52% 선배 이직)</span>
+            </div>
+            <div class="p-3 bg-gray-50 border border-gray-100">
+              <span class="text-gray-400 block mb-0.5">선호 이동 산업</span>
+              <span class="font-bold text-gray-900">핀테크 / 플랫폼 (64%)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-indigo-900 text-white p-6 border border-indigo-950 flex justify-between items-center">
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold bg-indigo-600 px-2 py-0.5">안심 채용 매칭</span>
+              <span class="text-xs text-indigo-200">회원님의 스펙 모듈과 완벽 일치하는 기업 제안</span>
+            </div>
+            <h4 class="text-base font-bold mt-1">(주)클라우드시스템 백엔드 운영 정규직 (제시 처우: 4,500만 원)</h4>
+          </div>
+          <div class="mock-btn bg-white text-indigo-950 text-xs px-5 py-3 font-bold">비공개 제안 확인하기 ➔</div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

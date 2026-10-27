@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeLog 대시보드 와이어프레임 (Figma 정적 프레임)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background-color: #f1f3f5;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+*:not(.rounded-full) {
+  border-radius: 0 !important;
+}
+.frame-wrapper {
+  width: 1920px;
+  height: 1080px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.mock-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  user-select: none;
+}
+.mock-card {
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+<div class="frame-wrapper" id="screen17">
+  <div class="w-full bg-[#111111] text-white text-xs px-8 py-1.5 flex justify-between items-center font-mono">
+    <span>화면 17: 메인 홈 대시보드 (기본 조회 화면)</span>
+    <span>해상도: 1920 x 1080 (Full HD) | 본문 그리드: 1200px</span>
+  </div>
+  <header class="w-full h-[72px] border-b border-gray-200 bg-white flex items-center justify-between px-12 z-10 flex-shrink-0">
+    <div class="flex items-center gap-12">
+      <div class="text-2xl font-bold tracking-tight text-black flex items-center gap-2">
+        <span>LifeLog</span>
+      </div>
+      <nav class="flex items-center gap-8 text-[15px] font-medium text-gray-500">
+        <span class="text-gray-400">스펙 진단</span>
+        <div class="text-black font-bold relative py-6">
+          <span>대시보드</span>
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-black block"></span>
+        </div>
+        <span class="text-gray-400">이직 경로</span>
+        <span class="text-gray-400">채용 제안</span>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4 text-sm">
+      <div class="flex items-center gap-2 border border-gray-200 px-3 py-1.5 bg-gray-50">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+        <span class="font-medium text-gray-700">박민우 님 (컴퓨터공학)</span>
+      </div>
+      <div class="mock-btn text-xs bg-gray-100 text-gray-700 px-3 py-2 border border-gray-300">내 정보 관리</div>
+    </div>
+  </header>
+  <div class="w-full bg-gray-50 border-b border-gray-200 py-3 flex-shrink-0">
+    <div class="max-w-[1200px] w-full mx-auto flex items-center justify-between text-xs text-gray-600">
+      <div class="flex items-center gap-4">
+        <span class="font-bold text-gray-900 text-sm">현재 등록 스펙</span>
+        <span class="text-gray-300">|</span>
+        <span>한성대학교 컴퓨터공학부 (학사 4년)</span>
+        <span class="text-gray-300">|</span>
+        <span>학점 3.85 / 4.5</span>
+        <span class="text-gray-300">|</span>
+        <span>정보처리기사</span>
+        <span class="text-gray-300">|</span>
+        <span>TOEIC 865점</span>
+        <span class="text-gray-300">|</span>
+        <span>인턴 6개월 (네오위즈아이엔에스)</span>
+      </div>
+      <div class="mock-btn text-xs border border-gray-300 bg-white px-3 py-1 text-gray-700">스펙 정보 수정</div>
+    </div>
+  </div>
+  <main class="w-full flex-1 overflow-hidden bg-white">
+    <div class="max-w-[1200px] w-full mx-auto py-8 flex flex-col gap-6">
+      <div class="flex justify-between items-end border-b border-gray-200 pb-4">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 tracking-tight">커리어 성장 및 연봉 예측 대시보드</h1>
+          <p class="text-sm text-gray-500 mt-1">고용노동부 한국고용정보원 청년패널 데이터를 바탕으로 산출된 객관적인 예측 결과입니다.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="mock-btn text-xs border border-gray-300 bg-white px-3 py-2 text-gray-700">정밀 진단 심층 리포트 열람</div>
+          <div class="mock-btn text-xs bg-black text-white px-4 py-2">조건 변경 시뮬레이터로 연봉 올려보기 ➔</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-8 flex flex-col gap-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="mock-card p-6 border-l-4 border-l-black">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-semibold text-gray-500 tracking-wider">3년 차 예상 연봉</span>
+                <span class="text-[11px] bg-gray-100 text-gray-700 px-2 py-0.5 border border-gray-200">중위값 기준</span>
+              </div>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-4xl font-extrabold text-gray-900 tracking-tight">4,400</span>
+                <span class="text-xl font-bold text-gray-700">만 원</span>
+              </div>
+              <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-500">동일 전공 대졸자 평균 (3,920만 원) 대비</span>
+                <span class="font-bold text-emerald-600">+480만 원 상회</span>
+              </div>
+            </div>
+            <div class="mock-card p-6 border-l-4 border-l-gray-400">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-semibold text-gray-500 tracking-wider">5년 차 예상 연봉</span>
+                <span class="text-[11px] bg-gray-100 text-gray-700 px-2 py-0.5 border border-gray-200">도달 직위: 책임/파트장급</span>
+              </div>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-4xl font-extrabold text-gray-900 tracking-tight">5,400</span>
+                <span class="text-xl font-bold text-gray-700">만 원</span>
+              </div>
+              <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-500">예측 신뢰 구간</span>
+                <span class="font-semibold text-gray-700">5,100만 ~ 5,800만 원</span>
+              </div>
+            </div>
+          </div>
+          <div class="mock-card p-6">
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2 class="text-base font-bold text-gray-900">연차별 연봉 성장 궤적 비교</h2>
+                <p class="text-xs text-gray-500 mt-0.5">대졸자 평균 기준선과 내 스펙 기준 예상 성장 곡선</p>
+              </div>
+              <div class="flex items-center gap-6 text-xs">
+                <div class="flex items-center gap-2">
+                  <span class="w-4 h-0.5 bg-gray-300 block"></span>
+                  <span class="text-gray-500">대졸자 평균 궤적</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-4 h-1 bg-black block"></span>
+                  <span class="font-bold text-black">내 예상 성장 궤적</span>
+                </div>
+              </div>
+            </div>
+            <div class="h-64 w-full flex flex-col justify-between pt-4 pb-2 border-b border-gray-200 relative">
+              <div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+              </div>
+              <svg class="w-full h-full overflow-visible" viewBox="0 0 700 200" preserveAspectRatio="none">
+                <polyline fill="none" stroke="#d1d5db" stroke-width="2" points="50,170 170,150 290,135 410,115 530,95 650,70" />
+                <polyline fill="none" stroke="#111111" stroke-width="3" points="50,140 170,125 290,105 410,80 530,45 650,20" />
+                <circle cx="50" cy="140" r="4" fill="#111111" />
+                <circle cx="170" cy="125" r="4" fill="#111111" />
+                <circle cx="290" cy="105" r="4" fill="#111111" />
+                <circle cx="410" cy="80" r="5" fill="#111111" stroke="#ffffff" stroke-width="2" />
+                <circle cx="530" cy="45" r="4" fill="#111111" />
+                <circle cx="650" cy="20" r="5" fill="#111111" stroke="#ffffff" stroke-width="2" />
+                <text x="410" y="65" text-anchor="middle" font-size="12" font-weight="bold" fill="#111111">4,400만 (3년 차)</text>
+                <text x="650" y="10" text-anchor="middle" font-size="12" font-weight="bold" fill="#111111">5,400만 (5년 차)</text>
+              </svg>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 mt-3 px-6">
+              <span>신입 (3,600만)</span>
+              <span>1년 차 (3,850만)</span>
+              <span>2년 차 (4,120만)</span>
+              <span class="font-bold text-black">3년 차 (4,400만)</span>
+              <span>4년 차 (4,850만)</span>
+              <span class="font-bold text-black">5년 차 (5,400만)</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-4 flex flex-col gap-5">
+          <div class="mock-card p-5 bg-gradient-to-br from-gray-50 to-white">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-[11px] font-bold bg-black text-white px-2 py-0.5">추천 행동 1순위</span>
+              <span class="text-xs text-gray-500">시간 대비 연봉 상승 효율 1위</span>
+            </div>
+            <h3 class="text-base font-bold text-gray-900 leading-snug">SQL 개발자(SQLD) 자격증 취득</h3>
+            <p class="text-xs text-gray-600 mt-2 leading-relaxed">준비 기간 약 2개월로 3년 차 연봉을 <span class="font-bold text-black">+280만 원</span> 끌어올릴 수 있는 가장 확실한 행동입니다.</p>
+            <div class="mt-4 pt-3 border-t border-gray-200">
+              <div class="mock-btn w-full bg-black text-white text-xs py-3 font-semibold">시뮬레이터에서 조건 변경해 보기 ➔</div>
+            </div>
+          </div>
+          <div class="mock-card p-5">
+            <h3 class="text-sm font-bold text-gray-900 mb-2">선배들의 실제 이직 통계</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">컴퓨터공학 선배들의 <span class="font-bold text-gray-900">52%</span>가 2~3년 차에 서비스 IT 및 핀테크 기업으로 첫 이직에 성공했습니다.</p>
+            <div class="mt-3 text-xs bg-gray-50 p-2.5 border border-gray-200 flex justify-between items-center">
+              <span class="text-gray-600">이직 시 평균 연봉 상승 폭</span>
+              <span class="font-bold text-emerald-600">+620만 원 ↑</span>
+            </div>
+            <div class="mt-3">
+              <div class="mock-btn w-full border border-gray-300 bg-white text-gray-800 text-xs py-2.5">선배들의 실제 이직 경로 확인하기 ➔</div>
+            </div>
+          </div>
+          <div class="mock-card p-5 border-l-4 border-l-indigo-600 bg-indigo-50/30">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-bold text-indigo-900">기업 안심 채용 제안</span>
+              <span class="text-[11px] bg-indigo-600 text-white font-bold px-2 py-0.5">2건 도착</span>
+            </div>
+            <p class="text-xs text-gray-600 mt-1">회원님의 정밀 스펙에 맞춘 비공개 채용 제안이 도착해 있습니다.</p>
+            <div class="mt-3">
+              <div class="mock-btn w-full bg-indigo-600 text-white text-xs py-2.5 font-semibold">채용 제안함 확인하기 (비공개 보호) ➔</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="frame-wrapper" id="screen18">
+  <div class="w-full bg-[#111111] text-white text-xs px-8 py-1.5 flex justify-between items-center font-mono">
+    <span>화면 18: 스펙 갱신 후 상향 재산출 알림 화면</span>
+    <span>해상도: 1920 x 1080 (Full HD) | 본문 그리드: 1200px</span>
+  </div>
+  <header class="w-full h-[72px] border-b border-gray-200 bg-white flex items-center justify-between px-12 z-10 flex-shrink-0">
+    <div class="flex items-center gap-12">
+      <div class="text-2xl font-bold tracking-tight text-black flex items-center gap-2">
+        <span>LifeLog</span>
+      </div>
+      <nav class="flex items-center gap-8 text-[15px] font-medium text-gray-500">
+        <span class="text-gray-400">스펙 진단</span>
+        <div class="text-black font-bold relative py-6">
+          <span>대시보드</span>
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-black block"></span>
+        </div>
+        <span class="text-gray-400">이직 경로</span>
+        <span class="text-gray-400">채용 제안</span>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4 text-sm">
+      <div class="flex items-center gap-2 border border-gray-200 px-3 py-1.5 bg-gray-50">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+        <span class="font-medium text-gray-700">박민우 님 (컴퓨터공학)</span>
+      </div>
+      <div class="mock-btn text-xs bg-gray-100 text-gray-700 px-3 py-2 border border-gray-300">내 정보 관리</div>
+    </div>
+  </header>
+  <div class="w-full bg-emerald-600 text-white py-3 px-12 flex justify-between items-center flex-shrink-0 shadow-sm">
+    <div class="flex items-center gap-3 text-sm">
+      <span class="text-base font-bold">✓ 스펙 갱신 완료</span>
+      <span class="text-emerald-100">|</span>
+      <span>축하합니다! <strong>SQL 개발자(SQLD)</strong> 자격증 등록으로 3년 차 예상 연봉이 <strong>4,400만 원 ➔ 4,680만 원 (+280만 원 ↑)</strong>으로 상향 조정되었습니다.</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="mock-btn text-xs bg-emerald-800 text-white px-3 py-1.5 border border-emerald-700">상향된 결과 확인</div>
+      <div class="mock-btn text-xs bg-white text-emerald-900 px-3 py-1.5 font-bold">다음 목표 설정하러 가기 ➔</div>
+    </div>
+  </div>
+  <div class="w-full bg-gray-50 border-b border-gray-200 py-3 flex-shrink-0">
+    <div class="max-w-[1200px] w-full mx-auto flex items-center justify-between text-xs text-gray-600">
+      <div class="flex items-center gap-4">
+        <span class="font-bold text-gray-900 text-sm">현재 등록 스펙</span>
+        <span class="text-gray-300">|</span>
+        <span>한성대학교 컴퓨터공학부</span>
+        <span class="text-gray-300">|</span>
+        <span>학점 3.85 / 4.5</span>
+        <span class="text-gray-300">|</span>
+        <span>정보처리기사, <strong class="text-emerald-700 font-bold bg-emerald-50 px-1 border border-emerald-200">SQLD (신규 추가)</strong></span>
+        <span class="text-gray-300">|</span>
+        <span>TOEIC 865점</span>
+        <span class="text-gray-300">|</span>
+        <span>인턴 6개월</span>
+      </div>
+      <div class="mock-btn text-xs border border-gray-300 bg-white px-3 py-1 text-gray-700">스펙 정보 수정</div>
+    </div>
+  </div>
+  <main class="w-full flex-1 overflow-hidden bg-white">
+    <div class="max-w-[1200px] w-full mx-auto py-8 flex flex-col gap-6">
+      <div class="flex justify-between items-end border-b border-gray-200 pb-4">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 tracking-tight">커리어 성장 및 연봉 예측 대시보드</h1>
+          <p class="text-sm text-gray-500 mt-1">자격증 추가 취득 데이터가 반영되어 예상 연봉 곡선이 상향 재산출되었습니다.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="mock-btn text-xs border border-gray-300 bg-white px-3 py-2 text-gray-700">정밀 진단 심층 리포트 열람</div>
+          <div class="mock-btn text-xs bg-black text-white px-4 py-2">시뮬레이터로 추가 목표 확인 ➔</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-8 flex flex-col gap-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="mock-card p-6 border-l-4 border-l-emerald-600 bg-emerald-50/20">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-semibold text-gray-500 tracking-wider">3년 차 예상 연봉 (상향 반영)</span>
+                <span class="text-[11px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 border border-emerald-300">+280만 원 상승</span>
+              </div>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-4xl font-extrabold text-emerald-700 tracking-tight">4,680</span>
+                <span class="text-xl font-bold text-gray-700">만 원</span>
+                <span class="text-sm line-through text-gray-400 ml-2">4,400만 원</span>
+              </div>
+              <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-500">동일 전공 대졸자 평균 (3,920만 원) 대비</span>
+                <span class="font-bold text-emerald-700">+760만 원 상회</span>
+              </div>
+            </div>
+            <div class="mock-card p-6 border-l-4 border-l-gray-400">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-semibold text-gray-500 tracking-wider">5년 차 예상 연봉</span>
+                <span class="text-[11px] bg-gray-100 text-gray-700 px-2 py-0.5 border border-gray-200">도달 직위: 책임/파트장급</span>
+              </div>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-4xl font-extrabold text-gray-900 tracking-tight">5,700</span>
+                <span class="text-xl font-bold text-gray-700">만 원</span>
+              </div>
+              <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-500">예측 신뢰 구간</span>
+                <span class="font-semibold text-gray-700">5,400만 ~ 6,100만 원</span>
+              </div>
+            </div>
+          </div>
+          <div class="mock-card p-6">
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2 class="text-base font-bold text-gray-900">상향 재산출된 연차별 성장 궤적</h2>
+                <p class="text-xs text-gray-500 mt-0.5">SQLD 취득으로 3년 차 및 5년 차 연봉 궤적이 동시에 상향 이동했습니다.</p>
+              </div>
+              <div class="flex items-center gap-6 text-xs">
+                <div class="flex items-center gap-2">
+                  <span class="w-4 h-0.5 bg-gray-300 block"></span>
+                  <span class="text-gray-500">기존 예측선 (4,400만)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-4 h-1 bg-emerald-600 block"></span>
+                  <span class="font-bold text-emerald-700">신규 상향선 (4,680만)</span>
+                </div>
+              </div>
+            </div>
+            <div class="h-64 w-full flex flex-col justify-between pt-4 pb-2 border-b border-gray-200 relative">
+              <div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+                <div class="w-full border-b border-gray-400 border-dashed"></div>
+              </div>
+              <svg class="w-full h-full overflow-visible" viewBox="0 0 700 200" preserveAspectRatio="none">
+                <polyline fill="none" stroke="#d1d5db" stroke-width="2" points="50,170 170,150 290,135 410,115 530,95 650,70" />
+                <polyline fill="none" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4" points="50,140 170,125 290,105 410,80 530,45 650,20" />
+                <polyline fill="none" stroke="#059669" stroke-width="3" points="50,140 170,125 290,95 410,65 530,30 650,8" />
+                <circle cx="410" cy="65" r="5" fill="#059669" stroke="#ffffff" stroke-width="2" />
+                <circle cx="650" cy="8" r="5" fill="#059669" stroke="#ffffff" stroke-width="2" />
+                <text x="410" y="50" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">4,680만 (상향)</text>
+                <text x="650" y="0" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">5,700만 (상향)</text>
+              </svg>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 mt-3 px-6">
+              <span>신입 (3,600만)</span>
+              <span>1년 차 (3,850만)</span>
+              <span>2년 차 (4,250만)</span>
+              <span class="font-bold text-emerald-700">3년 차 (4,680만)</span>
+              <span>4년 차 (5,150만)</span>
+              <span class="font-bold text-emerald-700">5년 차 (5,700만)</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-4 flex flex-col gap-5">
+          <div class="mock-card p-5 bg-gradient-to-br from-gray-50 to-white">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-[11px] font-bold bg-black text-white px-2 py-0.5">다음 추천 행동 2순위</span>
+              <span class="text-xs text-gray-500">클라우드 인프라 역량 확보</span>
+            </div>
+            <h3 class="text-base font-bold text-gray-900 leading-snug">AWS 공인 솔루션스 아키텍트 (AWS-SAA)</h3>
+            <p class="text-xs text-gray-600 mt-2 leading-relaxed">SQLD에 이어 AWS 취득 시 3년 차 연봉을 <span class="font-bold text-black">+270만 원</span> 추가 상향하여 4,950만 원 달성이 가능합니다.</p>
+            <div class="mt-4 pt-3 border-t border-gray-200">
+              <div class="mock-btn w-full bg-black text-white text-xs py-3 font-semibold">다음 목표 설정하러 가기 ➔</div>
+            </div>
+          </div>
+          <div class="mock-card p-5">
+            <h3 class="text-sm font-bold text-gray-900 mb-2">선배들의 자격증 조합 데이터</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">정보처리기사와 SQLD를 동시 보유한 선배들의 73%가 핀테크 및 클라우드 분야로 진출했습니다.</p>
+            <div class="mt-3">
+              <div class="mock-btn w-full border border-gray-300 bg-white text-gray-800 text-xs py-2.5">선배들의 실제 이직 경로 확인하기 ➔</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="frame-wrapper" id="screen19">
+  <div class="w-full bg-[#111111] text-white text-xs px-8 py-1.5 flex justify-between items-center font-mono">
+    <span>화면 19: 정밀 진단 심층 리포트 열람 안내창 (단건 이용권)</span>
+    <span>해상도: 1920 x 1080 (Full HD) | 본문 그리드: 1200px</span>
+  </div>
+  <div class="relative w-full flex-1 flex flex-col">
+    <div class="w-full flex-1 bg-white opacity-40 pointer-events-none filter blur-[1px]">
+      <header class="w-full h-[72px] border-b border-gray-200 bg-white px-12 flex items-center justify-between">
+        <span class="text-2xl font-bold">LifeLog</span>
+      </header>
+      <div class="max-w-[1200px] mx-auto py-12">
+        <div class="h-96 border border-gray-300 bg-gray-50"></div>
+      </div>
+    </div>
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+      <div class="w-[620px] bg-white border border-gray-900 shadow-2xl p-8 flex flex-col gap-6">
+        <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+          <div>
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 border border-indigo-200">단건 열람권 안내</span>
+            <h2 class="text-xl font-bold text-gray-900 mt-2">정밀 진단 심층 리포트 열람</h2>
+          </div>
+          <div class="mock-btn text-gray-400 hover:text-gray-900 text-lg font-bold">✕</div>
+        </div>
+        <div class="text-sm text-gray-600 leading-relaxed">
+          동일 직무(백엔드 개발자)를 희망하는 구직자 <strong class="text-gray-900">1,420명</strong>의 실시간 스펙 데이터와 대조하여, 나의 백분위 순위와 상위 10% 합격자 집단의 필수 스펙 팩트 차이를 정밀하게 비교해 드립니다.
+        </div>
+        <div class="bg-gray-50 border border-gray-200 p-4 flex flex-col gap-3 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-black block"></span>
+            <span class="text-gray-700">전체 지원자 1,420명 중 내 실시간 백분위 순위 (소수점 첫째 자리까지 표출)</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-black block"></span>
+            <span class="text-gray-700">상위 10% 서류 합격자 집단의 자격증 보유율 및 학점/어학 팩트 대조표</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-black block"></span>
+            <span class="text-gray-700">시간 대비 서류 통과율을 가장 빠르게 올릴 수 있는 취약점 1:1 보완 솔루션</span>
+          </div>
+        </div>
+        <div class="border-t border-gray-200 pt-4 flex justify-between items-center">
+          <div>
+            <span class="text-xs text-gray-500 block">부담 없는 1회성 결제 (정기 구독 없음)</span>
+            <span class="text-2xl font-black text-gray-900">2,900<span class="text-base font-normal text-gray-700">원</span></span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="mock-btn text-sm border border-gray-300 bg-white px-4 py-2.5 text-gray-600">다음에 보기</div>
+            <div class="mock-btn text-sm bg-black text-white px-6 py-2.5 font-bold">심층 리포트 1회 열람하기 (2,900원)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="frame-wrapper" id="screen20">
+  <div class="w-full bg-[#111111] text-white text-xs px-8 py-1.5 flex justify-between items-center font-mono">
+    <span>화면 20: 정밀 진단 심층 리포트 상세 화면</span>
+    <span>해상도: 1920 x 1080 (Full HD) | 본문 그리드: 1200px</span>
+  </div>
+  <header class="w-full h-[72px] border-b border-gray-200 bg-white flex items-center justify-between px-12 z-10 flex-shrink-0">
+    <div class="flex items-center gap-12">
+      <div class="text-2xl font-bold tracking-tight text-black flex items-center gap-2">
+        <span>LifeLog</span>
+      </div>
+      <span class="text-sm font-bold text-gray-800 border-l border-gray-300 pl-4">정밀 진단 심층 리포트</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="mock-btn text-xs border border-gray-300 bg-white px-3 py-2 text-gray-700">리포트 인쇄 / PDF 저장</div>
+      <div class="mock-btn text-xs bg-black text-white px-4 py-2">대시보드로 돌아가기</div>
+    </div>
+  </header>
+  <main class="w-full flex-1 overflow-hidden bg-white">
+    <div class="max-w-[1200px] w-full mx-auto py-8 flex flex-col gap-6">
+      <div class="border-b border-gray-200 pb-4 flex justify-between items-end">
+        <div>
+          <span class="text-xs text-gray-500 font-mono">리포트 고유번호: LL-202610-0982 | 대조 모수: 1,420명</span>
+          <h1 class="text-2xl font-bold text-gray-900 mt-1">박민우 님 백엔드 개발 직무 정밀 진단 리포트</h1>
+        </div>
+        <div class="text-right">
+          <span class="text-xs text-gray-500 block">내 실시간 종합 백분위</span>
+          <span class="text-3xl font-extrabold text-black">상위 18.4% <span class="text-sm font-normal text-gray-500">(1,420명 중 261위)</span></span>
+        </div>
+      </div>
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-8 flex flex-col gap-6">
+          <div class="mock-card p-6">
+            <h2 class="text-base font-bold text-gray-900 mb-4">상위 10% 합격 그룹 vs 내 스펙 1:1 정밀 대조</h2>
+            <div class="border border-gray-200 overflow-hidden text-xs">
+              <div class="grid grid-cols-12 bg-gray-100 py-2.5 px-4 font-bold text-gray-700 border-b border-gray-200">
+                <span class="col-span-3">항목</span>
+                <span class="col-span-3 text-center">내 현재 스펙</span>
+                <span class="col-span-3 text-center">상위 10% 합격자 평균</span>
+                <span class="col-span-3 text-right">비교 진단</span>
+              </div>
+              <div class="grid grid-cols-12 py-3 px-4 border-b border-gray-100 items-center">
+                <span class="col-span-3 font-semibold text-gray-900">학점 (4.5 만점)</span>
+                <span class="col-span-3 text-center text-gray-700 font-medium">3.85</span>
+                <span class="col-span-3 text-center text-gray-600">3.88</span>
+                <span class="col-span-3 text-right text-gray-500">안정권 (격차 -0.03)</span>
+              </div>
+              <div class="grid grid-cols-12 py-3 px-4 border-b border-gray-100 items-center">
+                <span class="col-span-3 font-semibold text-gray-900">어학 성적 (TOEIC)</span>
+                <span class="col-span-3 text-center text-gray-700 font-medium">865점</span>
+                <span class="col-span-3 text-center text-gray-600">890점</span>
+                <span class="col-span-3 text-right text-gray-500">적정 (상향 불필요)</span>
+              </div>
+              <div class="grid grid-cols-12 py-3 px-4 border-b border-gray-100 items-center bg-amber-50/40">
+                <span class="col-span-3 font-semibold text-gray-900">직무 핵심 자격증</span>
+                <span class="col-span-3 text-center font-bold text-gray-900">정처기 (1개)</span>
+                <span class="col-span-3 text-center text-gray-700">정처기 + SQLD (2개 이상 78%)</span>
+                <span class="col-span-3 text-right font-bold text-amber-700">보완 최우선</span>
+              </div>
+              <div class="grid grid-cols-12 py-3 px-4 border-b border-gray-100 items-center">
+                <span class="col-span-3 font-semibold text-gray-900">실무 인턴십 경험</span>
+                <span class="col-span-3 text-center text-gray-700 font-medium">6개월 (1건)</span>
+                <span class="col-span-3 text-center text-gray-600">평균 4.8개월 (보유율 62%)</span>
+                <span class="col-span-3 text-right text-emerald-700 font-bold">상위 15% 우위</span>
+              </div>
+            </div>
+          </div>
+          <div class="mock-card p-6 bg-gray-50">
+            <h2 class="text-sm font-bold text-gray-900 mb-2">데이터 분석 총평</h2>
+            <p class="text-xs text-gray-700 leading-relaxed">
+              박민우 님은 학점과 인턴십 경험에서 상위 10% 집단과 대등하거나 우위에 있습니다. 현재 단계에서 토익을 900점 이상으로 올리는 것은 연봉 및 서류 합격률에 유의미한 영향을 주지 못합니다. <strong class="text-black">SQL 개발자(SQLD) 자격증 1개를 추가 취득할 경우 상위 8.2%로 진입</strong>하며 예상 초봉 협상력이 가장 극대화됩니다.
+            </p>
+          </div>
+        </div>
+        <div class="col-span-4 flex flex-col gap-5">
+          <div class="mock-card p-5">
+            <h3 class="text-sm font-bold text-gray-900 mb-3">서류 전형 통과 예상 확률</h3>
+            <div class="flex flex-col gap-3 text-xs">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-gray-600">중견 / 강소 IT 기업</span>
+                  <span class="font-bold text-gray-900">88%</span>
+                </div>
+                <div class="w-full bg-gray-200 h-2">
+                  <div class="bg-black h-2 w-[88%]"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-gray-600">상장 테크 / 유니콘 기업</span>
+                  <span class="font-bold text-gray-900">62%</span>
+                </div>
+                <div class="w-full bg-gray-200 h-2">
+                  <div class="bg-black h-2 w-[62%]"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-gray-600">대기업 / 금융권 IT</span>
+                  <span class="font-bold text-gray-900">45%</span>
+                </div>
+                <div class="w-full bg-gray-200 h-2">
+                  <div class="bg-gray-400 h-2 w-[45%]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 pt-4 border-t border-gray-200">
+              <div class="mock-btn w-full bg-black text-white text-xs py-3 font-semibold">취약점 보완 목표 바로 등록 ➔</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="frame-wrapper" id="screen21">
+  <div class="w-full bg-[#111111] text-white text-xs px-8 py-1.5 flex justify-between items-center font-mono">
+    <span>화면 21: 소수 표본 집단 데이터 신뢰 구간 안내창</span>
+    <span>해상도: 1920 x 1080 (Full HD) | 본문 그리드: 1200px</span>
+  </div>
+  <div class="relative w-full flex-1 flex flex-col">
+    <div class="w-full flex-1 bg-white opacity-40 pointer-events-none filter blur-[1px]">
+      <header class="w-full h-[72px] border-b border-gray-200 bg-white px-12 flex items-center justify-between">
+        <span class="text-2xl font-bold">LifeLog</span>
+      </header>
+      <div class="max-w-[1200px] mx-auto py-12">
+        <div class="h-96 border border-gray-300 bg-gray-50"></div>
+      </div>
+    </div>
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+      <div class="w-[560px] bg-white border border-gray-900 shadow-2xl p-8 flex flex-col gap-6">
+        <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+          <div>
+            <span class="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-0.5 border border-gray-300">통계적 신뢰성 보호</span>
+            <h2 class="text-xl font-bold text-gray-900 mt-2">소수 표본 감지 및 기준선 안내</h2>
+          </div>
+        </div>
+        <div class="text-sm text-gray-600 leading-relaxed">
+          입력하신 세부 전공 조건의 청년패널 유효 표본 수가 30명 미만으로 확인되었습니다. 통계적 왜곡을 방지하기 위해 상위 계열인 <strong class="text-gray-900">공학계열 전체 1,280건</strong> 표준 데이터셋으로 자동 보정되었습니다.
+        </div>
+        <div class="bg-gray-50 border border-gray-200 p-4 flex flex-col gap-2 text-xs">
+          <div class="flex justify-between">
+            <span class="text-gray-500">적용된 기준 모수</span>
+            <span class="font-bold text-gray-800">공학계열 전체 대졸자 표준</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">예측 신뢰 구간</span>
+            <span class="font-bold text-gray-800">4,190만 ~ 4,610만 원 (오차 ±210만 원)</span>
+          </div>
+        </div>
+        <div class="border-t border-gray-200 pt-4 flex justify-end">
+          <div class="mock-btn text-sm bg-black text-white px-6 py-2.5 font-bold">안내 확인하고 계속하기</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

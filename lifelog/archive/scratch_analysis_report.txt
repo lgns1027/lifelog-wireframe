@@ -1,0 +1,205 @@
+=== 1. BULLET (•) 및 피그마 변환 취약 구조 분석 ===
+총 추출된 프레임 수: 19
+• 포함 라인 수: 36
+Line 1764: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>컴퓨터공학과 주전공 (소프트웨어 개발 기본 요건 충족)</span></div>
+Line 1765: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>정보처리기사 취득 (기본 우대 요건 충족)</span></div>
+Line 1766: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>TOEIC 865점 (기업 지원 최소 어학선 충족)</span></div>
+Line 1767: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>학점 3.6 / 4.5</span></div>
+Line 2291: <div style="display: flex; gap: 6px;"><span style="color:#64748b;">•</span><span><strong>소요 기간:</strong> 약 6개월 (채용 연계형 인턴십)</span></div>
+Line 2292: <div style="display: flex; gap: 6px;"><span style="color:#64748b;">•</span><span><strong>소요 비용:</strong> 직접 비용 별도 확인 · 참여 중 급여는 공고별 확인</span></div>
+Line 2803: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>전공: 컴퓨터공학 학사</span></div>
+Line 2804: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>자격: 정보처리기사 보유 (공공·금융 솔루션 투입 요건 충족)</span></div>
+Line 2805: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>기본기: Spring Boot REST API 백엔드 프로젝트 경험 보유</span></div>
+Line 2813: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>클라우드(AWS) 기반 배포 및 서비스 인프라 운영 경험</span></div>
+Line 2814: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>JPA 성능 튜닝 및 데이터베이스 쿼리 최적화 경험</span></div>
+Line 2815: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>대용량 트래픽 대응을 위한 비동기 처리(Redis 등) 활용</span></div>
+Line 3347: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>이커머스 주문·결제 마이크로서비스 백엔드 REST API 설계 및 개발</span></div>
+Line 3348: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>RDBMS(MySQL) 데이터베이스 모델링 및 JPA 쿼리 최적화</span></div>
+Line 3349: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>단위 테스트 작성 및 지속적 배포 협업</span></div>
+Line 3357: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>컴퓨터공학 관련 학과 전공자 또는 이에 준하는 기본 지식 보유자</span></div>
+Line 3358: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>Java 또는 Kotlin, Spring Boot 프레임워크를 활용한 프로젝트 경험</span></div>
+Line 3359: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>관계형 데이터베이스(RDBMS) 및 SQL 기본 이해</span></div>
+Line 3367: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>AWS 클라우드 환경에서 서비스를 배포하고 운영해본 경험</span></div>
+Line 3368: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>정보처리기사 등 관련 공인 국가기술자격 보유자</span></div>
+Line 3369: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span>대용량 트래픽 처리나 성능 개선을 고민하고 해결해본 경험</span></div>
+Line 3393: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>컴퓨터공학과 전공:</strong> 필수 학력 요건 확인</span></div>
+Line 3394: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>Spring Boot REST API 프로젝트:</strong> 필수 기술 요건 확인</span></div>
+Line 3395: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>정보처리기사 자격증:</strong> 우대 요건 확인</span></div>
+Line 3406: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>관계형 데이터베이스(RDBMS) 및 SQL 이해:</strong> 필수 요건 — 프로필에 데이터베이스/SQL 상세가 등록되지 않아 프로젝트 또는 이력서에서 추가 확인 필요</span></div>
+Line 3407: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>대용량 트래픽 및 성능 개선:</strong> 우대 요건 — 등록된 프로젝트 요약에 성능 개선 지표가 없어 추가 확인 필요</span></div>
+Line 3418: <span style="color: #64748b;">•</span>
+Line 3537: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>동의 기반 운영:</strong> 프로필 공개 여부는 사용자가 직접 설정합니다.</span></div>
+Line 3538: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>기업 사전 검증:</strong> 사업자등록 및 담당자 확인을 거친 공식 기업만 제안을 보낼 수 있습니다.</span></div>
+Line 3539: <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>현재 이용 가능:</strong> 지금은 내 조건에 맞는 채용 공고를 직접 탐색하고 요건을 대조하는 '맞춤 공고'를 이용하실 수 있습니다.</span></div>
+Line 3645: <span style="color: #0f172a;">••••••••••••</span>
+Line 3761: <span style="color: #0f172a;">•••••</span>
+Line 3889: <span style="color: #0f172a;">••••••••••••</span>
+Line 3897: <span style="color: #0f172a;">••••••••••••</span>
+Line 4011: <span style="color: #0f172a;">••••••••••••</span>
+Line 4019: <span style="color: #0f172a;">••••••••</span>
+
+=== 2. 피그마 임포트 시 텍스트 뭉개짐/합쳐짐/줄바꿈 원인 정밀 진단 ===
+--- Frame 14 내 대조 분석 박스 HTML 구조 ---
+내 조건과 1:1 대조 결과</span>
+            </div>
+
+            <!-- 상태 1: 확인된 조건 (필수 2개, 우대 1개) - 커스텀 불릿 분리 -->
+            <div style="margin-bottom: 14px; padding: 12px 14px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 700; color: #0f172a;">1. 확인된 요건 (필수 2개, 우대 1개)</span>
+                <span class="status-pill pass">확인</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #334155; line-height: 1.5;">
+                <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>컴퓨터공학과 전공:</strong> 필수 학력 요건 확인</span></div>
+                <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>Spring Boot REST API 프로젝트:</strong> 필수 기술 요건 확인</span></div>
+                <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>정보처리기사 자격증:</strong> 우대 요건 확인</span></div>
+              </div>
+            </div>
+
+            <!-- 상태 2: 추가 확인 필요 요건 (RDBMS/SQL 필수 포함 2건) - 커스텀 불릿 분리 -->
+            <div style="margin-bottom: 14px; padding: 12px 14px; background: #ffffff; border: 1.5px solid #0f172a; border-radius: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 700; color: #0f172a;">2. 추가 확인 필요 요건 (2건)</span>
+                <span class="status-pill warn">확인 필요</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #334155; line-height: 1.5;">
+                <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>관계형 데이터베이스(RDBMS) 및 SQL 이해:</strong> 필수 요건 — 프로필에 데이터베이스/SQL 상세가 등록되지 않아 프로젝트 또는 이력서에서 추가 확인 필요</span></div>
+                <div style="display: flex; gap: 8px;"><span style="color: #64748b;">•</span><span><strong>대용량 트래픽 및 성능 개선:</strong> 우대 요건 — 등록된 프로젝트 요약에 성능 개선 지표가 없어 추가 확인 필요</span></div>
+              </div>
+            </div>
+
+            <!-- 상태 3: 등록 정보에서 확인 필요 요건 (AWS 클라우드) - 명확한 분리 -->
+            <div style="padding: 12px 14px; background: #ffffff; border: 1px dashed #94a3b8; border-radius: 6px; margin-bottom: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-size: 13px; font-weight: 700; color: #64748b;">3. 등록 정보에서 확인 필요한 요건 (1건)</span>
+                <span class="status-pill missing">확인 필요</span>
+              </div>
+              <div style="display: flex; gap: 8px; font-size: 13px; color: #64748b; line-height: 1.5;">
+                <span style="color: #64748b;">•</span>
+                <span><strong>AWS 클라우드 배포 경험:</strong> 우대 요건 — 프로필 미등록 상태로 등록 정보에서 확인 필요 (경험 보유 시 [내 정보 수정]에서 추가 가능)</span>
+              </div>
+            </div>
+
+            <div style="font-size: 12px; color: #64748b; line-height: 1.5; background: #f8fafc; padding: 8px 10px; border-radius: 6px;">
+              ※ 요건 대조 결과는 자가 점검용이며 실제 서류 합격을 보장하지 않습니다.
+            </div>
+          </div>
+
+          <!-- 
+
+=== 3. README 금지어 및 주의어 전수 검색 ===
+[안전] '마이크로데이터': 0회
+[안전] '마이크로데이터셋': 0회
+[안전] 'Mincerian': 0회
+[안전] '다변량': 0회
+[안전] '모수 정규화': 0회
+[안전] '파이프라인': 0회
+[안전] '모달': 0회
+[안전] '코호트': 0회
+[안전] '인라인': 0회
+[안전] '인디케이터': 0회
+[안전] 'CTA': 0회
+[안전] '선배': 0회
+[안전] 'P01': 0회
+[안전] 'S01': 0회
+[안전] 'S02': 0회
+[안전] 'D01': 0회
+[안전] 'D02': 0회
+[안전] 'R01': 0회
+[안전] 'J01': 0회
+[안전] 'Figma 전달용': 0회
+[안전] '서비스 대표 화면': 0회
+[안전] '가상 공고': 0회
+[안전] 'HOW IT WORKS': 0회
+[안전] 'Career Simulator': 0회
+[안전] 'D-Day': 0회
+[안전] 'D+': 0회
+[금지/주의어 발견] '즉시': 3회
+  Line 1936: <span style="color: #64748b;">학사 즉시 취업 유지 (석사/박사 선택 가능)</span>
+  Line 2176: <span style="color: #64748b;">학사 즉시 취업 유지 (석사/박사 선택 가능)</span>
+  Line 2540: <div class="frame-notes-item"><span class="frame-notes-label">정책:</span> 대학원 2년 소요에 따른 즉시 취업 3년 차와의 
+[안전] '강력한': 0회
+[안전] '궁극의': 0회
+[안전] '압도적으로': 0회
+[안전] '완전히': 0회
+[안전] '순식간에': 0회
+
+=== 4. 한영 병기 (괄호 영단어) 검색 ===
+[한영 병기] 데이터베이스(RDBMS): 2회
+[한영 병기] 클라우드(AWS): 1회
+
+=== 5. 물결표(~) 범위 표기 검색 ===
+[물결표(~) 사용] 총 22회
+  Line 677: <span style="font-size: 26px; font-weight: 800; color: #0f172a;">3,400만 ~ 3,800만 원</span>
+  Line 807: <div style="font-size: 38px; font-weight: 800; color: #0f172a; letter-spacing: -1px;">3,400만 ~ 3,800만 원</div>
+  Line 990: <div style="font-size: 38px; font-weight: 800; color: #0f172a; letter-spacing: -1px;">3,400만 ~ 3,800만 원</div>
+  Line 1023: <div style="font-size: 13px; color: #0f172a; font-weight: 700; margin-top: 2px;">해당 조건의 예시 추정값: 3,900만 ~ 4,300만 원 (기준 대비
+  Line 1473: ! 학점은 0.0 ~ 4.5 사이의 값이어야 합니다.
+  Line 1663: <div style="font-size: 28px; font-weight: 800; color: #0f172a; margin-bottom: 2px;">3,400만 ~ 3,800만 원</div>
+  Line 1669: <div style="font-size: 28px; font-weight: 800; color: #0f172a; margin-bottom: 2px;">4,200만 ~ 4,700만 원</div>
+  Line 1675: <div style="font-size: 28px; font-weight: 800; color: #0f172a; margin-bottom: 2px;">5,100만 ~ 5,800만 원</div>
+  Line 1717: <!-- Shaded Area Band (Grayscale) - 3400~3800만(160-140), 4200~4700만(120-95), 5100~5800만(75-40) -->
+  Line 1726: <text x="140" y="178" font-size="11" fill="#64748b" text-anchor="middle">3,400~3,800만</text>
+  Line 1731: <text x="330" y="135" font-size="11" fill="#64748b" text-anchor="middle">4,200~4,700만</text>
+  Line 1736: <text x="520" y="85" font-size="11" fill="#64748b" text-anchor="middle">5,100~5,800만</text>
+  Line 1978: <div style="font-size: 24px; font-weight: 800; color: #0f172a;">3,400만 ~ 3,800만 원</div>
+  Line 2223: <div style="font-size: 22px; font-weight: 800; color: #64748b;">3,400~3,800만</div>
+  Line 2229: <div style="font-size: 22px; font-weight: 800; color: #0f172a;">3,900~4,300만</div>
+  Line 2273: <!-- 격차 라벨 (흑백: 125 ~ 150 차이) -->
+  Line 2399: <div style="font-size: 26px; font-weight: 800; color: #0f172a; margin: 2px 0;">3,600만 ~ 3,900만</div>
+  Line 2445: <div style="font-size: 26px; font-weight: 800; color: #0f172a; margin: 2px 0;">3,900만 ~ 4,300만</div>
+  Line 2492: <div style="font-size: 26px; font-weight: 800; color: #0f172a; margin: 2px 0;">4,300만 ~ 4,800만</div>
+  Line 2630: <span>구간: 0 ~ 5년 차</span>
+  Line 2855: <span style="font-weight: 700; color: #0f172a;">1년 이상~3년 미만</span>
+  Line 3103: 서울 영등포구 여의도 | 공개 연봉: 3,800만 ~ 4,200만 원 (세전 기본급) | 마감일: 2026년 11월 15일
+
+=== 6. 어색하거나 개선 검토가 필요한 문구 스캔 ===
+[검토 대상 문구] '예시': 15회
+  Line 669: <div style="font-size: 17px; font-weight: 700; color: #0f172a;">진단 후 확인할 수 있는 리포트 예시</div>
+  Line 672: <!-- 예시 1: 연봉 추정 범위 -->
+  Line 689: <!-- 예시 2: 조건 변경 비교 -->
+  Line 699: <div style="font-size: 11px; color: #64748b;">기준 대비 예시 추정치 차이</div>
+  Line 704: <!-- 예시 3: 커리어 이동 통계 -->
+  Line 727: <div class="frame-notes-item"><span class="frame-notes-label">상태:</span> 첫 방문 사용자에게 서비스 가치와 3단계 진단 흐
+  Line 729: <div class="frame-notes-item"><span class="frame-notes-label">정책:</span> 불필요한 개인정보를 묻지 않으며, 진단 전 미리보
+  Line 1023: <div style="font-size: 13px; color: #0f172a; font-weight: 700; margin-top: 2px;">해당 조건의 예시 추정값: 3,90
+  Line 2026: <span style="color: #475569;">백엔드 개발 직무의 경우 자격증 취득 대비 실무 인턴십 경험을 추가했을 때 이 예시 비교에서 추정값 차이가 크게 나타납니다.<
+  Line 2236: <div style="font-size: 11px; color: #cbd5e1;">기준 대비 예시 추정치 차이</div>
+  Line 2466: 인턴십 합격 허들이 있으나, 이 예시 비교에서 추정값 차이가 크게 나타납니다.
+  Line 2500: <td style="padding: 8px 10px;"><strong>약 2년 (4학기 예시)</strong></td>
+  Line 2504: <td style="padding: 8px 10px;"><strong style="color: #0f172a;">약 1,200만 원 (예시 가정, 장학금·지원금 등에 따라 달라짐)
+  Line 2530: <span>준비 기간과 비용은 예시 가정치이며 개인 상황에 따라 다를 수 있습니다.</span>
+  Line 3132: <div class="frame-notes-item"><span class="frame-notes-label">정책:</span> 맞춤 채용 공고 예시 데이터이며 실제 기업 채용 
+[검토 대상 문구] '추정': 14회
+  Line 672: <!-- 예시 1: 연봉 추정 범위 -->
+  Line 699: <div style="font-size: 11px; color: #64748b;">기준 대비 예시 추정치 차이</div>
+  Line 717: <span>통계 데이터 기반 연봉 추정</span>
+  Line 972: <!-- 좌측: 현재 조건 연봉 추정 요약 -->
+  Line 1023: <div style="font-size: 13px; color: #0f172a; font-weight: 700; margin-top: 2px;">해당 조건의 예시 추정값: 3,90
+  Line 1105: <div class="frame-notes-item"><span class="frame-notes-label">정책:</span> 설정한 목표의 추정치는 조건 변경에 따른 추정치이
+  Line 1338: 입력된 정보는 통계 기반 연봉 추정에만 사용되며 안전하게 처리됩니다.
+  Line 1803: <div class="frame-notes-item"><span class="frame-notes-label">정책:</span> 통계적 기준선이며 확정 보상이 아님을 명시하고, 
+  Line 1804: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 연
+  Line 2026: <span style="color: #475569;">백엔드 개발 직무의 경우 자격증 취득 대비 실무 인턴십 경험을 추가했을 때 이 예시 비교에서 추정값 차이가 크게 나타납니다.<
+  Line 2236: <div style="font-size: 11px; color: #cbd5e1;">기준 대비 예시 추정치 차이</div>
+  Line 2323: <div class="frame-notes-item"><span class="frame-notes-label">상태:</span> 실무 인턴 6개월을 가상 추가하여 현재 조건 대비
+  Line 2466: 인턴십 합격 허들이 있으나, 이 예시 비교에서 추정값 차이가 크게 나타납니다.
+[검토 대상 문구] '격차': 1회
+  Line 2273: <!-- 격차 라벨 (흑백: 125 ~ 150 차이) -->
+[검토 대상 문구] '선택됨': 2회
+  Line 2124: <!-- 조건 1: 실무 인턴십 (선택됨) -->
+  Line 2128: <span style="font-size: 11px; font-weight: 700; color: #fff; background: #0f172a; padding: 2px 6px; 
+[검토 대상 문구] '검증 후 확정': 13회
+  Line 730: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 및 첫
+  Line 912: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처 및 기준 시점 통계 검증 후 확정 /
+  Line 1106: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처 및 기준 시점 통계 검증 후 확정 /
+  Line 1356: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 스
+  Line 1804: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 연
+  Line 2046: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 단
+  Line 2326: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 인
+  Line 2541: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 준
+  Line 2732: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 대
+  Line 2912: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 직
+  Line 3133: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 스
+  Line 3448: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 데이터 출처·기준 시점 통계 검증 후 확정 / 공
+  Line 4063: <div class="frame-notes-item"><span class="frame-notes-label">검증:</span> 비밀번호 일치 실시간 검증 및 약관 필수 동의 여
